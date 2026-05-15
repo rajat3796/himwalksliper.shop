@@ -3,220 +3,144 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Himalayan Walk - Official Store</title>
+    <title>Himalayan Walk - Premium Quality</title>
     <link rel="manifest" href="manifest.json">
-    <meta name="theme-color" content="#2c3e50">
     <style>
         body { font-family: 'Segoe UI', Arial, sans-serif; margin: 0; padding: 0; background-color: #f4f7f6; text-align: center; color: #333; }
-        header { background: #2c3e50; color: white; padding: 30px; }
-        .logo { width: 100px; border-radius: 50%; background: white; padding: 5px; margin-bottom: 10px; border: 2px solid #f1c40f; }
-        .product-card { background: white; padding: 20px; border-radius: 15px; display: inline-block; box-shadow: 0 8px 20px rgba(0,0,0,0.1); margin-top: 20px; max-width: 90%; width: 450px; vertical-align: top; }
-        .product-img { width: 100%; border-radius: 10px; margin-bottom: 15px; }
-        .yellow-star { color: #f1c40f; font-weight: bold; }
+        header { background: #2c3e50; color: white; padding: 25px; }
+        .logo { width: 90px; border-radius: 50%; background: white; padding: 5px; margin-bottom: 10px; border: 2px solid #f1c40f; }
+        .product-card { background: white; padding: 20px; border-radius: 15px; display: inline-block; box-shadow: 0 8px 20px rgba(0,0,0,0.1); margin-top: 20px; max-width: 90%; width: 400px; }
+        .product-img { width: 100%; border-radius: 10px; }
         .selection-box { text-align: left; margin: 15px 0; }
-        select, input, textarea { width: 100%; padding: 12px; margin-top: 5px; border-radius: 8px; border: 1px solid #ccc; box-sizing: border-box; font-size: 16px; }
-        
-        /* Cart Section Styling */
-        .cart-section { background: white; padding: 20px; border-radius: 15px; display: inline-block; box-shadow: 0 8px 20px rgba(0,0,0,0.1); margin-top: 20px; max-width: 90%; width: 500px; text-align: left; }
-        .cart-item { border-bottom: 1px solid #eee; padding: 12px 0; display: flex; justify-content: space-between; align-items: center; }
-        .remove-btn { color: #e74c3c; cursor: pointer; font-weight: bold; background: #ffebeb; padding: 5px 10px; border-radius: 5px; }
-        
-        .price-tag { font-size: 24px; color: #c0392b; font-weight: bold; margin: 15px 0; }
-        .order-btn { background: #e67e22; color: white; padding: 15px; border-radius: 8px; font-weight: bold; display: block; border: none; cursor: pointer; width: 100%; font-size: 18px; margin-top: 10px; text-decoration: none; text-align: center; }
-        .add-btn { background: #3498db; }
-        .pay-btn { background: #27ae60; }
-        
-        /* App Install Button - Stylish */
-        #install-app-btn { background: #f1c40f; color: #2c3e50; padding: 10px 20px; border-radius: 25px; font-weight: bold; border: none; cursor: pointer; margin-top: 15px; display: none; box-shadow: 0 4px 10px rgba(0,0,0,0.2); }
-
-        /* Bank Modal */
+        select, input, textarea { width: 100%; padding: 12px; margin-top: 5px; border-radius: 8px; border: 1px solid #ccc; box-sizing: border-box; }
+        .order-btn { background: #e67e22; color: white; padding: 15px; border-radius: 8px; font-weight: bold; display: block; border: none; cursor: pointer; width: 100%; font-size: 1.1em; margin-top: 10px; text-align: center; text-decoration: none; }
+        .cart-section { background: white; padding: 20px; border-radius: 15px; display: none; box-shadow: 0 8px 20px rgba(0,0,0,0.1); margin-top: 20px; max-width: 90%; width: 400px; text-align: left; }
+        #install-app-btn { background: #f1c40f; color: #2c3e50; padding: 10px 20px; border-radius: 25px; font-weight: bold; border: none; cursor: pointer; margin-top: 10px; display: none; }
         .modal { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.6); }
-        .modal-content { background-color: white; margin: 15% auto; padding: 25px; border-radius: 15px; width: 85%; max-width: 400px; text-align: left; position: relative; }
-        .close-modal { position: absolute; right: 15px; top: 10px; font-size: 28px; cursor: pointer; color: #aaa; }
-        .bank-details p { margin: 12px 0; border-bottom: 1px solid #f0f0f0; padding-bottom: 8px; font-size: 16px; }
-
-        .info-section { background: #fff; padding: 40px 20px; margin-top: 40px; border-top: 5px solid #f1c40f; text-align: left; max-width: 950px; margin-left: auto; margin-right: auto; line-height: 1.8; }
-        .info-section h3 { color: #2c3e50; border-bottom: 2px solid #f1c40f; display: inline-block; padding-bottom: 5px; margin-top: 25px; }
+        .modal-content { background-color: white; margin: 15% auto; padding: 25px; border-radius: 15px; width: 85%; max-width: 350px; position: relative; }
+        .info-section { background: #fff; padding: 30px 20px; margin-top: 40px; border-top: 5px solid #f1c40f; text-align: left; line-height: 1.6; }
     </style>
 </head>
 <body>
 
 <header>
-    <img src="logo.jpg" alt="Himalayan Walk Logo" class="logo">
+    <img src="logo.jpg" alt="Logo" class="logo">
     <h1>Himalayan Walk</h1>
-    <p style="font-size: 1.2em; letter-spacing: 1px;">पहाड़ों सी मज़बूती, हर कदम में आराम।</p>
-    <button id="install-app-btn">📲 Install Himalayan Walk App</button>
+    <p>पहाड़ों सी मज़बूती, हर कदम में आराम।</p>
+    <button id="install-app-btn" onclick="installNow()">📲 Install App</button>
 </header>
 
 <div class="product-card">
-    <img src="product.jpg" alt="Premium Slipper" class="product-img">
-    <p>Brand: <span class="yellow-star">★ Yellow Star ★</span></p>
-
+    <img src="product.jpg" alt="Slipper" class="product-img">
+    <p>Brand: <b style="color:#f1c40f;">★ Yellow Star ★</b></p>
     <div class="selection-box">
-        <label><b>Select Size (UK/India):</b></label>
-        <select id="size">
-            <option>Size 6</option><option>Size 7</option><option>Size 8</option><option>Size 9</option><option>Size 10</option>
-        </select>
+        <label>Size:</label>
+        <select id="prodSize"><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option></select>
     </div>
-
     <div class="selection-box">
-        <label><b>Select Color:</b></label>
-        <select id="color">
-            <option>Black</option><option>Cherry</option><option>Brown</option><option>Blue</option><option>Green</option>
-        </select>
+        <label>Color:</label>
+        <select id="prodColor"><option>Black</option><option>Cherry</option><option>Brown</option><option>Blue</option><option>Green</option></select>
     </div>
-
     <div class="selection-box">
-        <label><b>Quantity (Pairs):</b></label>
-        <input type="number" id="qty" value="1" min="1">
+        <label>Quantity:</label>
+        <input type="number" id="prodQty" value="1" min="1">
     </div>
-
-    <button class="order-btn add-btn" onclick="addToCart()">+ Add to Order List</button>
+    <button class="order-btn" style="background:#3498db;" onclick="addItem()">+ Add to Order List</button>
 </div>
 
-<div class="cart-section" id="cart-box" style="display: none;">
-    <h3 style="margin-top:0;">Your Order Summary</h3>
-    <div id="cart-items"></div>
-    <hr>
-    <p><b>Total Quantity:</b> <span id="total-pairs">0</span> Pairs</p>
-    <p class="price-tag" id="price-display">Price per unit: ₹159</p>
-    <p style="font-size: 1.3em;"><b>Grand Total: ₹<span id="final-bill">0</span></b></p>
-
-    <div class="selection-box">
-        <label><b>Delivery Address:</b></label>
-        <textarea id="address" placeholder="Full name, village, pincode, contact number..."></textarea>
-    </div>
-
-    <button class="order-btn" onclick="placeOrder()">Order via WhatsApp</button>
-    <button class="order-btn pay-btn" onclick="openBankModal()">Pay Online (Bank Transfer)</button>
+<div class="cart-section" id="cartBox">
+    <h3>Order List</h3>
+    <div id="cartItems"></div><hr>
+    <p><b>Total Quantity:</b> <span id="totalQty">0</span> Pairs</p>
+    <p style="color:#c0392b; font-size: 1.4em;"><b>Total Bill: ₹<span id="finalBill">0</span></b></p>
+    <textarea id="custAddr" placeholder="Enter Full Delivery Address..."></textarea>
+    <button class="order-btn" onclick="sendWA()">Order via WhatsApp</button>
+    <button class="order-btn" style="background:#27ae60;" onclick="showBank()">Pay Online (Bank Info)</button>
 </div>
 
 <div id="bankModal" class="modal">
     <div class="modal-content">
-        <span class="close-modal" onclick="closeBankModal()">&times;</span>
-        <h3 style="color: #27ae60; margin-top: 0;">Bank Transfer Details</h3>
-        <div class="bank-details">
-            <p><b>A/C Name:</b> Algotrio indus</p>
-            <p><b>Bank:</b> Punjab National Bank</p>
-            <p><b>Branch:</b> Ganoh</p>
-            <p><b>A/C Number:</b> 3027002100002557</p>
-            <p><b>IFSC Code:</b> PUNB0302700</p>
-            <p><b>A/C Type:</b> Current Account</p>
-        </div>
-        <p style="font-size: 0.85em; background: #fff3cd; padding: 10px; border-radius: 5px; margin-top: 10px;">
-            <b>Note:</b> Kindly share payment screenshot on WhatsApp.
-        </p>
+        <span style="position:absolute; right:15px; top:10px; cursor:pointer;" onclick="closeBank()">&times;</span>
+        <h3 style="color:#27ae60;">Bank Details</h3>
+        <p><b>Name:</b> Algotrio indus<br><b>Bank:</b> PNB<br><b>A/C:</b> 3027002100002557<br><b>IFSC:</b> PUNB0302700</p>
     </div>
 </div>
 
 <div class="info-section">
     <h3>Our Vision & Mission</h3>
-    <p>We are dedicated to providing footwear that combines innovative design with uncompromising comfort. Our mission is to maintain the highest standards of quality control to ensure excellence in every step.</p>
-
+    <p>We provide high-quality footwear with uncompromising comfort. Maintaining the highest standards is our mission.</p>
     <h3>Our Story</h3>
-    <p>Since 2022, <b>Himalayan Walk</b> has focused on durability and style under the <b>Yellow Star</b> brand, serving millions across India with premium quality footwear.</p>
-
+    <p>Since 2022, <b>Himalayan Walk</b> (Brand Yellow Star) has been serving comfort across India.</p>
     <hr>
-    <p><b>Owner:</b> Rajat Thakur (+918988883210)</p>
-    <p><b>Location:</b> Raja ka talab, Nurpur, Kangra, HP 176051</p>
+    <p><b>Owner:</b> Rajat Thakur (+918988883210)<br><b>Location:</b> Raja ka talab, Nurpur, HP</p>
 </div>
 
 <script>
-    // PWA Service Worker Registration
-    if ('serviceWorker' in navigator) {
-        navigator.serviceWorker.register('sw.js').catch(err => console.log(err));
+    let myCart = [];
+
+    // Add Item function
+    function addItem() {
+        let s = document.getElementById('prodSize').value;
+        let c = document.getElementById('prodColor').value;
+        let q = parseInt(document.getElementById('prodQty').value);
+        
+        if(q > 0) {
+            myCart.push({s, c, q});
+            document.getElementById('cartBox').style.display = 'inline-block';
+            renderCart();
+        }
     }
 
-    let cart = [];
-    let deferredPrompt;
+    // Refresh Cart UI
+    function renderCart() {
+        let div = document.getElementById('cartItems');
+        let totalQ = 0;
+        div.innerHTML = "";
+        
+        myCart.forEach((item, i) => {
+            totalQ += item.q;
+            div.innerHTML += <p>${item.s} - ${item.c} (${item.q} pr) <button onclick="myCart.splice(${i},1);renderCart()">x</button></p>;
+        });
 
-    // App Install Logic
+        document.getElementById('totalQty').innerText = totalQ;
+        
+        let rate = 159;
+        if(totalQ >= 100) rate = 74; else if(totalQ >= 50) rate = 76; else if(totalQ >= 30) rate = 82;
+        else if(totalQ >= 25) rate = 99; else if(totalQ >= 20) rate = 109; else if(totalQ >= 10) rate = 119;
+        else if(totalQ >= 5) rate = 129; else if(totalQ >= 3) rate = 139; else if(totalQ >= 2) rate = 149;
+
+        document.getElementById('finalBill').innerText = totalQ * rate;
+        if(myCart.length === 0) document.getElementById('cartBox').style.display = 'none';
+    }
+
+    // WhatsApp function
+    function sendWA() {
+        let addr = document.getElementById('custAddr').value;
+        if(!addr) { alert("Please enter address!"); return; }
+        let msg = Himalayan Walk Order:\n + myCart.map(x => - ${x.s} ${x.c} (${x.q} pr)).join('\n') + \nTotal: ₹${document.getElementById('finalBill').innerText}\nAddress: ${addr};
+        window.open(https://wa.me/918988883210?text=${encodeURIComponent(msg)});
+    }
+
+    // Modal functions
+    function showBank() { document.getElementById('bankModal').style.display = 'block'; }
+    function closeBank() { document.getElementById('bankModal').style.display = 'none'; }
+
+    // PWA Install Logic
+    let defPrompt;
     window.addEventListener('beforeinstallprompt', (e) => {
         e.preventDefault();
-        deferredPrompt = e;
+        defPrompt = e;
         document.getElementById('install-app-btn').style.display = 'inline-block';
     });
 
-    document.getElementById('install-app-btn').addEventListener('click', async () => {
-        if (deferredPrompt) {
-            deferredPrompt.prompt();
-            const { outcome } = await deferredPrompt.userChoice;
-            if (outcome === 'accepted') document.getElementById('install-app-btn').style.display = 'none';
-            deferredPrompt = null;
+    async function installNow() {
+        if (defPrompt) {
+            defPrompt.prompt();
+            defPrompt = null;
+        } else {
+            alert("To Install: Click the 3 dots (⋮) in your browser and select 'Add to Home Screen'.");
         }
-    });
-
-    // Add to Cart Function
-    function addToCart() {
-        let size = document.getElementById('size').value;
-        let color = document.getElementById('color').value;
-        let qty = parseInt(document.getElementById('qty').value);
-
-        if (qty < 1 || isNaN(qty)) {
-            alert("Enter a valid quantity!");
-            return;
-        }
-
-        cart.push({ size, color, qty });
-        document.getElementById('cart-box').style.display = "inline-block";
-        updateUI();
     }
-
-    function removeItem(index) {
-        cart.splice(index, 1);
-        if (cart.length === 0) document.getElementById('cart-box').style.display = "none";
-        updateUI();
-    }
-
-    // Update Cart UI & Pricing
-    function updateUI() {
-        let container = document.getElementById('cart-items');
-        let totalQty = 0;
-        container.innerHTML = "";
-
-        cart.forEach((item, index) => {
-            totalQty += item.qty;
-            container.innerHTML += `
-                <div class="cart-item">
-                    <span>${item.size} - ${item.color} (${item.qty} pr)</span>
-                    <span class="remove-btn" onclick="removeItem(${index})">Remove</span>
-                </div>`;
-        });
-
-        document.getElementById('total-pairs').innerText = totalQty;
-
-        // Pricing Logic
-        let price = 159;
-        if (totalQty >= 100) price = 74;
-        else if (totalQty >= 50) price = 76;
-        else if (totalQty >= 30) price = 82;
-        else if (totalQty >= 25) price = 99;
-        else if (totalQty >= 20) price = 109;
-        else if (totalQty >= 10) price = 119;
-        else if (totalQty >= 5) price = 129;
-        else if (totalQty >= 3) price = 139;
-        else if (totalQty >= 2) price = 149;
-
-        document.getElementById('price-display').innerText = (totalQty >= 30 ? "Wholesale Rate: ₹" : "Retail Rate: ₹") + price;
-        document.getElementById('final-bill').innerText = totalQty * price;
-    }
-
-    function placeOrder() {
-        let addr = document.getElementById('address').value;
-        if (cart.length === 0 || addr.trim() === "") {
-            alert("Add items and address first!");
-            return;
-        }
-        let details = cart.map(i => - ${i.size}, ${i.color}: ${i.qty} pr).join('\n');
-        let total = document.getElementById('total-pairs').innerText;
-        let bill = document.getElementById('final-bill').innerText;
-        let msg = *Himalayan Walk Order*\n\n*Items:*\n${details}\n\n*Total:* ${total} pairs\n*Grand Total:* ₹${bill}\n\n*Address:*\n${addr};
-        window.open(https://wa.me/918988883210?text=${encodeURIComponent(msg)}, '_blank');
-    }
-
-    function openBankModal() { document.getElementById('bankModal').style.display = "block"; }
-    function closeBankModal() { document.getElementById('bankModal').style.display = "none"; }
-    window.onclick = (e) => { if (e.target == document.getElementById('bankModal')) closeBankModal(); }
 </script>
 
 </body>
