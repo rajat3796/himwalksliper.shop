@@ -3,30 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Himalayan Walk Slipper - Premium Quality Footwear</title>
+    <title>Himalayan Walk - Premium Quality Footwear</title>
     <style>
         body { font-family: 'Segoe UI', Arial, sans-serif; margin: 0; padding: 0; background-color: #f4f7f6; text-align: center; color: #333; }
-        header { background: #2c3e50; color: white; padding: 40px 20px; }
-        .logo { width: 100px; border-radius: 50%; background: white; padding: 5px; margin-bottom: 10px; border: 3px solid #f1c40f; }
-        .product-card { background: white; padding: 25px; border-radius: 15px; display: inline-block; box-shadow: 0 8px 20px rgba(0,0,0,0.1); margin-top: 30px; max-width: 95%; width: 500px; }
+        header { background: #2c3e50; color: white; padding: 30px; }
+        .logo { width: 100px; border-radius: 50%; background: white; padding: 5px; margin-bottom: 10px; border: 2px solid #f1c40f; }
+        .product-card { background: white; padding: 25px; border-radius: 15px; display: inline-block; box-shadow: 0 8px 20px rgba(0,0,0,0.1); margin-top: 20px; max-width: 90%; width: 450px; }
         .product-img { width: 100%; border-radius: 10px; margin-bottom: 15px; }
-        .price { font-size: 28px; color: #c0392b; font-weight: bold; margin: 10px 0; }
-        .yellow-star { color: #f1c40f; font-weight: bold; font-size: 1.2em; }
-        
-        /* Selection Styles */
-        .selection-box { text-align: left; margin: 15px 0; padding: 10px; background: #f9f9f9; border-radius: 8px; }
-        select { width: 100%; padding: 10px; margin-top: 5px; border-radius: 5px; border: 1px solid #ddd; }
-        
-        .order-btn { background: #e67e22; color: white; padding: 15px 30px; border-radius: 5px; font-weight: bold; display: inline-block; border: none; cursor: pointer; width: 100%; font-size: 1.1em; }
-        
-        .quality-badge { background: #f1c40f; color: #2c3e50; padding: 5px 15px; border-radius: 20px; font-weight: bold; display: inline-block; margin-bottom: 10px; }
-        
-        .about-section { background: #fff; padding: 50px 20px; margin-top: 40px; border-top: 5px solid #f1c40f; text-align: left; max-width: 800px; margin-left: auto; margin-right: auto; line-height: 1.8; }
-        
-        /* Gallery Style */
-        .gallery { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-top: 20px; }
-        .gallery img { width: 100px; height: 100px; object-fit: cover; border-radius: 5px; cursor: pointer; border: 2px solid transparent; }
-        .gallery img:hover { border-color: #f1c40f; }
+        .price { font-size: 26px; color: #c0392b; font-weight: bold; margin: 10px 0; }
+        .yellow-star { color: #f1c40f; font-weight: bold; }
+        .selection-box { text-align: left; margin: 15px 0; }
+        select, input { width: 100%; padding: 10px; margin-top: 5px; border-radius: 5px; border: 1px solid #ddd; box-sizing: border-box; }
+        .order-btn { background: #e67e22; color: white; padding: 15px; border-radius: 5px; font-weight: bold; display: block; border: none; cursor: pointer; width: 100%; font-size: 1.1em; margin-top: 10px; text-decoration: none; }
+        .pay-btn { background: #27ae60; }
+        .about-section { background: #fff; padding: 40px 20px; margin-top: 40px; border-top: 5px solid #f1c40f; text-align: left; max-width: 800px; margin-left: auto; margin-right: auto; line-height: 1.6; }
     </style>
 </head>
 <body>
@@ -34,14 +24,12 @@
 <header>
     <img src="logo.jpg" alt="Himalayan Walk Logo" class="logo">
     <h1>Himalayan Walk</h1>
-    <p>Premium Footwear | Quality You Can Trust</p>
+    <p>Premium Quality | Yellow Star Footwear</p>
 </header>
 
 <div class="product-card">
-    <div class="quality-badge">★ 100% Quality Assurance ★</div>
-    <img src="product.jpg" id="main-img" alt="Premium Slipper" class="product-img">
-    
-    <p>Brand: <span class="yellow-star">Yellow Star</span></p>
+    <img src="product.jpg" alt="Premium Slipper" class="product-img">
+    <p>Brand: <span class="yellow-star">★ Yellow Star ★</span></p>
     <p class="price" id="price-text">Retail Price: ₹159</p>
 
     <div class="selection-box">
@@ -58,70 +46,32 @@
     <div class="selection-box">
         <label><b>Select Color:</b></label>
         <select id="color">
-            <option>Black (Classic)</option>
-            <option>Blue (Premium)</option>
-            <option>Brown (Rustic)</option>
-            <option>cherry (Premium)</option>
-            <option>Green (Rustic)</option>
+            <option>Black</option>
+            <option>Blue</option>
+            <option>Brown</option>
         </select>
     </div>
 
     <div class="selection-box">
         <label><b>Quantity:</b></label>
-        <input type="number" id="qty" value="1" min="1" oninput="calculate()" style="width: 100%; padding: 10px; box-sizing: border-box; border-radius: 5px; border: 1px solid #ddd;">
+        <input type="number" id="qty" value="1" min="1" oninput="calculate()">
     </div>
 
     <button class="order-btn" onclick="placeOrder()">Order via WhatsApp</button>
+    <button class="order-btn pay-btn" onclick="payOnline()">Pay Online (Direct Transfer)</button>
 </div>
 
 <div class="about-section">
-    <h2 style="text-align: center;">Himalayan Walk ke Baare Mein</h2>
-    <p><b>Himalayan Walk</b> ki shuruat Himachal Pradesh ke <b>Nurpur (Kangra)</b> se hui hai. Humara sabse bada focus <b>Quality</b> par hai, isliye hum har product par <b>'Yellow Star'</b> mark ka istemal karte hain. Ye mark humari mehnat, mazbooti aur aram ka prateek hai.</p>
-    
-    <h3>Humari Quality ka Wada:</h3>
+    <h3>About Us: Himalayan Walk</h3>
+    <p><b>Himalayan Walk</b> हिमाचल प्रदेश के <b>नूरपुर (कांगड़ा)</b> से संचालित होता है। हमारा मुख्य फोकस <b>Yellow Star</b> क्वालिटी पर है, जो मजबूती और आराम का प्रतीक है।</p>
     <ul>
-        <li><b>Durability:</b> Pahadon jaisi mazbooti jo lambe samay tak chale.</li>
-        <li><b>Comfort:</b> Har kadam mein rui jaisa aram.</li>
-        <li><b>Checking:</b> Har slipper ko pack karne se pehle team ki dekh-rekh mein bariki se check kiya jata hai.</li>
+        <li><b>Durability:</b> लंबी उम्र और मजबूती।</li>
+        <li><b>Comfort:</b> हर कदम में रूहानी आराम।</li>
+        <li><b>Checking:</b> हर स्लीपर की बारीकी से जांच।</li>
     </ul>
-
-    <p>Humara vision hai ki har ghar tak behtareen quality ka footwear pahunche, woh bhi sahi daam par.</p>
-    
     <hr>
-    <p><b>Owner:</b> Rajat Thakur,+918988883210</p>
-    <p><b>Contact Info:</b>Raja ka talab, Nurpur,kangra, Himachal Pradesh 176051</p>
-</div>
-
-
-    function calculate() {
-        let q = document.getElementById('qty').value;
-        let p = document.getElementById('price-text');
-        if (q >= 50) {
-            p.innerHTML = "Wholesale Price: ₹76 <br><small>(Total: ₹" + (q * 76) + ")</small>";
-            p.style.color = "#27ae60";
-        } else {
-            p.innerHTML = "Retail Price: ₹159";
-            p.style.color = "#c0392b";
-        }
-    }
-
-    function placeOrder() {
-        let size = document.getElementById('size').value;
-        let color = document.getElementById('color').value;
-        let qty = document.getElementById('qty').value;
-        let msg = "Hello Himalayan Walk, I want to order:\nProduct: Yellow Star Slipper\nSize: " + size + "\nColor: " + color + "\nQuantity: " + qty;
-        
-        // Aap yahan apna WhatsApp number add kar sakte hain
-        alert("Order Details:\n" + msg + "\n\n(Aapka order detail taiyar hai!)");
-    }
-</script>
-
-</body>
-</html>
-<div class="selection-box" style="border:none; background:transparent;">
-    <button class="order-btn" onclick="placeOrder()">Order via WhatsApp</button>
-    
-    <button class="order-btn" style="background: #27ae60; margin-top: 10px;" onclick="payOnline()">Pay Online (Direct Bank Transfer)</button>
+    <p><b>Owner:</b> Rajat Thakur, +918988883210</p>
+    <p><b>Contact Info:</b> Raja ka talab, Nurpur, Kangra, HP 176051</p>
 </div>
 
 <script>
@@ -141,26 +91,16 @@
         let size = document.getElementById('size').value;
         let color = document.getElementById('color').value;
         let qty = document.getElementById('qty').value;
-        
-        // Aapka WhatsApp Number (91 country code ke saath)
         let number = "918988883210"; 
-        
-        let msg = "Himalayan Walk - New Order Request:\n--------------------------\nProduct: Yellow Star Slipper\nSize: " + size + "\nColor: " + color + "\nQuantity: " + qty;
-        
-        // WhatsApp API Link
+        let msg = "Hello Himalayan Walk,\nI want to order:\nProduct: Yellow Star Slipper\nSize: " + size + "\nColor: " + color + "\nQuantity: " + qty;
         let url = "https://wa.me/" + number + "?text=" + encodeURIComponent(msg);
         window.open(url, '_blank').focus();
     }
 
     function payOnline() {
-        // Yahan apna Razorpay ya Instamojo Payment link dalein
-        // Agar link nahi hai toh customer ko WhatsApp par payment mangne ka alert dikhayega
-        let paymentLink = "YOUR_LINK_HERE"; 
-        
-        if(paymentLink === "YOUR_LINK_HERE") {
-            alert("Online Payment setup ho raha hai. Tab tak kripya WhatsApp Order ka istemal karein, hum aapko UPI QR bhej denge.");
-        } else {
-            window.open(paymentLink, '_blank').focus();
-        }
+        alert("ऑनलाइन पेमेंट के लिए हम आपको WhatsApp पर UPI QR कोड भेजेंगे। कृपया 'Order via WhatsApp' का उपयोग करें।");
     }
 </script>
+
+</body>
+</html>
