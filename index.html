@@ -82,7 +82,7 @@
     <ul>
         <li><b>Durability:</b> Pahadon jaisi mazbooti jo lambe samay tak chale.</li>
         <li><b>Comfort:</b> Har kadam mein rui jaisa aram.</li>
-        <li><b>Checking:</b> Har slipper ko pack karne se pehle Er Rajat Thakur ki dekh-rekh mein bariki se check kiya jata hai.</li>
+        <li><b>Checking:</b> Har slipper ko pack karne se pehle team ki dekh-rekh mein bariki se check kiya jata hai.</li>
     </ul>
 
     <p>Humara vision hai ki har ghar tak behtareen quality ka footwear pahunche, woh bhi sahi daam par.</p>
@@ -92,7 +92,7 @@
     <p><b>Contact Info:</b>Raja ka talab, Nurpur,kangra, Himachal Pradesh 176051</p>
 </div>
 
-<script>
+
     function calculate() {
         let q = document.getElementById('qty').value;
         let p = document.getElementById('price-text');
@@ -118,3 +118,49 @@
 
 </body>
 </html>
+<div class="selection-box" style="border:none; background:transparent;">
+    <button class="order-btn" onclick="placeOrder()">Order via WhatsApp</button>
+    
+    <button class="order-btn" style="background: #27ae60; margin-top: 10px;" onclick="payOnline()">Pay Online (Direct Bank Transfer)</button>
+</div>
+
+<script>
+    function calculate() {
+        let q = document.getElementById('qty').value;
+        let p = document.getElementById('price-text');
+        if (q >= 50) {
+            p.innerHTML = "Wholesale Price: ₹149 <br><small>(Total: ₹" + (q * 149) + ")</small>";
+            p.style.color = "#27ae60";
+        } else {
+            p.innerHTML = "Retail Price: ₹299";
+            p.style.color = "#c0392b";
+        }
+    }
+
+    function placeOrder() {
+        let size = document.getElementById('size').value;
+        let color = document.getElementById('color').value;
+        let qty = document.getElementById('qty').value;
+        
+        // Aapka WhatsApp Number (91 country code ke saath)
+        let number = "918627905927"; 
+        
+        let msg = "Himalayan Walk - New Order Request:\n--------------------------\nProduct: Yellow Star Slipper\nSize: " + size + "\nColor: " + color + "\nQuantity: " + qty;
+        
+        // WhatsApp API Link
+        let url = "https://wa.me/" + number + "?text=" + encodeURIComponent(msg);
+        window.open(url, '_blank').focus();
+    }
+
+    function payOnline() {
+        // Yahan apna Razorpay ya Instamojo Payment link dalein
+        // Agar link nahi hai toh customer ko WhatsApp par payment mangne ka alert dikhayega
+        let paymentLink = "YOUR_LINK_HERE"; 
+        
+        if(paymentLink === "YOUR_LINK_HERE") {
+            alert("Online Payment setup ho raha hai. Tab tak kripya WhatsApp Order ka istemal karein, hum aapko UPI QR bhej denge.");
+        } else {
+            window.open(paymentLink, '_blank').focus();
+        }
+    }
+</script>
