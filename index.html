@@ -83,32 +83,54 @@
 </div>
 
 <script>
-    function calculate() {
+   function calculate() {
     let q = document.getElementById('qty').value;
     let p = document.getElementById('price-text');
 
+    // --- Wholesale Tiers (Green Color) ---
     if (q >= 100) {
-        // 100 ya usse zyada ke liye ₹74
         p.innerHTML = "Wholesale Price: ₹74 <br><small>(Total: ₹" + (q * 74) + ")</small>";
         p.style.color = "#27ae60";
     } 
     else if (q >= 50) {
-        // 50 se 99 tak ke liye ₹76
         p.innerHTML = "Wholesale Price: ₹76 <br><small>(Total: ₹" + (q * 76) + ")</small>";
         p.style.color = "#27ae60";
     } 
     else if (q >= 30) {
-        // 30 se 49 tak ke liye ₹82
         p.innerHTML = "Wholesale Price: ₹82 <br><small>(Total: ₹" + (q * 82) + ")</small>";
         p.style.color = "#27ae60";
     } 
+    // --- Retail Tiers (Red Color) ---
+    else if (q >= 25) {
+        p.innerHTML = "Retail Price: ₹99 <br><small>(Total: ₹" + (q * 99) + ")</small>";
+        p.style.color = "#c0392b";
+    }
+    else if (q >= 20) {
+        p.innerHTML = "Retail Price: ₹109 <br><small>(Total: ₹" + (q * 109) + ")</small>";
+        p.style.color = "#c0392b";
+    }
+    else if (q >= 10) {
+        p.innerHTML = "Retail Price: ₹119 <br><small>(Total: ₹" + (q * 119) + ")</small>";
+        p.style.color = "#c0392b";
+    }
+    else if (q >= 5) {
+        p.innerHTML = "Retail Price: ₹129 <br><small>(Total: ₹" + (q * 129) + ")</small>";
+        p.style.color = "#c0392b";
+    }
+    else if (q >= 3) {
+        p.innerHTML = "Retail Price: ₹139 <br><small>(Total: ₹" + (q * 139) + ")</small>";
+        p.style.color = "#c0392b";
+    }
+    else if (q >= 2) {
+        p.innerHTML = "Retail Price: ₹149 <br><small>(Total: ₹" + (q * 149) + ")</small>";
+        p.style.color = "#c0392b";
+    }
     else {
-        // 30 se kam ke liye Retail Price ₹159
+        // Single piece order
         p.innerHTML = "Retail Price: ₹159";
         p.style.color = "#c0392b";
     }
 }
-
     function placeOrder() {
         let size = document.getElementById('size').value;
         let color = document.getElementById('color').value;
