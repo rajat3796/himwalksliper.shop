@@ -3,8 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Himalayan Walk Slipper - "पहाड़ों सी मज़बूती, हर कदम में रूहानी आराम 
-        Premium Quality Slippers</title>
+    <title>Himalayan Walk - Premium Quality Footwear</title>
     <style>
         body { font-family: 'Segoe UI', Arial, sans-serif; margin: 0; padding: 0; background-color: #f4f7f6; text-align: center; color: #333; }
         header { background: #2c3e50; color: white; padding: 30px; }
@@ -14,7 +13,8 @@
         .price { font-size: 26px; color: #c0392b; font-weight: bold; margin: 10px 0; }
         .yellow-star { color: #f1c40f; font-weight: bold; }
         .selection-box { text-align: left; margin: 15px 0; }
-        select, input { width: 100%; padding: 10px; margin-top: 5px; border-radius: 5px; border: 1px solid #ddd; box-sizing: border-box; }
+        select, input, textarea { width: 100%; padding: 10px; margin-top: 5px; border-radius: 5px; border: 1px solid #ddd; box-sizing: border-box; }
+        textarea { resize: vertical; height: 80px; font-family: inherit; } /* Address field style */
         .order-btn { background: #e67e22; color: white; padding: 15px; border-radius: 5px; font-weight: bold; display: block; border: none; cursor: pointer; width: 100%; font-size: 1.1em; margin-top: 10px; text-decoration: none; }
         .pay-btn { background: #27ae60; }
         .about-section { background: #fff; padding: 40px 20px; margin-top: 40px; border-top: 5px solid #f1c40f; text-align: left; max-width: 800px; margin-left: auto; margin-right: auto; line-height: 1.6; }
@@ -24,14 +24,14 @@
 
 <header>
     <img src="logo.jpg" alt="Himalayan Walk Logo" class="logo">
-    <h1>Himalayan Walk Slipper</h1>
-    <p>Premium Quality | Yellow Star Slippers</p>
+    <h1>Himalayan Walk</h1>
+    <p>??????? ?? ???????, ?? ??? ??? ?????</p>
 </header>
 
 <div class="product-card">
     <img src="product.jpg" alt="Premium Slipper" class="product-img">
-    <p>Brand: <span class="yellow-star">★ Yellow Star ★</span></p>
-    <p class="price" id="price-text">Retail Price: ₹159</p>
+    <p>Brand: <span class="yellow-star">? Yellow Star ?</span></p>
+    <p class="price" id="price-text">Retail Price: ?159</p>
 
     <div class="selection-box">
         <label><b>Select Size (UK/India):</b></label>
@@ -50,8 +50,6 @@
             <option>Black</option>
             <option>Blue</option>
             <option>Brown</option>
-            <option>Cherry</option>
-            <option>Green</option>
         </select>
     </div>
 
@@ -60,18 +58,22 @@
         <input type="number" id="qty" value="1" min="1" oninput="calculate()">
     </div>
 
+    <div class="selection-box">
+        <label><b>??????? ?? ??? (Delivery Address):</b></label>
+        <textarea id="address" placeholder="???? ???? ??? ?????? ?? ??? ????? (Type full address with pincode)"></textarea>
+    </div>
+
     <button class="order-btn" onclick="placeOrder()">Order via WhatsApp</button>
     <button class="order-btn pay-btn" onclick="payOnline()">Pay Online (Direct Transfer)</button>
 </div>
 
 <div class="about-section">
     <h3>About Us: Himalayan Walk</h3>
-    <p><b>Our Brand Story</b>
-Since its establishment in 2022, Himalayan walk sliper has become synonymous with quality, style, and affordability. Officially incorporated as brand yellow star, himwalk combines innovative technology, cutting-edge design, and customer-centric values to produce a diverse range of products including EVA, PU, HAWAI, . With an unyielding commitment to comfort, durability, and fashion-forward trends, himayalan walk has cemented its position as a trusted choice for millions of feet across India.</p>
+    <p><b>Himalayan Walk</b> ?????? ?????? ?? <b>?????? (???????)</b> ?? ??????? ???? ??? ????? ????? ???? <b>Yellow Star</b> ???????? ?? ??, ?? ?????? ?? ???? ?? ?????? ???</p>
     <ul>
-        <li><b>Durability:</b> long life and strong</li>
-        <li><b>Comfort:</b> every step is very soft</li>
-        <li><b>Checking:</b> Every sliper reinspect before dispatch</li>
+        <li><b>Durability:</b> ???? ???? ?? ???????</li>
+        <li><b>Comfort:</b> ?? ??? ??? ?????? ?????</li>
+        <li><b>Checking:</b> ?? ?????? ?? ?????? ?? ?????</li>
     </ul>
     <hr>
     <p><b>Owner:</b> Rajat Thakur, +918988883210</p>
@@ -82,11 +84,12 @@ Since its establishment in 2022, Himalayan walk sliper has become synonymous wit
     function calculate() {
         let q = document.getElementById('qty').value;
         let p = document.getElementById('price-text');
+        // wholesale logic ?76 >= 50
         if (q >= 50) {
-            p.innerHTML = "Wholesale Price: ₹76 <br><small>(Total: ₹" + (q * 76) + ")</small>";
+            p.innerHTML = "Wholesale Price: ?76 <br><small>(Total: ?" + (q * 76) + ")</small>";
             p.style.color = "#27ae60";
         } else {
-            p.innerHTML = "Retail Price: ₹159";
+            p.innerHTML = "Retail Price: ?159";
             p.style.color = "#c0392b";
         }
     }
@@ -95,14 +98,24 @@ Since its establishment in 2022, Himalayan walk sliper has become synonymous wit
         let size = document.getElementById('size').value;
         let color = document.getElementById('color').value;
         let qty = document.getElementById('qty').value;
+        let address = document.getElementById('address').value;
         let number = "918988883210"; 
-        let msg = "Hello Himalayan Walk,\nI want to order:\nProduct: Yellow Star Slipper\nSize: " + size + "\nColor: " + color + "\nQuantity: " + qty;
+
+        // Address validation: Check if address is not empty
+        if (address.trim() === "") {
+            alert("????? ??????? ?? ??? ?????? (Please type delivery address.)");
+            return;
+        }
+
+        // Updated Message format including Address
+        let msg = "Hello Himalayan Walk,\nI want to order:\nProduct: Yellow Star Slipper\nSize: " + size + "\nColor: " + color + "\nQuantity: " + qty + "\n-----------------\nAddress:\n" + address;
+        
         let url = "https://wa.me/" + number + "?text=" + encodeURIComponent(msg);
         window.open(url, '_blank').focus();
     }
 
     function payOnline() {
-        alert("ऑनलाइन पेमेंट के लिए हम आपको WhatsApp पर UPI QR कोड भेजेंगे। कृपया 'Order via WhatsApp' का उपयोग करें।");
+        alert("?????? ?????? ?? ??? ?? ???? WhatsApp ?? UPI QR ??? ???????? ????? 'Order via WhatsApp' ?? ????? ???? ?? ???? ??? ???? ??????");
     }
 </script>
 
