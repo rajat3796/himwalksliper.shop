@@ -14,7 +14,6 @@
         .selection-box { text-align: left; margin: 10px 0; }
         select, input, textarea { width: 100%; padding: 10px; margin-top: 5px; border-radius: 5px; border: 1px solid #ddd; box-sizing: border-box; }
         
-        /* Cart Section */
         .cart-section { background: white; padding: 20px; border-radius: 15px; display: inline-block; box-shadow: 0 8px 20px rgba(0,0,0,0.1); margin-top: 20px; max-width: 90%; width: 500px; margin-left: 10px; text-align: left; }
         .cart-item { border-bottom: 1px solid #eee; padding: 10px 0; display: flex; justify-content: space-between; align-items: center; }
         .remove-btn { color: #e74c3c; cursor: pointer; font-weight: bold; font-size: 14px; }
@@ -24,7 +23,11 @@
         .add-btn { background: #3498db; margin-bottom: 10px; }
         .pay-btn { background: #27ae60; }
         
-        /* Professional Sections */
+        .modal { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.6); }
+        .modal-content { background-color: white; margin: 15% auto; padding: 20px; border-radius: 15px; width: 85%; max-width: 400px; text-align: left; position: relative; }
+        .close-modal { position: absolute; right: 15px; top: 10px; font-size: 24px; cursor: pointer; color: #7f8c8d; }
+        .bank-details p { margin: 10px 0; border-bottom: 1px solid #eee; padding-bottom: 5px; font-size: 0.95em; }
+
         .info-section { background: #fff; padding: 50px 20px; margin-top: 40px; border-top: 5px solid #f1c40f; text-align: left; max-width: 950px; margin-left: auto; margin-right: auto; line-height: 1.8; }
         .info-section h3 { color: #2c3e50; border-bottom: 2px solid #f1c40f; display: inline-block; padding-bottom: 5px; }
     </style>
@@ -38,7 +41,7 @@
 </header>
 
 <div class="product-card">
-    <img src="product.jpg" alt="Himalayan Walk Premium Slipper" class="product-img">
+    <img src="product.jpg" alt="Premium Slipper" class="product-img">
     <p>Brand: <span class="yellow-star">★ Yellow Star ★</span></p>
 
     <div class="selection-box">
@@ -81,30 +84,48 @@
 
     <div class="selection-box">
         <label><b>Delivery Address:</b></label>
-        <textarea id="address" placeholder="Enter your full address with pincode..."></textarea>
+        <textarea id="address" placeholder="Full address with Pincode..."></textarea>
     </div>
 
     <button class="order-btn" onclick="placeOrder()">Order via WhatsApp</button>
-    <button class="order-btn pay-btn" onclick="alert('Payment QR will be sent on WhatsApp.')">Pay Online (Direct Transfer)</button>
+    <button class="order-btn pay-btn" onclick="payOnline()">Pay Online (Bank Transfer)</button>
+</div>
+
+<div id="bankModal" class="modal">
+    <div class="modal-content">
+        <span class="close-modal" onclick="closeModal()">&times;</span>
+        <h3 style="color: #27ae60; margin-top: 0;">Bank Transfer Details</h3>
+        <div class="bank-details">
+            <p><b>Name:</b> Algotrio indus</p>
+            <p><b>Bank:</b> Punjab National Bank</p>
+            <p><b>Branch:</b> Ganoh</p>
+            <p><b>Account Number:</b> 3027002100002557</p>
+            <p><b>IFSC Code:</b> PUNB0302700</p>
+            <p><b>Account Type:</b> Current Account</p>
+        </div>
+        <p style="font-size: 0.85em; background: #fff3cd; padding: 10px; border-radius: 5px; margin-top: 15px;">
+            <b>Note:</b> After payment, please share the screenshot on WhatsApp for fast confirmation.
+        </p>
+    </div>
 </div>
 
 <div class="info-section">
     <h3>Our Story</h3>
-    <p>Since its establishment in 2022, <b>Himalayan Walk Slipper</b> has become synonymous with quality, style, and affordability. Officially incorporated as <b>Brand Yellow Star</b>, Himalayan Walk combines innovative technology, cutting-edge design, and customer-centric values to produce a diverse range of products including EVA, PU, and HAWAI. With an unyielding commitment to comfort, durability, and fashion-forward trends, Himalayan Walk has cemented its position as a trusted choice for millions of feet across India.</p>
+    <p>Since its establishment in 2022, <b>Himalayan Walk Slipper</b> has become synonymous with quality, style, and affordability. Officially incorporated as <b>Brand Yellow Star</b>, we combine innovation and comfort for millions across India.</p>
 
     <h3>Our Vision & Mission</h3>
-    <p>Our vision is to provide high-quality footwear that combines innovative design with uncompromising comfort. We are committed to <b>maintaining the highest standards of quality control</b> to ensure every product reflects our core value: Excellence in every step. We strive to maintain absolute transparency and quality consistency to earn and keep our customers' trust.</p>
+    <p>We are dedicated to maintaining the highest standards of quality control. Our mission is to provide footwear that ensures every step feels soft while maintaining extreme durability.</p>
 
     <h3>Quality Commitment</h3>
     <ul>
         <li><b>Durability:</b> Built for long life and superior strength.</li>
-        <li><b>Comfort:</b> Engineered to ensure every step feels very soft.</li>
-        <li><b>Rigorous Checking:</b> Every slipper undergoes a strict re-inspection process before dispatch.</li>
+        <li><b>Comfort:</b> Every step is designed to feel very soft.</li>
+        <li><b>Checking:</b> Every slipper is strictly inspected before dispatch.</li>
     </ul>
 
     <hr>
     <p><b>Founder & Owner:</b> Rajat Thakur, +918988883210</p>
-    <p><b>Contact Information:</b> Raja ka talab, Nurpur, Kangra, Himachal Pradesh 176051</p>
+    <p><b>Contact Info:</b> Raja ka talab, Nurpur, Kangra, Himachal Pradesh 176051</p>
 </div>
 
 <script>
@@ -114,11 +135,7 @@
         let size = document.getElementById('size').value;
         let color = document.getElementById('color').value;
         let qty = parseInt(document.getElementById('qty').value);
-
-        if (qty < 1 || isNaN(qty)) {
-            alert("Please enter a valid quantity.");
-            return;
-        }
+        if (qty < 1 || isNaN(qty)) return;
 
         cart.push({ size, color, qty });
         document.getElementById('cart-box').style.display = "inline-block";
@@ -127,9 +144,7 @@
 
     function removeFromCart(index) {
         cart.splice(index, 1);
-        if (cart.length === 0) {
-            document.getElementById('cart-box').style.display = "none";
-        }
+        if (cart.length === 0) document.getElementById('cart-box').style.display = "none";
         updateCartUI();
     }
 
@@ -149,7 +164,6 @@
 
         document.getElementById('total-qty').innerText = totalQty;
         
-        // Multi-tier Pricing Logic
         let price = 159;
         if (totalQty >= 100) price = 74;
         else if (totalQty >= 50) price = 76;
@@ -161,21 +175,14 @@
         else if (totalQty >= 3) price = 139;
         else if (totalQty >= 2) price = 149;
 
-        let display = document.getElementById('price-display');
-        display.innerText = (totalQty >= 30 ? "Wholesale Rate: ₹" : "Retail Rate: ₹") + price;
-        display.style.color = totalQty >= 30 ? "#27ae60" : "#c0392b";
-
+        document.getElementById('price-display').innerText = (totalQty >= 30 ? "Wholesale Rate: ₹" : "Retail Rate: ₹") + price;
         document.getElementById('final-bill').innerText = totalQty * price;
     }
 
     function placeOrder() {
-        if (cart.length === 0) {
-            alert("Your order list is empty!");
-            return;
-        }
         let address = document.getElementById('address').value;
-        if (address.trim() === "") {
-            alert("Please provide a delivery address.");
+        if (cart.length === 0 || address.trim() === "") {
+            alert("Please add items and provide a delivery address.");
             return;
         }
 
@@ -184,9 +191,23 @@
         let finalBill = document.getElementById('final-bill').innerText;
         
         let number = "918988883210";
-        let msg = `*Himalayan Walk - New Order Details*\n\n*Items List:*\n${orderDetails}\n\n*Total Qty:* ${totalQty} Pairs\n*Grand Total:* ₹${finalBill}\n\n*Delivery Address:*\n${address}`;
+        let msg = `*Himalayan Walk - New Order*\n\n*Items List:*\n${orderDetails}\n\n*Total Qty:* ${totalQty} Pairs\n*Grand Total:* ₹${finalBill}\n\n*Address:*\n${address}`;
         
         window.open(`https://wa.me/${number}?text=${encodeURIComponent(msg)}`, '_blank').focus();
+    }
+
+    function payOnline() {
+        document.getElementById('bankModal').style.display = "block";
+    }
+
+    function closeModal() {
+        document.getElementById('bankModal').style.display = "none";
+    }
+
+    window.onclick = function(event) {
+        if (event.target == document.getElementById('bankModal')) {
+            closeModal();
+        }
     }
 </script>
 
