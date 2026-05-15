@@ -23,6 +23,9 @@
         .add-btn { background: #3498db; margin-bottom: 10px; }
         .pay-btn { background: #27ae60; }
         
+        /* Install App Button Style */
+        #install-btn { background: #f1c40f; color: #2c3e50; padding: 8px 15px; border-radius: 20px; font-weight: bold; border: none; cursor: pointer; margin-top: 10px; display: none; }
+
         .modal { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.6); }
         .modal-content { background-color: white; margin: 15% auto; padding: 20px; border-radius: 15px; width: 85%; max-width: 400px; text-align: left; position: relative; }
         .close-modal { position: absolute; right: 15px; top: 10px; font-size: 24px; cursor: pointer; color: #7f8c8d; }
@@ -38,6 +41,7 @@
     <img src="logo.jpg" alt="Himalayan Walk Logo" class="logo">
     <h1>Himalayan Walk</h1>
     <p style="font-size: 1.2em; letter-spacing: 1px;">पहाड़ों सी मज़बूती, हर कदम में आराम।</p>
+    <button id="install-btn">📲 Install Himalayan Walk App</button>
 </header>
 
 <div class="product-card">
@@ -84,7 +88,7 @@
 
     <div class="selection-box">
         <label><b>Delivery Address:</b></label>
-        <textarea id="address" placeholder="Full address with Pincode..."></textarea>
+        <textarea id="address" placeholder="Enter full address with Pincode..."></textarea>
     </div>
 
     <button class="order-btn" onclick="placeOrder()">Order via WhatsApp</button>
@@ -104,24 +108,17 @@
             <p><b>Account Type:</b> Current Account</p>
         </div>
         <p style="font-size: 0.85em; background: #fff3cd; padding: 10px; border-radius: 5px; margin-top: 15px;">
-            <b>Note:</b> After payment, please share the screenshot on WhatsApp for fast confirmation.
+            <b>Note:</b> After payment, please share the screenshot on WhatsApp for confirmation.
         </p>
     </div>
 </div>
 
 <div class="info-section">
     <h3>Our Story</h3>
-    <p>Since its establishment in 2022, <b>Himalayan Walk Slipper</b> has become synonymous with quality, style, and affordability. Officially incorporated as <b>Brand Yellow Star</b>, we combine innovation and comfort for millions across India.</p>
+    <p>Since its establishment in 2022, <b>Himalayan Walk Slipper</b> has become synonymous with quality and style. Officially incorporated as <b>Brand Yellow Star</b>, we combine innovation and comfort for millions across India.</p>
 
     <h3>Our Vision & Mission</h3>
-    <p>We are dedicated to maintaining the highest standards of quality control. Our mission is to provide footwear that ensures every step feels soft while maintaining extreme durability.</p>
-
-    <h3>Quality Commitment</h3>
-    <ul>
-        <li><b>Durability:</b> Built for long life and superior strength.</li>
-        <li><b>Comfort:</b> Every step is designed to feel very soft.</li>
-        <li><b>Checking:</b> Every slipper is strictly inspected before dispatch.</li>
-    </ul>
+    <p>We are dedicated to maintaining the highest standards of quality control. Our mission is to provide durable footwear that ensures every step feels soft and comfortable.</p>
 
     <hr>
     <p><b>Founder & Owner:</b> Rajat Thakur, +918988883210</p>
@@ -130,6 +127,26 @@
 
 <script>
     let cart = [];
+    let deferredPrompt;
+    const installBtn = document.getElementById('install-btn');
+
+    // App Install Logic
+    window.addEventListener('beforeinstallprompt', (e) => {
+        e.preventDefault();
+        deferredPrompt = e;
+        installBtn.style.display = 'inline-block';
+    });
+
+    installBtn.addEventListener('click', async () => {
+        if (deferredPrompt) {
+            deferredPrompt.prompt();
+            const { outcome } = await deferredPrompt.userChoice;
+            if (outcome === 'accepted') {
+                installBtn.style.display = 'none';
+            }
+            deferredPrompt = null;
+        }
+    });
 
     function addToCart() {
         let size = document.getElementById('size').value;
@@ -185,31 +202,19 @@
             alert("Please add items and provide a delivery address.");
             return;
         }
-
         let orderDetails = cart.map(item => `- Size ${item.size}, ${item.color}: ${item.qty} pairs`).join('\n');
         let totalQty = document.getElementById('total-qty').innerText;
         let finalBill = document.getElementById('final-bill').innerText;
-        
         let number = "918988883210";
         let msg = `*Himalayan Walk - New Order*\n\n*Items List:*\n${orderDetails}\n\n*Total Qty:* ${totalQty} Pairs\n*Grand Total:* ₹${finalBill}\n\n*Address:*\n${address}`;
-        
         window.open(`https://wa.me/${number}?text=${encodeURIComponent(msg)}`, '_blank').focus();
     }
 
-    function payOnline() {
-        document.getElementById('bankModal').style.display = "block";
-    }
-
-    function closeModal() {
-        document.getElementById('bankModal').style.display = "none";
-    }
-
-    window.onclick = function(event) {
-        if (event.target == document.getElementById('bankModal')) {
-            closeModal();
-        }
-    }
+    function payOnline() { document.getElementById('bankModal').style.display = "block"; }
+    function closeModal() { document.getElementById('bankModal').style.display = "none"; }
+    window.onclick = function(event) { if (event.target == document.getElementById('bankModal')) closeModal(); }
 </script>
 
 </body>
 </html>
+
