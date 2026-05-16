@@ -10,7 +10,6 @@
         header { background: #2c3e50; color: white; padding: 30px; }
         .logo { width: 100px; border-radius: 50%; background: white; padding: 5px; margin-bottom: 10px; border: 2px solid #f1c40f; }
         
-        /* Product Container Grid */
         .products-container { max-width: 1100px; margin: 0 auto; padding: 10px; text-align: center; }
         .product-card { background: white; padding: 20px; border-radius: 15px; display: inline-block; box-shadow: 0 8px 20px rgba(0,0,0,0.1); margin: 15px; max-width: 90%; width: 450px; vertical-align: top; box-sizing: border-box; }
         .product-img { width: 100%; height: 320px; object-fit: cover; border-radius: 10px; margin-bottom: 10px; background-color: #f9f9f9; }
@@ -52,7 +51,7 @@
 <div class="products-container">
     
     <div class="product-card">
-        <img src="black.png" id="img-p1" alt="Yellow Star Premium" class="product-img">
+        <img src="black.png" id="img-p1" onerror="this.onerror=null; this.src='product.jpg';" alt="Yellow Star Premium" class="product-img">
         <h3 style="margin: 5px 0;">Yellow Star Premium (Classic)</h3>
         <p style="margin: 5px 0;">Brand: <span class="yellow-star">★ Yellow Star ★</span></p>
 
@@ -68,6 +67,9 @@
             <select id="color-p1" onchange="changeImage('p1')">
                 <option value="Black">Black</option>
                 <option value="Cherry">Cherry Red</option>
+                <option value="Brown">Brown</option>
+                <option value="Blue">Blue</option>
+                <option value="Green">Green</option>
             </select>
         </div>
 
@@ -80,7 +82,7 @@
     </div>
 
     <div class="product-card">
-        <img src="brown.png" id="img-p2" alt="Mountain Sole Premium" class="product-img">
+        <img src="brown.png" id="img-p2" onerror="this.onerror=null; this.src='product.jpg';" alt="Mountain Sole Premium" class="product-img">
         <h3 style="margin: 5px 0;">Mountain Sole (Premium Woven)</h3>
         <p style="margin: 5px 0;">Brand: <span class="yellow-star">★ Himalayan Walk ★</span></p>
 
@@ -174,25 +176,23 @@
     let cart = [];
     let isCouponApplied = false;
 
-    // Dynamic Image Changer based on color selection
     function changeImage(prodId) {
         let color = document.getElementById('color-' + prodId).value.toLowerCase();
         let imgElement = document.getElementById('img-' + prodId);
         
-        if(color === "cherry") {
-            imgElement.src = "cherry.png";
-        } else if (color === "black") {
-            imgElement.src = "black.png";
-        } else if (color === "brown") {
-            imgElement.src = "brown.png";
-        } else if (color === "blue") {
-            imgElement.src = "blue.png";
-        } else if (color === "green") {
-            imgElement.src = "green.png";
+        // Dynamic file check (Ensures correct naming)
+        if (prodId === 'p1') {
+            if(color === "cherry") imgElement.src = "cherry.png";
+            else if(color === "black") imgElement.src = "black.png";
+            else imgElement.src = "product.jpg"; // Default fallback
+        } else {
+            if(color === "brown") imgElement.src = "brown.png";
+            else if(color === "blue") imgElement.src = "blue.png";
+            else if(color === "green") imgElement.src = "green.png";
+            else imgElement.src = "product.jpg";
         }
     }
 
-    // Dynamic Add To Cart supporting multiple products
     function addToCart(prodId, prodName) {
         let size = document.getElementById('size-' + prodId).value;
         let color = document.getElementById('color-' + prodId).value;
@@ -208,7 +208,7 @@
         let code = document.getElementById('coupon-input').value.toUpperCase();
         if (code === "SAVEBIG") {
             isCouponApplied = true;
-            alert("Coupon Applied Successfully!");
+            alert("Coupon Applied!");
         } else {
             isCouponApplied = false;
             alert("Invalid Coupon Code.");
@@ -237,7 +237,6 @@
         });
         document.getElementById('total-qty').innerText = totalQty;
         
-        // Exact original master price slabs
         let price = 159;
         if (totalQty >= 100) price = 74;
         else if (totalQty >= 50) price = 76;
@@ -273,7 +272,6 @@
         let address = document.getElementById('address').value;
         if (cart.length === 0 || address.trim() === "") { alert("Please add items and address."); return; }
         
-        // Formats multiple mixed products neatly for WhatsApp message
         let orderDetails = cart.map(i => `- ${i.prodName} (Size ${i.size}, ${i.color}): ${i.qty} pairs`).join('\n');
         let totalQty = document.getElementById('total-qty').innerText;
         let finalBill = document.getElementById('final-bill').innerText;
@@ -284,10 +282,8 @@
         window.open(`https://wa.me/918988883210?text=${encodeURIComponent(msg)}`, '_blank').focus();
     }
 
-    if ('serviceWorker' in navigator) { navigator.serviceWorker.register('sw.js').catch(err => console.log(err)); }
     function payOnline() { document.getElementById('bankModal').style.display = "block"; }
     function closeModal() { document.getElementById('bankModal').style.display = "none"; }
 </script>
-
 </body>
 </html>
