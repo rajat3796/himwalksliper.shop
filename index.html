@@ -7,12 +7,16 @@
     <link rel="manifest" href="manifest.json">
     <style>
         body { font-family: 'Segoe UI', Arial, sans-serif; margin: 0; padding: 0; background-color: #f4f7f6; text-align: center; color: #333; }
-        header { background: #2c3e50; color: white; padding: 30px; }
+        header { background: #2c3e50; color: white; padding: 30px; position: relative; }
         .logo { width: 100px; border-radius: 50%; background: white; padding: 5px; margin-bottom: 10px; border: 2px solid #f1c40f; }
+        
+        /* Live Clock Widget */
+        #live-clock { font-size: 0.95em; color: #f1c40f; margin-top: 5px; font-weight: 500; letter-spacing: 0.5px; }
         
         .products-container { max-width: 1100px; margin: 0 auto; padding: 10px; text-align: center; }
         .product-card { background: white; padding: 20px; border-radius: 15px; display: inline-block; box-shadow: 0 8px 20px rgba(0,0,0,0.1); margin: 15px; max-width: 90%; width: 450px; vertical-align: top; box-sizing: border-box; }
-        .product-img { width: 100%; height: 320px; object-fit: cover; border-radius: 10px; margin-bottom: 10px; background-color: #f9f9f9; }
+        .product-img { width: 100%; height: 320px; object-fit: cover; border-radius: 10px; margin-bottom: 10px; background-color: #f9f9f9; transition: transform 0.2s; }
+        .product-img:hover { transform: scale(1.02); }
         
         .yellow-star { color: #f1c40f; font-weight: bold; }
         .selection-box { text-align: left; margin: 10px 0; }
@@ -38,7 +42,7 @@
         .modal-content { background-color: white; margin: 15% auto; padding: 20px; border-radius: 15px; width: 85%; max-width: 400px; text-align: left; position: relative; }
         .close-modal { position: absolute; right: 15px; top: 10px; font-size: 24px; cursor: pointer; color: #7f8c8d; }
         
-        /* Expanded Corporate Style Info Section */
+        /* Corporate Style Info Section */
         .info-section { background: #fff; padding: 50px 30px; margin-top: 40px; border-top: 5px solid #f1c40f; text-align: left; max-width: 950px; margin-left: auto; margin-right: auto; line-height: 1.8; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
         .info-section h2 { color: #2c3e50; font-size: 1.8em; margin-top: 0; border-bottom: 3px solid #f1c40f; display: inline-block; padding-bottom: 8px; }
         .info-section h3 { color: #34495e; font-size: 1.4em; margin-top: 30px; margin-bottom: 10px; padding-left: 8px; border-left: 4px solid #3498db; }
@@ -46,6 +50,11 @@
         .info-section ul { margin-bottom: 25px; padding-left: 20px; }
         .info-section li { margin-bottom: 8px; color: #555; font-size: 1.02em; }
         
+        /* Gallery Layout */
+        .gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 15px; margin-top: 20px; }
+        .gallery-card-img { width: 100%; height: 180px; object-fit: cover; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.08); cursor: pointer; transition: transform 0.2s; }
+        .gallery-card-img:hover { transform: scale(1.05); }
+
         .social-links { margin-top: 30px; padding-top: 20px; border-top: 1px solid #eee; }
         .social-icon { display: inline-block; margin-right: 15px; text-decoration: none; transition: transform 0.2s; }
         .social-icon:hover { transform: scale(1.1); }
@@ -58,6 +67,7 @@
     <img src="logo.jpg" alt="Himalayan Walk Logo" class="logo">
     <h1>Himalayan Walk</h1>
     <p style="font-size: 1.2em; letter-spacing: 1px;">पहाड़ों सी मज़बूती, हर कदम में आराम।</p>
+    <div id="live-clock">Loading live updates...</div>
 </header>
 
 <div class="products-container">
@@ -99,7 +109,7 @@
     </div>
 
     <div class="product-card">
-        <img src="Brown.png" id="img-p2" onerror="this.onerror=null; this.src='product.jpg';" alt="Himalayan Walk Slipper Classic" class="product-img">
+        <img src="Brown.png" id="img-p2" onerror="this.onerror=null; this.src='product2.jpg';" alt="Himalayan Walk Slipper Classic" class="product-img">
         <h3 style="margin: 5px 0;">Himalayan Walk Slipper (Classic)</h3>
         <p style="margin: 5px 0;">Brand: <span class="yellow-star">★ Yellow Star ★</span></p>
 
@@ -178,6 +188,13 @@
     </div>
 </div>
 
+<div class="info-section" style="text-align: center; margin-top: 20px;">
+    <h2>Himalayan Walk - Digital Visual Gallery</h2>
+    <p style="color: #7f8c8d; font-style: italic; margin-bottom: 20px; margin-top: 5px;">Real-time stock dispatches, product variations, and quality assessments.</p>
+    <div class="gallery-grid" id="dynamic-gallery">
+        </div>
+</div>
+
 <div class="info-section">
     <h2>About Our Enterprise</h2>
     
@@ -213,11 +230,51 @@
     let cart = [];
     let isCouponApplied = false;
 
+    // Live Clock Logic
+    function updateClock() {
+        const now = new Date();
+        const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit', second: '2-digit' };
+        document.getElementById('live-clock').innerText = now.toLocaleDateString('en-IN', options);
+    }
+    setInterval(updateClock, 1000);
+    updateClock();
+
+    // 1 to 500 Sequential Image Scanner (Stops efficiently on first missing file to avoid network overhead)
+    function loadAutomatedGallery() {
+        const galleryGrid = document.getElementById('dynamic-gallery');
+        let currentIdx = 1;
+        const maxLimit = 500;
+
+        function scanNext() {
+            if (currentIdx > maxLimit) return;
+            let checkImg = new Image();
+            checkImg.src = 'Gallery' + currentIdx + '.jpg';
+            
+            checkImg.onload = function() {
+                let displayImg = document.createElement('img');
+                displayImg.src = checkImg.src;
+                displayImg.className = 'gallery-card-img';
+                displayImg.alt = 'Himalayan Walk Gallery View ' + currentIdx;
+                displayImg.onclick = function() { window.open(this.src, '_blank'); };
+                galleryGrid.appendChild(displayImg);
+                currentIdx++;
+                scanNext();
+            };
+            
+            checkImg.onerror = function() {
+                if(currentIdx === 1) {
+                    galleryGrid.innerHTML = "<p style='color: #aaa; font-style: italic; grid-column: 1/-1;'>Gallery images will automatically load here sequentially (Gallery1.jpg, Gallery2.jpg, etc.).</p>";
+                }
+            };
+        }
+        scanNext();
+    }
+    window.addEventListener('DOMContentLoaded', loadAutomatedGallery);
+
     function changeImage(prodId) {
         let color = document.getElementById('color-' + prodId).value;
         let imgElement = document.getElementById('img-' + prodId);
         
-        // Exact filename matching with GitHub Capital Letters for both products
         if (prodId === 'p1') {
             if(color === "Cherry") imgElement.src = "Cherry.png";
             else if(color === "Black") imgElement.src = "Black.png";
@@ -228,8 +285,8 @@
         } else {
             if(color === "Brown") imgElement.src = "Brown.png";
             else if(color === "Green") imgElement.src = "Green.png";
-            else if(color === "Black") imgElement.src = "Black.png";
-            else imgElement.src = "product.jpg";
+            else if(color === "Black") imgElement.src = "Black.png"; // Product 2 Black configuration
+            else imgElement.src = "product2.jpg"; // Distinct Product 2 default backup
         }
     }
 
