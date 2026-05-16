@@ -10,9 +10,16 @@
         header { background: #2c3e50; color: white; padding: 30px; position: relative; }
         .logo { width: 100px; border-radius: 50%; background: white; padding: 5px; margin-bottom: 10px; border: 2px solid #f1c40f; }
         
-        /* Live Clock Widget */
         #live-clock { font-size: 0.95em; color: #f1c40f; margin-top: 5px; font-weight: 500; letter-spacing: 0.5px; }
         
+        /* Top Gallery Layout Styling */
+        .top-gallery-section { background: #fff; padding: 25px 20px; border-bottom: 4px solid #f1c40f; box-shadow: 0 4px 10px rgba(0,0,0,0.05); margin-bottom: 20px; }
+        .gallery-grid { display: flex; overflow-x: auto; gap: 15px; padding: 10px 5px; scroll-behavior: smooth; justify-content: flex-start; }
+        .gallery-grid::-webkit-scrollbar { height: 8px; }
+        .gallery-grid::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+        .gallery-card-img { width: 160px; height: 160px; object-fit: cover; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.08); cursor: pointer; flex-shrink: 0; transition: transform 0.2s; }
+        .gallery-card-img:hover { transform: scale(1.05); }
+
         .products-container { max-width: 1100px; margin: 0 auto; padding: 10px; text-align: center; }
         .product-card { background: white; padding: 20px; border-radius: 15px; display: inline-block; box-shadow: 0 8px 20px rgba(0,0,0,0.1); margin: 15px; max-width: 90%; width: 450px; vertical-align: top; box-sizing: border-box; }
         .product-img { width: 100%; height: 320px; object-fit: cover; border-radius: 10px; margin-bottom: 10px; background-color: #f9f9f9; transition: transform 0.2s; }
@@ -22,16 +29,18 @@
         .selection-box { text-align: left; margin: 10px 0; }
         select, input, textarea { width: 100%; padding: 10px; margin-top: 5px; border-radius: 5px; border: 1px solid #ddd; box-sizing: border-box; }
         
-        /* Specifications Placeholder Box */
-        .specs-box { text-align: left; background: #f9f9f9; padding: 12px; border-radius: 8px; margin: 15px 0; border-left: 4px solid #f1c40f; }
-        .specs-box h4 { margin: 0 0 5px 0; color: #2c3e50; font-size: 1.05em; }
+        /* Professional Specifications Box */
+        .specs-box { text-align: left; background: #f8fafc; padding: 15px; border-radius: 8px; margin: 15px 0; border-left: 4px solid #3498db; }
+        .specs-box h4 { margin: 0 0 8px 0; color: #1e293b; font-size: 1.1em; border-bottom: 1px solid #e2e8f0; padding-bottom: 4px; }
+        .specs-list { margin: 0; padding-left: 15px; color: #475569; font-size: 0.92em; line-height: 1.6; }
+        .specs-list li { margin-bottom: 4px; }
         
         .cart-section { background: white; padding: 20px; border-radius: 15px; display: inline-block; box-shadow: 0 8px 20px rgba(0,0,0,0.1); margin-top: 20px; max-width: 90%; width: 500px; text-align: left; box-sizing: border-box; }
         .cart-item { border-bottom: 1px solid #eee; padding: 10px 0; display: flex; justify-content: space-between; align-items: center; }
         .remove-btn { color: #e74c3c; cursor: pointer; font-weight: bold; font-size: 14px; }
         
         .price-tag { font-size: 22px; color: #c0392b; font-weight: bold; margin: 10px 0; }
-        .discount-text { color: #27ae60; font-weight: bold; font-size: 0.9em; margin-bottom: 5px; display: none; }
+        .discount-text { color: #27ae60; font-weight: bold; font-size: 0.95em; margin-bottom: 5px; display: none; }
         
         .order-btn { background: #e67e22; color: white; padding: 15px; border-radius: 5px; font-weight: bold; display: block; border: none; cursor: pointer; width: 100%; font-size: 1.1em; margin-top: 10px; }
         .add-btn { background: #3498db; margin-bottom: 10px; }
@@ -42,19 +51,21 @@
         .modal-content { background-color: white; margin: 15% auto; padding: 20px; border-radius: 15px; width: 85%; max-width: 400px; text-align: left; position: relative; }
         .close-modal { position: absolute; right: 15px; top: 10px; font-size: 24px; cursor: pointer; color: #7f8c8d; }
         
-        /* Corporate Style Info Section */
-        .info-section { background: #fff; padding: 50px 30px; margin-top: 40px; border-top: 5px solid #f1c40f; text-align: left; max-width: 950px; margin-left: auto; margin-right: auto; line-height: 1.8; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
+        /* Corporate Style Info & Executive Sections */
+        .info-section { background: #fff; padding: 50px 30px; margin-top: 30px; border-top: 5px solid #f1c40f; text-align: left; max-width: 950px; margin-left: auto; margin-right: auto; line-height: 1.8; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); box-sizing: border-box; }
         .info-section h2 { color: #2c3e50; font-size: 1.8em; margin-top: 0; border-bottom: 3px solid #f1c40f; display: inline-block; padding-bottom: 8px; }
         .info-section h3 { color: #34495e; font-size: 1.4em; margin-top: 30px; margin-bottom: 10px; padding-left: 8px; border-left: 4px solid #3498db; }
         .info-section p { color: #555; font-size: 1.05em; text-align: justify; margin-bottom: 20px; }
         .info-section ul { margin-bottom: 25px; padding-left: 20px; }
         .info-section li { margin-bottom: 8px; color: #555; font-size: 1.02em; }
         
-        /* Gallery Layout */
-        .gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 15px; margin-top: 20px; }
-        .gallery-card-img { width: 100%; height: 180px; object-fit: cover; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.08); cursor: pointer; transition: transform 0.2s; }
-        .gallery-card-img:hover { transform: scale(1.05); }
-
+        /* Executive Profile Styling */
+        .director-profile { display: flex; flex-wrap: wrap; gap: 25px; align-items: center; background: #f8fafc; padding: 25px; border-radius: 12px; border: 1px solid #e2e8f0; margin-top: 20px; }
+        .director-img { width: 140px; height: 140px; border-radius: 50%; object-fit: cover; border: 4px solid #2c3e50; background: #fff; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+        .director-info { flex: 1; min-width: 250px; }
+        .director-info h4 { margin: 0 0 5px 0; color: #2c3e50; font-size: 1.3em; }
+        .director-info .title { color: #e67e22; font-weight: bold; font-size: 0.95em; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 10px; display: block; }
+        
         .social-links { margin-top: 30px; padding-top: 20px; border-top: 1px solid #eee; }
         .social-icon { display: inline-block; margin-right: 15px; text-decoration: none; transition: transform 0.2s; }
         .social-icon:hover { transform: scale(1.1); }
@@ -69,6 +80,12 @@
     <p style="font-size: 1.2em; letter-spacing: 1px;">पहाड़ों सी मज़बूती, हर कदम में आराम।</p>
     <div id="live-clock">Loading live updates...</div>
 </header>
+
+<div class="top-gallery-section">
+    <h3 style="margin: 0 0 10px 0; color: #2c3e50; font-size: 1.3em;">Live Product & Stock Dispatch Gallery</h3>
+    <div class="gallery-grid" id="dynamic-gallery">
+        </div>
+</div>
 
 <div class="products-container">
     
@@ -101,15 +118,22 @@
         </div>
 
         <div class="specs-box">
-            <h4>Specifications</h4>
-            <p style="color: #7f8c8d; margin: 5px 0; font-style: italic; font-size: 0.9em;">Product details and technical specs will be added here...</p>
+            <h4>Technical Specifications</h4>
+            <ul class="specs-list">
+                <li><b>Base Compound:</b> Orthopedic High-Density Prime EVA Sheet</li>
+                <li><b>Strap Engineering:</b> Reinforced Polyurethane Heavy-Duty Strap</li>
+                <li><b>Lock Mechanics:</b> Secure 5-Pin Anchor Pull-Out Protection System</li>
+                <li><b>Footbed Texture:</b> Diamond Diamond-Cut Ergonomic Micro-Grip Lines</li>
+                <li><b>Outer Sole Structure:</b> Advanced Rugged Anti-Skid Mountain Line Patches</li>
+                <li><b>Average Net Weight:</b> 180 Grams per individual pair (Size 8 base)</li>
+            </ul>
         </div>
 
         <button class="order-btn add-btn" onclick="addToCart('p1', 'Himalayan Walk Slipper (Premium)')">+ Add to Order List</button>
     </div>
 
     <div class="product-card">
-        <img src="Brown.png" id="img-p2" onerror="this.onerror=null; this.src='product2.jpg';" alt="Himalayan Walk Slipper Classic" class="product-img">
+        <img src="product2.jpg" id="img-p2" onerror="this.onerror=null; this.src='product.jpg';" alt="Himalayan Walk Slipper Classic" class="product-img">
         <h3 style="margin: 5px 0;">Himalayan Walk Slipper (Classic)</h3>
         <p style="margin: 5px 0;">Brand: <span class="yellow-star">★ Yellow Star ★</span></p>
 
@@ -135,8 +159,15 @@
         </div>
 
         <div class="specs-box">
-            <h4>Specifications</h4>
-            <p style="color: #7f8c8d; margin: 5px 0; font-style: italic; font-size: 0.9em;">Product details and technical specs will be added here...</p>
+            <h4>Technical Specifications</h4>
+            <ul class="specs-list">
+                <li><b>Base Compound:</b> Medium-Density Flexible Premium Cushion EVA Layer</li>
+                <li><b>Strap Engineering:</b> Soft-Touch Micro-Textured Woven Matt Strap Design</li>
+                <li><b>Lock Mechanics:</b> Industrial-Grade 5-Pin Anchor Lock Setup</li>
+                <li><b>Footbed Texture:</b> Smooth Anti-Friction Linear Ventilation Wave Pattern</li>
+                <li><b>Outer Sole Structure:</b> Multi-Directional Hexagonal Anti-Slip Tread Grip</li>
+                <li><b>Average Net Weight:</b> 165 Grams per individual pair (Size 8 base)</li>
+            </ul>
         </div>
 
         <button class="order-btn add-btn" onclick="addToCart('p2', 'Himalayan Walk Slipper (Classic)')">+ Add to Order List</button>
@@ -188,13 +219,6 @@
     </div>
 </div>
 
-<div class="info-section" style="text-align: center; margin-top: 20px;">
-    <h2>Himalayan Walk - Digital Visual Gallery</h2>
-    <p style="color: #7f8c8d; font-style: italic; margin-bottom: 20px; margin-top: 5px;">Real-time stock dispatches, product variations, and quality assessments.</p>
-    <div class="gallery-grid" id="dynamic-gallery">
-        </div>
-</div>
-
 <div class="info-section">
     <h2>About Our Enterprise</h2>
     
@@ -208,11 +232,21 @@
     <ul>
         <li><b>Extreme Durability:</b> Formulated using premium high-density EVA sheets to withstand prolonged weight and complex daily stress without shrinking or losing posture.</li>
         <li><b>Orthopedic Comfort:</b> Strategically designed footbeds with calculated textures that support natural walking angles and keep your feet soft all day.</li>
-        <li><b>Rigid 5-Pin Configuration:</b> Built with a heavy-duty 5-pin strap lock design to prevent sudden strap tear-outs, providing dependable security during every step.</li>
+        <li><b>Rigid 5-Pin Configuration:</b> Built with heavy-duty 5-pin strap lock designs to prevent sudden strap tear-outs, providing dependable security during every step.</li>
         <li><b>100% Inspected & Approved:</b> Every pair is manually checked for micro-defects, pasting accuracy, and strap flexibility before final packaging.</li>
     </ul>
 
-    <hr style="border: 0; border-top: 1px solid #eee; margin: 20px 0;">
+    <h2>Executive Leadership</h2>
+    <div class="director-profile">
+        <img src="founder.jpg" onerror="this.onerror=null; this.src='logo.jpg';" alt="Rajat Thakur - Managing Director" class="director-img">
+        <div class="director-info">
+            <h4>Rajat Thakur</h4>
+            <span class="title">Founder & Managing Director</span>
+            <p style="margin: 5px 0; font-size:0.98em; text-align: justify; line-height:1.7;">Driven by a strict technical background in industrial sourcing and global standards, Rajat Thakur established Himalayan Walk to challenge market gaps where affordability compromised strength. Rooted deeply in a vision of indigenous growth, his leadership centers on bringing industrial manufacturing excellence straight to Himachal Pradesh. By maintaining strict inspection thresholds and refusing standard 3-pin limitations, he engineered a highly dependable 5-pin configuration built specifically for everyday reliance. His forward-looking focus continues to expand national operations while anchoring job opportunities within local community segments.</p>
+        </div>
+    </div>
+
+    <hr style="border: 0; border-top: 1px solid #eee; margin: 25px 0;">
     <p><b>Founder & Managing Director:</b> Rajat Thakur, +918988883210</p>
     <p><b>Corporate & Sourcing Desk:</b> Raja ka talab, Nurpur, Kangra, Himachal Pradesh 176051</p>
     
@@ -229,8 +263,8 @@
 <script>
     let cart = [];
     let isCouponApplied = false;
+    let appliedCouponCode = "";
 
-    // Live Clock Logic
     function updateClock() {
         const now = new Date();
         const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit', second: '2-digit' };
@@ -239,7 +273,6 @@
     setInterval(updateClock, 1000);
     updateClock();
 
-    // 1 to 500 Sequential Image Scanner (Stops efficiently on first missing file to avoid network overhead)
     function loadAutomatedGallery() {
         const galleryGrid = document.getElementById('dynamic-gallery');
         let currentIdx = 1;
@@ -254,7 +287,7 @@
                 let displayImg = document.createElement('img');
                 displayImg.src = checkImg.src;
                 displayImg.className = 'gallery-card-img';
-                displayImg.alt = 'Himalayan Walk Gallery View ' + currentIdx;
+                displayImg.alt = 'Himalayan Walk Operational View ' + currentIdx;
                 displayImg.onclick = function() { window.open(this.src, '_blank'); };
                 galleryGrid.appendChild(displayImg);
                 currentIdx++;
@@ -263,7 +296,7 @@
             
             checkImg.onerror = function() {
                 if(currentIdx === 1) {
-                    galleryGrid.innerHTML = "<p style='color: #aaa; font-style: italic; grid-column: 1/-1;'>Gallery images will automatically load here sequentially (Gallery1.jpg, Gallery2.jpg, etc.).</p>";
+                    galleryGrid.innerHTML = "<p style='color: #aaa; font-style: italic; width:100%; text-align:center;'>Gallery will automatically load sequential uploads here (Gallery1.jpg, Gallery2.jpg, etc.).</p>";
                 }
             };
         }
@@ -283,10 +316,11 @@
             else if(color === "Green") imgElement.src = "Green.png";
             else imgElement.src = "product.jpg"; 
         } else {
-            if(color === "Brown") imgElement.src = "Brown.png";
-            else if(color === "Green") imgElement.src = "Green.png";
-            else if(color === "Black") imgElement.src = "Black.png"; // Product 2 Black configuration
-            else imgElement.src = "product2.jpg"; // Distinct Product 2 default backup
+            // Product 2 explicit path separation to fix reflection bugs
+            if(color === "Brown") imgElement.src = "Classic_Brown.png";
+            else if(color === "Green") imgElement.src = "Classic_Green.png";
+            else if(color === "Black") imgElement.src = "Classic_Black.png"; 
+            else imgElement.src = "product2.jpg";
         }
     }
 
@@ -302,12 +336,29 @@
     }
 
     function applyCoupon() {
-        let code = document.getElementById('coupon-input').value.toUpperCase();
-        if (code === "SAVEBIG") {
+        let code = document.getElementById('coupon-input').value.trim().toUpperCase();
+        let totalQty = 0;
+        cart.forEach(item => totalQty += item.qty);
+
+        if (totalQty >= 30) {
+            alert("Coupons are only valid for Retail orders. Wholesale rates already heavily discounted!");
+            isCouponApplied = false;
+            appliedCouponCode = "";
+            updateCartUI();
+            return;
+        }
+
+        if (code === "YELLOW10" || code === "SAVE7" || code === "HIMALAYAN15" || code === "STAR5" || code === "ALGOTRIO25") {
+            if (code === "ALGOTRIO25" && totalQty > 5) {
+                alert("The ALGOTRIO25 code is exclusive to retail trial orders up to a maximum of 5 pairs!");
+                return;
+            }
             isCouponApplied = true;
+            appliedCouponCode = code;
             alert("Promo Code Applied Successfully!");
         } else {
             isCouponApplied = false;
+            appliedCouponCode = "";
             alert("Invalid Coupon Code.");
         }
         updateCartUI();
@@ -315,7 +366,11 @@
 
     function removeFromCart(index) {
         cart.splice(index, 1);
-        if (cart.length === 0) document.getElementById('cart-box').style.display = "none";
+        if (cart.length === 0) {
+            document.getElementById('cart-box').style.display = "none";
+            isCouponApplied = false;
+            appliedCouponCode = "";
+        }
         updateCartUI();
     }
 
@@ -348,11 +403,18 @@
         let baseTotal = totalQty * price;
         let discount = 0;
 
-        if (isCouponApplied) {
+        if (isCouponApplied && totalQty < 30) {
             let discountPercent = 0;
-            if (totalQty >= 20) discountPercent = 0.20;
-            else if (totalQty >= 10) discountPercent = 0.15;
-            else if (totalQty >= 1) discountPercent = 0.10;
+            if (appliedCouponCode === "YELLOW10") discountPercent = 0.10;
+            else if (appliedCouponCode === "SAVE7") discountPercent = 0.07;
+            else if (appliedCouponCode === "HIMALAYAN15") discountPercent = 0.15; // Master Retail Coupon
+            else if (appliedCouponCode === "STAR5") discountPercent = 0.05;
+            else if (appliedCouponCode === "ALGOTRIO25") discountPercent = 0.25;
+
+            // Margin protection at the edge of wholesale tier (25-29 pairs)
+            if (totalQty >= 25 && totalQty < 30 && appliedCouponCode !== "HIMALAYAN15") {
+                discountPercent = 0.05;
+            }
             
             discount = Math.round(baseTotal * discountPercent);
             document.getElementById('discount-info').style.display = "block";
@@ -374,7 +436,7 @@
         let finalBill = document.getElementById('final-bill').innerText;
         let discountAmt = document.getElementById('discount-amt').innerText;
         
-        let couponMsg = isCouponApplied ? `\n*Coupon Applied:* SAVEBIG (₹${discountAmt} Off)` : "";
+        let couponMsg = isCouponApplied ? `\n*Coupon Applied:* ${appliedCouponCode} (₹${discountAmt} Off)` : "";
         let msg = `*Himalayan Walk - New Multi-Product Order*\n\n*Items List:*\n${orderDetails}\n\n*Total Qty:* ${totalQty} Pairs${couponMsg}\n*Grand Total:* ₹${finalBill}\n\n*Address:*\n${address}`;
         window.open(`https://wa.me/918988883210?text=${encodeURIComponent(msg)}`, '_blank').focus();
     }
