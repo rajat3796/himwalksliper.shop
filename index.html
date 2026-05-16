@@ -38,9 +38,17 @@
         .modal-content { background-color: white; margin: 15% auto; padding: 20px; border-radius: 15px; width: 85%; max-width: 400px; text-align: left; position: relative; }
         .close-modal { position: absolute; right: 15px; top: 10px; font-size: 24px; cursor: pointer; color: #7f8c8d; }
         
-        .info-section { background: #fff; padding: 50px 20px; margin-top: 40px; border-top: 5px solid #f1c40f; text-align: left; max-width: 950px; margin-left: auto; margin-right: auto; line-height: 1.8; }
-        .social-links { margin-top: 20px; }
-        .social-icon { display: inline-block; margin-right: 15px; text-decoration: none; }
+        /* Expanded Corporate Style Info Section */
+        .info-section { background: #fff; padding: 50px 30px; margin-top: 40px; border-top: 5px solid #f1c40f; text-align: left; max-width: 950px; margin-left: auto; margin-right: auto; line-height: 1.8; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
+        .info-section h2 { color: #2c3e50; font-size: 1.8em; margin-top: 0; border-bottom: 3px solid #f1c40f; display: inline-block; padding-bottom: 8px; }
+        .info-section h3 { color: #34495e; font-size: 1.4em; margin-top: 30px; margin-bottom: 10px; padding-left: 8px; border-left: 4px solid #3498db; }
+        .info-section p { color: #555; font-size: 1.05em; text-align: justify; margin-bottom: 20px; }
+        .info-section ul { margin-bottom: 25px; padding-left: 20px; }
+        .info-section li { margin-bottom: 8px; color: #555; font-size: 1.02em; }
+        
+        .social-links { margin-top: 30px; padding-top: 20px; border-top: 1px solid #eee; }
+        .social-icon { display: inline-block; margin-right: 15px; text-decoration: none; transition: transform 0.2s; }
+        .social-icon:hover { transform: scale(1.1); }
         .social-icon svg { width: 35px; height: 35px; vertical-align: middle; }
     </style>
 </head>
@@ -107,6 +115,7 @@
             <select id="color-p2" onchange="changeImage('p2')">
                 <option value="Brown">Brown</option>
                 <option value="Green">Green</option>
+                <option value="Black">Black</option>
             </select>
         </div>
 
@@ -132,9 +141,9 @@
         <hr>
         
         <div class="selection-box">
-            <label><b>Have a Coupon Code? (Use SAVEBIG)</b></label>
+            <label><b>Have a Coupon Code?</b></label>
             <div style="display: flex; gap: 5px;">
-                <input type="text" id="coupon-input" placeholder="Enter code here...">
+                <input type="text" id="coupon-input" placeholder="Enter promotional code...">
                 <button class="coupon-btn" onclick="applyCoupon()">Apply</button>
             </div>
         </div>
@@ -170,10 +179,25 @@
 </div>
 
 <div class="info-section">
-    <h3>Our Story & Vision</h3>
-    <p>Since 2022, <b>Himalayan Walk</b> has provided premium comfort. Officially <b>Brand Yellow Star</b>, we maintain strict quality control for excellence in every step.</p>
-    <hr>
-    <p><b>Founder:</b> Rajat Thakur, +918988883210 | Raja ka talab, Nurpur, Kangra, HP 176051</p>
+    <h2>About Our Enterprise</h2>
+    
+    <h3>Our Story</h3>
+    <p>Established in 2022, <b>Himalayan Walk</b> began with a simple yet powerful mission: to redefine everyday comfort and style for millions across India. Officially incorporated under our premium banner <b>Brand Yellow Star</b>, our journey started in the heart of Kangra district, Himachal Pradesh. Over the years, we have grown from a trusted regional manufacturer into a modern footwear provider. We focus closely on engineering gents flip-flops that survive the test of time, tough terrains, and daily rigorous wear, making our brand a reliable household name.</p>
+
+    <h3>Our Vision & Mission</h3>
+    <p>Our long-term vision is to stand at the pinnacle of the Indian footwear industry by continuously blending innovative designs with high-grade manufacturing techniques. We are deeply committed to maintaining a strict system of quality control, ensuring that not a single slipper leaves our unit without rigorous physical verification. Our mission centers around providing our valued customer base—both retail buyers and bulk wholesale distributors—with absolute value for money, combining supreme orthopedic comfort with unparalleled aesthetic appeal.</p>
+
+    <h3>Our Core Quality Commitment</h3>
+    <ul>
+        <li><b>Extreme Durability:</b> Formulated using premium high-density EVA sheets to withstand prolonged weight and complex daily stress without shrinking or losing posture.</li>
+        <li><b>Orthopedic Comfort:</b> Strategically designed footbeds with calculated textures that support natural walking angles and keep your feet soft all day.</li>
+        <li><b>Rigid 5-Pin Configuration:</b> Built with a heavy-duty 5-pin strap lock design to prevent sudden strap tear-outs, providing dependable security during every step.</li>
+        <li><b>100% Inspected & Approved:</b> Every pair is manually checked for micro-defects, pasting accuracy, and strap flexibility before final packaging.</li>
+    </ul>
+
+    <hr style="border: 0; border-top: 1px solid #eee; margin: 20px 0;">
+    <p><b>Founder & Managing Director:</b> Rajat Thakur, +918988883210</p>
+    <p><b>Corporate & Sourcing Desk:</b> Raja ka talab, Nurpur, Kangra, Himachal Pradesh 176051</p>
     
     <div class="social-links">
         <a href="https://www.facebook.com/share/1CB98rrZ4b/" class="social-icon" target="_blank">
@@ -193,7 +217,7 @@
         let color = document.getElementById('color-' + prodId).value;
         let imgElement = document.getElementById('img-' + prodId);
         
-        // Exact filename matching with GitHub Capital Letters
+        // Exact filename matching with GitHub Capital Letters for both products
         if (prodId === 'p1') {
             if(color === "Cherry") imgElement.src = "Cherry.png";
             else if(color === "Black") imgElement.src = "Black.png";
@@ -204,6 +228,7 @@
         } else {
             if(color === "Brown") imgElement.src = "Brown.png";
             else if(color === "Green") imgElement.src = "Green.png";
+            else if(color === "Black") imgElement.src = "Black.png";
             else imgElement.src = "product.jpg";
         }
     }
@@ -223,7 +248,7 @@
         let code = document.getElementById('coupon-input').value.toUpperCase();
         if (code === "SAVEBIG") {
             isCouponApplied = true;
-            alert("Coupon Applied!");
+            alert("Promo Code Applied Successfully!");
         } else {
             isCouponApplied = false;
             alert("Invalid Coupon Code.");
