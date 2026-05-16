@@ -18,6 +18,10 @@
         .selection-box { text-align: left; margin: 10px 0; }
         select, input, textarea { width: 100%; padding: 10px; margin-top: 5px; border-radius: 5px; border: 1px solid #ddd; box-sizing: border-box; }
         
+        /* Specifications Placeholder Box */
+        .specs-box { text-align: left; background: #f9f9f9; padding: 12px; border-radius: 8px; margin: 15px 0; border-left: 4px solid #f1c40f; }
+        .specs-box h4 { margin: 0 0 5px 0; color: #2c3e50; font-size: 1.05em; }
+        
         .cart-section { background: white; padding: 20px; border-radius: 15px; display: inline-block; box-shadow: 0 8px 20px rgba(0,0,0,0.1); margin-top: 20px; max-width: 90%; width: 500px; text-align: left; box-sizing: border-box; }
         .cart-item { border-bottom: 1px solid #eee; padding: 10px 0; display: flex; justify-content: space-between; align-items: center; }
         .remove-btn { color: #e74c3c; cursor: pointer; font-weight: bold; font-size: 14px; }
@@ -51,8 +55,8 @@
 <div class="products-container">
     
     <div class="product-card">
-        <img src="black.png" id="img-p1" onerror="this.onerror=null; this.src='product.jpg';" alt="Yellow Star Premium" class="product-img">
-        <h3 style="margin: 5px 0;">Yellow Star Premium (Classic)</h3>
+        <img src="Black.png" id="img-p1" onerror="this.onerror=null; this.src='product.jpg';" alt="Himalayan Walk Slipper Premium" class="product-img">
+        <h3 style="margin: 5px 0;">Himalayan Walk Slipper (Premium)</h3>
         <p style="margin: 5px 0;">Brand: <span class="yellow-star">★ Yellow Star ★</span></p>
 
         <div class="selection-box">
@@ -78,13 +82,18 @@
             <input type="number" id="qty-p1" value="1" min="1">
         </div>
 
-        <button class="order-btn add-btn" onclick="addToCart('p1', 'Yellow Star Premium')">+ Add to Order List</button>
+        <div class="specs-box">
+            <h4>Specifications</h4>
+            <p style="color: #7f8c8d; margin: 5px 0; font-style: italic; font-size: 0.9em;">Product details and technical specs will be added here...</p>
+        </div>
+
+        <button class="order-btn add-btn" onclick="addToCart('p1', 'Himalayan Walk Slipper (Premium)')">+ Add to Order List</button>
     </div>
 
     <div class="product-card">
-        <img src="brown.png" id="img-p2" onerror="this.onerror=null; this.src='product.jpg';" alt="Mountain Sole Premium" class="product-img">
-        <h3 style="margin: 5px 0;">Mountain Sole (Premium Woven)</h3>
-        <p style="margin: 5px 0;">Brand: <span class="yellow-star">★ Himalayan Walk ★</span></p>
+        <img src="Brown.png" id="img-p2" onerror="this.onerror=null; this.src='product.jpg';" alt="Himalayan Walk Slipper Classic" class="product-img">
+        <h3 style="margin: 5px 0;">Himalayan Walk Slipper (Classic)</h3>
+        <p style="margin: 5px 0;">Brand: <span class="yellow-star">★ Yellow Star ★</span></p>
 
         <div class="selection-box">
             <label><b>Select Size (UK/India):</b></label>
@@ -97,7 +106,6 @@
             <label><b>Select Color:</b></label>
             <select id="color-p2" onchange="changeImage('p2')">
                 <option value="Brown">Brown</option>
-                <option value="Blue">Blue</option>
                 <option value="Green">Green</option>
             </select>
         </div>
@@ -107,7 +115,12 @@
             <input type="number" id="qty-p2" value="1" min="1">
         </div>
 
-        <button class="order-btn add-btn" onclick="addToCart('p2', 'Mountain Sole Premium')">+ Add to Order List</button>
+        <div class="specs-box">
+            <h4>Specifications</h4>
+            <p style="color: #7f8c8d; margin: 5px 0; font-style: italic; font-size: 0.9em;">Product details and technical specs will be added here...</p>
+        </div>
+
+        <button class="order-btn add-btn" onclick="addToCart('p2', 'Himalayan Walk Slipper (Classic)')">+ Add to Order List</button>
     </div>
 
 </div>
@@ -177,18 +190,20 @@
     let isCouponApplied = false;
 
     function changeImage(prodId) {
-        let color = document.getElementById('color-' + prodId).value.toLowerCase();
+        let color = document.getElementById('color-' + prodId).value;
         let imgElement = document.getElementById('img-' + prodId);
         
-        // Dynamic file check (Ensures correct naming)
+        // Exact filename matching with GitHub Capital Letters
         if (prodId === 'p1') {
-            if(color === "cherry") imgElement.src = "cherry.png";
-            else if(color === "black") imgElement.src = "black.png";
-            else imgElement.src = "product.jpg"; // Default fallback
+            if(color === "Cherry") imgElement.src = "Cherry.png";
+            else if(color === "Black") imgElement.src = "Black.png";
+            else if(color === "Brown") imgElement.src = "Brown.png";
+            else if(color === "Blue") imgElement.src = "Blue.png";
+            else if(color === "Green") imgElement.src = "Green.png";
+            else imgElement.src = "product.jpg"; 
         } else {
-            if(color === "brown") imgElement.src = "brown.png";
-            else if(color === "blue") imgElement.src = "blue.png";
-            else if(color === "green") imgElement.src = "green.png";
+            if(color === "Brown") imgElement.src = "Brown.png";
+            else if(color === "Green") imgElement.src = "Green.png";
             else imgElement.src = "product.jpg";
         }
     }
@@ -282,6 +297,9 @@
         window.open(`https://wa.me/918988883210?text=${encodeURIComponent(msg)}`, '_blank').focus();
     }
 
+    if ('serviceWorker' in navigator) { 
+        navigator.serviceWorker.register('Sw.js').catch(err => console.log(err)); 
+    }
     function payOnline() { document.getElementById('bankModal').style.display = "block"; }
     function closeModal() { document.getElementById('bankModal').style.display = "none"; }
 </script>
