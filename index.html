@@ -81,7 +81,7 @@
         .quotation-items th { border-bottom: 1px solid #ddd; }
         .quotation-total { border-top: 2px solid #ddd; margin-top: 10px; font-weight: bold; }
 
-        /* Brand Story Block Layout at Bottom */
+        /* Brand Story Block Layout */
         .info-section { background: #fff; padding: 50px 30px; margin-top: 40px; border-top: 5px solid #f1c40f; text-align: left; max-width: 950px; margin-left: auto; margin-right: auto; line-height: 1.8; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); box-sizing: border-box; scroll-margin-top: 20px; }
         .info-section h2 { color: #2c3e50; font-size: 1.8em; margin-top: 40px; margin-bottom: 15px; border-bottom: 3px solid #f1c40f; display: inline-block; padding-bottom: 8px; }
         .info-section h2:first-of-type { margin-top: 0; }
@@ -148,7 +148,7 @@
     <div class="products-container">
         
         <div class="product-card">
-            <img src="Black.png" id="img-p1" onerror="this.onerror=null; this.src='product.jpg';" alt="Himalayan Walk Sleeper Premium" class="product-img">
+            <img src="product.jpg" id="img-p1" alt="Himalayan Walk Sleeper Premium" class="product-img">
             <h3 style="margin: 5px 0;">Himalayan Walk Sleeper (Premium)</h3>
             <p style="margin: 5px 0;">Brand: <span class="yellow-star">★ Yellow Star ★</span></p>
 
@@ -192,7 +192,7 @@
         </div>
 
         <div class="product-card">
-            <img src="Classic_Brown.png" id="img-p2" onerror="this.onerror=null; this.src='product.jpg';" alt="Himalayan Walk Sleeper Classic" class="product-img">
+            <img src="product2.jpg" id="img-p2" alt="Himalayan Walk Sleeper Classic" class="product-img">
             <h3 style="margin: 5px 0;">Himalayan Walk Sleeper (Classic)</h3>
             <p style="margin: 5px 0;">Brand: <span class="yellow-star">★ Yellow Star ★</span></p>
 
@@ -267,7 +267,7 @@
                 <textarea id="address-full" placeholder="Complete Street Address, City, State..." style="height: 60px; margin-top: 5px;"></textarea>
             </div>
 
-            <button class="order-btn pay-btn" style="background:#27ae60; margin-bottom: 5px;" onclick="payOnline()">Pay Online (Bank Transfer)</button>
+            <button class="order-btn pay-btn" style="background:#27ae60; margin-bottom: 5px;" onclick="payOnline()">Pay Online (UPI / Bank Transfer)</button>
             <button class="order-btn" onclick="previewQuotation()">Generate Quotation & Order via WhatsApp</button>
         </div>
     </div>
@@ -346,7 +346,7 @@
 
     <h2>Executive Leadership & Visionary Directive</h2>
     <div class="director-profile">
-        <img src="founder.jpg" onerror="this.onerror=null; this.src='logo.jpg';" alt="Rajat Thakur - MD" class="director-img">
+        <img src="founder.jpg" onerror="this.onerror=null; this.src='logo.jpg';" alt="Rajat Thakur - Founder" class="director-img">
         <div class="director-info">
             <h4>Rajat Thakur</h4>
             <span class="title">Founder</span>
@@ -441,6 +441,42 @@
     </div>
 </div>
 
+<div id="bankModal" class="modal">
+    <div class="modal-content">
+        <span class="close-modal" onclick="closeModal('bankModal')">&times;</span>
+        <h3 style="color: #27ae60; margin-top: 0; border-bottom: 2px solid #27ae60; padding-bottom: 8px;">Secure Payment Gateway</h3>
+        
+        <div style="display: flex; gap: 8px; margin-bottom: 15px; margin-top: 10px;">
+            <button onclick="togglePayMethod('upi')" id="btn-method-upi" style="flex:1; padding:10px; background:#27ae60; color:white; border:none; border-radius:5px; font-weight:bold; cursor:pointer; font-size:0.9em;">⚡ UPI / QR Code</button>
+            <button onclick="togglePayMethod('bank')" id="btn-method-bank" style="flex:1; padding:10px; background:#34495e; color:white; border:none; border-radius:5px; font-weight:bold; cursor:pointer; font-size:0.9em;">🏦 Bank Transfer</button>
+        </div>
+
+        <div id="pay-method-upi" style="text-align:center;">
+            <img src="Payment_QR.png" onerror="this.onerror=null; this.src='logo.jpg';" alt="Scan PhonePe QR Code" style="width:220px; height:auto; margin:0 auto 10px auto; display:block; border:1px solid #e2e8f0; border-radius:12px; box-shadow: 0 4px 6px rgba(0,0,0,0.05);">
+            <p style="margin:5px 0; font-size:0.95em; color:#1e293b;"><b>Scan QR via PhonePe, GPay, Paytm or any UPI App</b></p>
+            
+            <div style="background:#f1f5f9; padding:10px; border-radius:8px; margin-top:12px; word-break:break-all; border:1px solid #cbd5e1;">
+                <span style="font-size:0.8em; color:#64748b; display:block; font-weight:bold; text-transform:uppercase;">Direct UPI ID:</span>
+                <a href="upi://pay?pa=Rajat3796@ybl&pn=Rajat%20Kumar&cu=INR" style="font-weight:bold; color:#1e40af; text-decoration:none; font-size:1.1em; display:inline-block; margin-top:2px;">Rajat3796@ybl</a>
+                <span style="display:block; font-size:0.75em; color:#ef4444; margin-top:4px; font-weight:500;">(Mobile Users: Tap on the UPI ID to pay directly via apps)</span>
+            </div>
+            <p style="font-size:0.85em; color:#475569; margin-top:10px;">Account Name: <b>RAJAT KUMAR</b></p>
+        </div>
+
+        <div id="pay-method-bank" style="display:none;">
+            <div class="bank-details" style="background:#f8fafc; padding:15px; border-radius:10px; border:1px solid #cbd5e1; line-height:1.7;">
+                <p style="margin:4px 0; font-size:0.95em;"><b>Name:</b> Algotrio indus</p>
+                <p style="margin:4px 0; font-size:0.95em;"><b>Bank:</b> Punjab National Bank</p>
+                <p style="margin:4px 0; font-size:0.95em;"><b>Branch:</b> Ganoh</p>
+                <p style="margin:4px 0; font-size:0.95em;"><b>Account Number:</b> 3027002100002557</p>
+                <p style="margin:4px 0; font-size:0.95em;"><b>IFSC Code:</b> PUNB0302700</p>
+                <p style="margin:4px 0; font-size:0.95em;"><b>Account Type:</b> Current Account</p>
+            </div>
+            <p style="font-size:0.82em; color:#64748b; margin-top:8px; text-align:center; font-style:italic;">Transfer funds directly and share the screenshot over WhatsApp verification channels.</p>
+        </div>
+    </div>
+</div>
+
 <footer style="margin-top: 5px; padding: 30px; border-top: 5px solid #2c3e50; background: #fff; font-size: 0.95em; color:#333; line-height: 1.6;">
     <div style="margin-bottom: 15px; font-weight: bold; color: #2c3e50; font-size: 1.1em; background: #f8fafc; padding: 12px; border-radius: 8px; border: 1px dashed #e67e22; display: inline-block;">
         🚚 Delivery & Logistics Partner: <span style="color:#e67e22;">DTDC Express Limited</span> (Partner with DTDC)
@@ -448,7 +484,7 @@
     <p><b>Founder:</b> Rajat Thakur, +918988883210 | <b>Corporate Desk:</b> Raja ka talab, Nurpur, Kangra, HP 176051</p>
     <div class="social-links" style="margin-top: 10px; border:none; padding:0;">
         <a href="https://www.facebook.com/share/1CB98rrZ4b/" class="social-icon" target="_blank"><svg viewBox="0 0 24 24" fill="#1877F2" width="30" height="30"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
-        <a href="https://www.instagram.com/himwalksliper?igsh=b3A1ZmpwMnl6ZWkz" class="social-icon" target="_blank"><svg viewBox="0 0 24 24" fill="#E4405F" width="30" height="30"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0 3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></a>
+        <a href="https://www.instagram.com/himwalksliper?igsh=b3A1ZmpwMnl6ZWkz" class="social-icon" target="_blank"><svg viewBox="0 0 24 24" fill="#E4405F" width="30" height="30"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></a>
     </div>
 </footer>
 
@@ -484,6 +520,25 @@
     function openModal(id) { document.getElementById(id).style.display = "block"; }
     function closeModal(id) { document.getElementById(id).style.display = "none"; }
     
+    function togglePayMethod(method) {
+        const upiView = document.getElementById('pay-method-upi');
+        const bankView = document.getElementById('pay-method-bank');
+        const upiBtn = document.getElementById('btn-method-upi');
+        const bankBtn = document.getElementById('btn-method-bank');
+        
+        if(method === 'upi') {
+            upiView.style.display = 'block';
+            bankView.style.display = 'none';
+            upiBtn.style.background = '#27ae60';
+            bankBtn.style.background = '#34495e';
+        } else {
+            upiView.style.display = 'none';
+            bankView.style.display = 'block';
+            upiBtn.style.background = '#34495e';
+            bankBtn.style.background = '#27ae60';
+        }
+    }
+
     function scrollToCart() {
         switchMainView('shop');
         setTimeout(() => {
@@ -588,20 +643,38 @@
     function changeImage(prodId) {
         let color = document.getElementById('color-' + prodId).value;
         let imgElement = document.getElementById('img-' + prodId);
+        let srcArray = [];
+
         if (prodId === 'p1') {
-            if(color === "Cherry") imgElement.src = "Cherry.png";
-            else if(color === "Black") imgElement.src = "Black.png";
-            else if(color === "Brown") imgElement.src = "Brown.png";
-            else if(color === "Blue") imgElement.src = "Blue.png";
-            else if(color === "Green") imgElement.src = "Green.png";
-            else imgElement.src = "product.jpg"; 
+            srcArray = [color + ".png", color.toLowerCase() + ".png", "product.jpg"];
         } else {
-            if(color === "Brown") imgElement.src = "Classic_Brown.png";
-            else if(color === "Green") imgElement.src = "Classic_Green.png";
-            else if(color === "Black") imgElement.src = "Classic_Black.png"; 
-            else imgElement.src = "product.jpg";
+            srcArray = [
+                "Classic_" + color + ".png", 
+                "Classic_" + color.toLowerCase() + ".png",
+                "classic_" + color.toLowerCase() + ".png",
+                color + ".png",
+                color.toLowerCase() + ".png",
+                "product2.jpg",
+                "product.jpg"
+            ];
         }
+
+        let index = 0;
+        imgElement.onerror = function() {
+            index++;
+            if (index < srcArray.length) {
+                imgElement.src = srcArray[index];
+            } else {
+                imgElement.onerror = null; 
+            }
+        };
+        imgElement.src = srcArray[0];
     }
+
+    window.addEventListener('DOMContentLoaded', () => {
+        changeImage('p1');
+        changeImage('p2');
+    });
 
     function addToCart(prodId, prodName) {
         let size = document.getElementById('size-' + prodId).value;
@@ -685,7 +758,6 @@
             unlockBar.style.width = totalQty >= 30 ? "100%" : "0%";
         }
         
-        // Advanced Dual Product Tier Calculation System
         let premiumPrice = 149;
         let classicPrice = 129;
         if (totalQty >= 100) { premiumPrice = 74; classicPrice = 54; }
@@ -796,7 +868,7 @@
         } else if(type === 'email') { window.open(`mailto:algotrioindus@gmail.com?subject=Enquiry&body=${encodeURIComponent(formattedText.replace(/\*/g, ''))}`, '_self'); }
     }
 
-    function payOnline() { openModal('bankModal'); }
+    function payOnline() { openModal('bankModal'); togglePayMethod('upi'); }
     function closeModal(id) { document.getElementById(id).style.display = "none"; }
     
     window.onclick = function(event) {
