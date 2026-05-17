@@ -298,7 +298,7 @@
     <ul>
         <li><b>Extreme Base Material Longevity:</b> Crafted strictly using high-density prime EVA sheets that maintain maximum shape memory retention, ensuring the sole never flattens or shrinks under prolonged heavy usage.</li>
         <li><b>Orthopedic Footbed Engineering:</b> Strategically configured micro-textured grids and ergonomic contours that perfectly support natural anatomical walking angles, minimizing fatigue and keeping your feet incredibly soft all day.</li>
-        <li><b>Rigid 5-Pin Strap Anchor Mechanics:</b> Built with a heavy-duty, strategic 5-pin strategic design. This engineered anchor setup ensures maximum pull-out protection, effectively preventing sudden strap tear-outs on uneven mountain paths or plains.</li>
+        <li><b>Rigid 5-Pin Strap Anchor Mechanics:</b> Built with a heavy-duty, strategic 5-pin design. This engineered anchor setup ensures maximum pull-out protection, effectively preventing sudden strap tear-outs on uneven mountain paths or plains.</li>
         <li><b>Reinforced Polyurethane Heavy-Duty Straps:</b> Wrapped with industrial-grade, skin-friendly soft-lining polymers that offer an anti-abrasive comfortable grip, preventing blisters even during long walks.</li>
         <li><b>Anti-Skid Hexagonal Outsole Geometry:</b> The lower sole features calculated multi-directional hexagonal wave grooves that maximize surface friction, delivering strong traction on wet, slick, or oily surfaces.</li>
         <li><b>100% Comprehensive Inspection Protocol:</b> Every single pair undergoes rigorous individual evaluation, micro-defect scrutiny, pasting seamlessness validation, and precise weight calibration prior to final batch boxing.</li>
@@ -342,7 +342,7 @@
         </div>
         <div class="feedback-card">
             <div class="feedback-stars">★★★★★ <span style="color:#27ae60; font-size:0.8em; margin-left:5px;">Bulk Distributor</span></div>
-            <div class="feedback-text">"Wholesale pricing structure वेबसाइट पर बहुत पारदर्शी है। स्लैब ऑटोमैटिक चेंज होते हैं और डिजिटल कोटेशन प्रिव्यू निकालना बड़े डीलर्स के लिए बहुत... प्रोफेशनल फीचर है। हाइली रिकमेंडेड!"</div>
+            <div class="feedback-text">"Wholesale pricing structure वेबसाइट पर बहुत पारदर्शी है। स्लैब ऑटोमैटिक चेंज होते हैं और डिजिटल कोटेशन प्रिव्यू निकालना बड़े डीलर्स के लिए... प्रोफेशनल फीचर है। हाइली रिकमेंडेड!"</div>
             <div class="feedback-author">— R. K. Footwear Distributors, Mandi</div>
         </div>
     </div>
@@ -451,6 +451,8 @@
                 <input type="text" id="adm-awb" placeholder="Enter DTDC docket number if applicable...">
             </div>
             <button class="order-btn" style="background:#27ae60;" onclick="saveAdminTrackingUpdate()">💾 Save & BroadCast Status</button>
+            
+            <div id="admin-links-output" style="margin-top:15px; padding:12px; background:#f1f5f9; border-radius:8px; border:1px solid #cbd5e1; display:none;"></div>
         </div>
     </div>
 </div>
@@ -566,10 +568,6 @@
     </div>
     <p><b>Founder:</b> Rajat Thakur, +918988883210 | <b>Corporate Desk:</b> Raja ka talab, Nurpur, Kangra, HP 176051</p>
     <p style="font-size:0.85em; margin-top:15px;"><span style="cursor:pointer; color:#3498db; font-weight:bold; text-decoration:underline;" onclick="openModal('adminModal')">⚙️ Master Control Admin Panel</span></p>
-    <div class="social-links" style="margin-top: 10px; border:none; padding:0;">
-        <a href="https://www.facebook.com/share/1CB98rrZ4b/" class="social-icon" target="_blank"><svg viewBox="0 0 24 24" fill="#1877F2" width="30" height="30"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
-        <a href="https://www.instagram.com/himwalksliper?igsh=b3A1ZmpwMnl6ZWkz" class="social-icon" target="_blank"><svg viewBox="0 0 24 24" fill="#E4405F" width="30" height="30"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></a>
-    </div>
 </footer>
 
 <script>
@@ -589,7 +587,29 @@
     setInterval(updateClock, 1000);
     updateClock();
 
-    /* ADVANCED DAILY REVOLVING TRACKING ID GENERATOR ENGINE */
+    /* Smart URL Parameter Interceptor for Dynamic Broadcast Tracking Link */
+    window.addEventListener('DOMContentLoaded', () => {
+        const urlParams = new URLSearchParams(window.location.search);
+        const urlOrder = urlParams.get('order');
+        const urlCarrier = urlParams.get('carrier');
+        const urlStage = urlParams.get('stage');
+        const urlAwb = urlParams.get('awb');
+
+        if (urlOrder && urlStage) {
+            let payload = {
+                carrier: urlCarrier || "Manual Delivery Trunk Lines",
+                stage: parseInt(urlStage),
+                awb: urlAwb || ""
+            };
+            localStorage.setItem(urlOrder.toUpperCase(), JSON.stringify(payload));
+            
+            document.getElementById('track-id-input').value = urlOrder;
+            openModal('trackingModal');
+            trackOrderLive();
+        }
+    });
+
+    /* ADVANCED DAILY REVOLVING TRACKING ID GENERATOR CORE ENGINE */
     function generateTrackingID() {
         if (!trackingOrderNumber) {
             const now = new Date();
@@ -610,7 +630,6 @@
             localStorage.setItem('hws_daily_counter', counter);
             
             const paddedCounter = String(counter).padStart(2, '0');
-            // Strict Blueprint Assembly: H + YYYYMMDD + A + COUNTER (e.g. H20260517A01)
             trackingOrderNumber = `H${dateString}A${paddedCounter}`;
         }
     }
@@ -674,10 +693,33 @@
 
         let trackingPayload = { carrier, stage, awb };
         localStorage.setItem(orderId, JSON.stringify(trackingPayload));
-        alert(`Status updated successfully for order ${orderId}!`);
-        closeModal('adminModal');
-        document.getElementById('adm-order-id').value = "";
-        document.getElementById('adm-awb').value = "";
+        
+        let cleanUrl = window.location.href.split('?')[0];
+        let compiledLink = `${cleanUrl}?order=${orderId}&carrier=${encodeURIComponent(carrier)}&stage=${stage}&awb=${encodeURIComponent(awb)}`;
+        
+        let outputBox = document.getElementById('admin-links-output');
+        outputBox.innerHTML = `
+            <span style="color:#15803d; font-weight:bold; display:block; margin-bottom:5px;">✅ Status Local Storage Me Save Ho Gaya!</span>
+            <span style="font-size:0.82em; color:#475569; font-weight:600; display:block;">CUSTOMER TRACKING LINK (WhatsApp Par Bhein):</span>
+            <input type="text" id="adm-generated-url" value="${compiledLink}" readonly style="width:100%; padding:8px; margin-top:4px; font-size:0.85em; border:1px solid #cbd5e1; border-radius:4px;">
+            <div style="display:flex; gap:6px; margin-top:8px;">
+                <button onclick="copyAdminLink()" style="background:#34495e; color:white; border:none; padding:6px 12px; border-radius:4px; font-weight:bold; cursor:pointer; font-size:0.85em;">📋 Copy Link</button>
+                <button onclick="shareTrackingWhatsApp('${compiledLink}','${orderId}')" style="background:#e67e22; color:white; border:none; padding:6px 12px; border-radius:4px; font-weight:bold; cursor:pointer; font-size:0.85em;">💬 Send WhatsApp</button>
+            </div>
+        `;
+        outputBox.style.display = "block";
+    }
+
+    function copyAdminLink() {
+        let targetField = document.getElementById('adm-generated-url');
+        targetField.select();
+        navigator.clipboard.writeText(targetField.value);
+        alert("Customer tracking link copied successfully!");
+    }
+
+    function shareTrackingWhatsApp(link, orderId) {
+        let textMsg = `Hi, Aapke order *${orderId}* ka live delivery status update ho gaya hai. Aap niche diye gaye official link par click karke direct track kar sakte hain:\n\n👉 ${link}`;
+        window.open(`https://wa.me/?text=${encodeURIComponent(textMsg)}`, '_blank');
     }
 
     /* Advanced Hybrid Live Tracking Logic Engine */
@@ -853,6 +895,7 @@
         }
     }
 
+    /* Strict Case-Insensitive Automated Fallback Image Pipeline Setup */
     function changeImage(prodId) {
         let color = document.getElementById('color-' + prodId).value;
         let imgElement = document.getElementById('img-' + prodId);
@@ -1090,7 +1133,7 @@
         let msg = `*Himalayan Walk Sleeper - New Multi-Product Order*\n\n*Tracking Order No:* ${trackingOrderNumber}\n\n*Items List:*\n${orderDetails}\n\n*Total Qty:* ${currentQty} Pairs${couponMsg}\n*Grand Total:* ₹${finalBill}\n\n*Delivery Info:*\nPincode: ${verifiedPincode}\nAddress: ${fullAddress}`;
         window.open(`https://wa.me/918988883210?text=${encodeURIComponent(msg)}`, '_blank').focus();
         
-        // STATIC AUTO-INCREMENT ROUTING - Clear session context for subsequent orders
+        // Auto-increment state refresh routine
         cart = [];
         trackingOrderNumber = "";
         isCouponApplied = false;
