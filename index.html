@@ -298,7 +298,7 @@
     <ul>
         <li><b>Extreme Base Material Longevity:</b> Crafted strictly using high-density prime EVA sheets that maintain maximum shape memory retention, ensuring the sole never flattens or shrinks under prolonged heavy usage.</li>
         <li><b>Orthopedic Footbed Engineering:</b> Strategically configured micro-textured grids and ergonomic contours that perfectly support natural anatomical walking angles, minimizing fatigue and keeping your feet incredibly soft all day.</li>
-        <li><b>Rigid 5-Pin Strap Anchor Mechanics:</b> Built with a heavy-duty, strategic 5-pin strap lock design. This engineered anchor setup ensures maximum pull-out protection, effectively preventing sudden strap tear-outs on uneven mountain paths or plains.</li>
+        <li><b>Rigid 5-Pin Strap Anchor Mechanics:</b> Built with a heavy-duty, strategic 5-pin strategic design. This engineered anchor setup ensures maximum pull-out protection, effectively preventing sudden strap tear-outs on uneven mountain paths or plains.</li>
         <li><b>Reinforced Polyurethane Heavy-Duty Straps:</b> Wrapped with industrial-grade, skin-friendly soft-lining polymers that offer an anti-abrasive comfortable grip, preventing blisters even during long walks.</li>
         <li><b>Anti-Skid Hexagonal Outsole Geometry:</b> The lower sole features calculated multi-directional hexagonal wave grooves that maximize surface friction, delivering strong traction on wet, slick, or oily surfaces.</li>
         <li><b>100% Comprehensive Inspection Protocol:</b> Every single pair undergoes rigorous individual evaluation, micro-defect scrutiny, pasting seamlessness validation, and precise weight calibration prior to final batch boxing.</li>
@@ -342,7 +342,7 @@
         </div>
         <div class="feedback-card">
             <div class="feedback-stars">★★★★★ <span style="color:#27ae60; font-size:0.8em; margin-left:5px;">Bulk Distributor</span></div>
-            <div class="feedback-text">"Wholesale pricing structure वेबसाइट पर बहुत पारदर्शी है। स्लैब ऑटोमैटिक चेंज होते हैं और डिजिटल कोटेशन प्रिव्यू निकालना बड़े डीलर्स के लिए बहुत प्रोफेशनल फीचर है। हाइली रिकमेंडेड!"</div>
+            <div class="feedback-text">"Wholesale pricing structure वेबसाइट पर बहुत पारदर्शी है। स्लैब ऑटोमैटिक चेंज होते हैं और डिजिटल कोटेशन प्रिव्यू निकालना बड़े डीलर्स के लिए बहुत... प्रोफेशनल फीचर है। हाइली रिकमेंडेड!"</div>
             <div class="feedback-author">— R. K. Footwear Distributors, Mandi</div>
         </div>
     </div>
@@ -589,7 +589,7 @@
     setInterval(updateClock, 1000);
     updateClock();
 
-    /* ADVANCED DAILY REVOLVING TRACKING ID GENERATOR CORE ENGINE */
+    /* ADVANCED DAILY REVOLVING TRACKING ID GENERATOR ENGINE */
     function generateTrackingID() {
         if (!trackingOrderNumber) {
             const now = new Date();
@@ -650,6 +650,7 @@
         }
     }
 
+    /* Master Admin Dashboard Engine */
     function authenticateAdmin() {
         const pass = document.getElementById('admin-pass-input').value;
         if(pass === "AlgoTrio@2026") {
@@ -679,6 +680,7 @@
         document.getElementById('adm-awb').value = "";
     }
 
+    /* Advanced Hybrid Live Tracking Logic Engine */
     function trackOrderLive() {
         let inputId = document.getElementById('track-id-input').value.trim().toUpperCase();
         let resultBox = document.getElementById('tracking-result');
@@ -1087,6 +1089,16 @@
         let couponMsg = isCouponApplied ? `\n*Coupon Applied:* ${appliedCouponCode} (₹${calculatedDiscountAmt} Off)` : "";
         let msg = `*Himalayan Walk Sleeper - New Multi-Product Order*\n\n*Tracking Order No:* ${trackingOrderNumber}\n\n*Items List:*\n${orderDetails}\n\n*Total Qty:* ${currentQty} Pairs${couponMsg}\n*Grand Total:* ₹${finalBill}\n\n*Delivery Info:*\nPincode: ${verifiedPincode}\nAddress: ${fullAddress}`;
         window.open(`https://wa.me/918988883210?text=${encodeURIComponent(msg)}`, '_blank').focus();
+        
+        // STATIC AUTO-INCREMENT ROUTING - Clear session context for subsequent orders
+        cart = [];
+        trackingOrderNumber = "";
+        isCouponApplied = false;
+        appliedCouponCode = "";
+        document.getElementById('coupon-input').value = "";
+        document.getElementById('cart-box').style.display = "none";
+        updateCartUI();
+        closeModal('quotationModal');
     }
 
     function submitEnquiry(type) {
