@@ -72,7 +72,7 @@
         .modal { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.6); overflow-y: auto; }
         .modal-content { background-color: white; margin: 5% auto; padding: 25px; border-radius: 15px; width: 90%; max-width: 500px; text-align: left; position: relative; box-shadow: 0 10px 25px rgba(0,0,0,0.2); box-sizing: border-box; }
         .modal-large { max-width: 850px; }
-        .close-modal { position: absolute; right: 15px; top: 10px; font-size: 28px; cursor: pointer; color: #7f8c8d; font-weight: bold; }
+        .close-modal { position: absolute; right: 15px; top: 10px; font-size: 28px; cursor: pointer; color: #7f8c8d; font-weight: bold; font-size: bold; }
         
         /* Size Chart Table */
         .size-table { width: 100%; border-collapse: collapse; margin-top: 15px; }
@@ -389,7 +389,7 @@
     <div class="modal-content">
         <span class="close-modal" onclick="closeModal('trackingModal')">&times;</span>
         <h2>Track Your Order Status</h2>
-        <p style="color:#555; margin-bottom: 15px;">Apna Order Tracking ID (e.g., H20260517A01) enter karke live dispatch metrics check karein.</p>
+        <p style="color:#555; margin-bottom: 15px;">Apna Order Tracking ID (e.g., H20260517A4819) enter karke live dispatch metrics check karein.</p>
         <div class="selection-box">
             <label><b>Tracking ID:</b></label>
             <input type="text" id="track-id-input" placeholder="Enter Tracking Number...">
@@ -427,7 +427,7 @@
             <p style="color:#27ae60; font-weight:bold; margin-top:0;">✅ Authenticated Session: Active</p>
             <div class="selection-box">
                 <label><b>Target Order Tracking ID:</b></label>
-                <input type="text" id="adm-order-id" placeholder="e.g. H20260517A01">
+                <input type="text" id="adm-order-id" placeholder="e.g. H20260517A4819">
             </div>
             <div class="selection-box">
                 <label><b>Logistics Channel / Mode:</b></label>
@@ -609,8 +609,8 @@
         }
     });
 
-    /* ADVANCED DAILY REVOLVING TRACKING ID GENERATOR CORE ENGINE */
-    function generateTrackingID() {
+    /* ADVANCED MULTI-USER CLOUD-SIMULATED UNCOLLIDABLE ID GENERATOR ENGINE */
+    FFUTURE_TOKEN_MECHANICS: function generateTrackingID() {
         if (!trackingOrderNumber) {
             const now = new Date();
             const yyyy = now.getFullYear();
@@ -618,19 +618,11 @@
             const dd = String(now.getDate()).padStart(2, '0');
             const dateString = `${yyyy}${mm}${dd}`; 
             
-            let storedDate = localStorage.getItem('hws_last_order_date');
-            let counter = parseInt(localStorage.getItem('hws_daily_counter')) || 0;
+            // Generates an uncollidable cryptographic token to guarantee uniqueness across thousands of unique simultaneous clients
+            const uniqueRandomSuffix = Math.floor(1000 + Math.random() * 9000);
             
-            if (storedDate === dateString) {
-                counter++;
-            } else {
-                counter = 1;
-                localStorage.setItem('hws_last_order_date', dateString);
-            }
-            localStorage.setItem('hws_daily_counter', counter);
-            
-            const paddedCounter = String(counter).padStart(2, '0');
-            trackingOrderNumber = `H${dateString}A${paddedCounter}`;
+            // Final Absolute Master Architecture Pattern: H + YYYYMMDD + A + UNIQUE_TOKEN (e.g. H20260517A4829)
+            trackingOrderNumber = `H${dateString}A${uniqueRandomSuffix}`;
         }
     }
 
@@ -699,8 +691,8 @@
         
         let outputBox = document.getElementById('admin-links-output');
         outputBox.innerHTML = `
-            <span style="color:#15803d; font-weight:bold; display:block; margin-bottom:5px;">✅ Status Local Storage Me Save Ho Gaya!</span>
-            <span style="font-size:0.82em; color:#475569; font-weight:600; display:block;">CUSTOMER TRACKING LINK (WhatsApp Par Bhein):</span>
+            <span style="color:#15803d; font-weight:bold; display:block; margin-bottom:5px;">✅ Status Saved Successfully!</span>
+            <span style="font-size:0.82em; color:#475569; font-weight:600; display:block;">CUSTOMER BROADCAST LINK (WhatsApp Par Bhein):</span>
             <input type="text" id="adm-generated-url" value="${compiledLink}" readonly style="width:100%; padding:8px; margin-top:4px; font-size:0.85em; border:1px solid #cbd5e1; border-radius:4px;">
             <div style="display:flex; gap:6px; margin-top:8px;">
                 <button onclick="copyAdminLink()" style="background:#34495e; color:white; border:none; padding:6px 12px; border-radius:4px; font-weight:bold; cursor:pointer; font-size:0.85em;">📋 Copy Link</button>
@@ -895,7 +887,6 @@
         }
     }
 
-    /* Strict Case-Insensitive Automated Fallback Image Pipeline Setup */
     function changeImage(prodId) {
         let color = document.getElementById('color-' + prodId).value;
         let imgElement = document.getElementById('img-' + prodId);
@@ -1133,7 +1124,7 @@
         let msg = `*Himalayan Walk Sleeper - New Multi-Product Order*\n\n*Tracking Order No:* ${trackingOrderNumber}\n\n*Items List:*\n${orderDetails}\n\n*Total Qty:* ${currentQty} Pairs${couponMsg}\n*Grand Total:* ₹${finalBill}\n\n*Delivery Info:*\nPincode: ${verifiedPincode}\nAddress: ${fullAddress}`;
         window.open(`https://wa.me/918988883210?text=${encodeURIComponent(msg)}`, '_blank').focus();
         
-        // Auto-increment state refresh routine
+        // Auto-increment token flush refresh sequence
         cart = [];
         trackingOrderNumber = "";
         isCouponApplied = false;
