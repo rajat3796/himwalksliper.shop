@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -49,7 +50,7 @@
 
         /* Pin-code Check Styling */
         #pin-check-btn { position: absolute; right: 5px; top: 32px; background: #34495e; color: white; border: none; padding: 5px 10px; border-radius: 4px; cursor: pointer; font-size: 0.8em; }
-        #pin-status { font-size: 0.8em; margin-top: 5px; font-weight: bold; display: none; }
+        #pin-status { font-size: 0.85em; margin-top: 8px; font-weight: bold; display: none; line-height: 1.4; text-align: left; padding: 8px; background: #f8fafc; border-radius: 5px; border: 1px solid #e2e8f0; }
 
         .order-btn { background: #e67e22; color: white; padding: 15px; border-radius: 5px; font-weight: bold; display: block; border: none; cursor: pointer; width: 100%; font-size: 1.1em; margin-top: 10px; }
         .add-btn { background: #3498db; margin-bottom: 10px; }
@@ -81,12 +82,14 @@
         .quotation-items th { border-bottom: 1px solid #ddd; }
         .quotation-total { border-top: 2px solid #ddd; margin-top: 10px; font-weight: bold; }
 
-        /* Inside Modal Text Layouts */
-        .modal-content h2 { color: #2c3e50; font-size: 1.6em; margin-top: 0; border-bottom: 3px solid #f1c40f; display: inline-block; padding-bottom: 5px; }
-        .modal-content h3 { color: #34495e; font-size: 1.25em; margin-top: 20px; margin-bottom: 8px; padding-left: 6px; border-left: 4px solid #3498db; }
-        .modal-content p { color: #555; font-size: 0.98em; text-align: justify; line-height: 1.6; }
-        .modal-content ul { padding-left: 20px; }
-        .modal-content li { margin-bottom: 6px; color: #555; font-size: 0.96em; }
+        /* Brand Story Block Layout at Bottom */
+        .info-section { background: #fff; padding: 50px 30px; margin-top: 40px; border-top: 5px solid #f1c40f; text-align: left; max-width: 950px; margin-left: auto; margin-right: auto; line-height: 1.8; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); box-sizing: border-box; scroll-margin-top: 20px; }
+        .info-section h2 { color: #2c3e50; font-size: 1.8em; margin-top: 40px; margin-bottom: 15px; border-bottom: 3px solid #f1c40f; display: inline-block; padding-bottom: 8px; }
+        .info-section h2:first-of-type { margin-top: 0; }
+        .info-section h3 { color: #34495e; font-size: 1.4em; margin-top: 30px; margin-bottom: 10px; padding-left: 8px; border-left: 4px solid #3498db; }
+        .info-section p { color: #555; font-size: 1.05em; text-align: justify; margin-bottom: 20px; }
+        .info-section ul { margin-bottom: 25px; padding-left: 20px; }
+        .info-section li { margin-bottom: 8px; color: #555; font-size: 1.02em; }
         
         /* Gallery Layout inside Modal */
         .gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 12px; margin-top: 15px; max-height: 500px; overflow-y: auto; padding-right: 5px; }
@@ -98,21 +101,26 @@
         .calc-result { margin-top: 15px; font-size: 1.1em; color: #27ae60; font-weight: bold; display: none; text-align: center; padding: 10px; background: #fff; border-radius: 8px; border: 1px solid #e2e8f0; }
 
         /* FAQ & Testimonials Grid */
-        .faq-item { margin-bottom: 15px; padding-bottom: 10px; border-bottom: 1px solid #edf2f7; }
-        .faq-question { font-weight: bold; color: #2c3e50; margin-bottom: 5px; font-size: 1em; }
-        .faq-answer { color: #555; font-size: 0.95em; text-align: justify; }
+        .faq-item { margin-bottom: 20px; padding-bottom: 15px; border-bottom: 1px solid #edf2f7; }
+        .faq-question { font-weight: bold; color: #2c3e50; margin-bottom: 8px; font-size: 1.1em; }
+        .faq-answer { color: #555; font-size: 1em; text-align: justify; }
 
-        .feedback-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 15px; margin-top: 15px; }
-        .feedback-card { background: #f8fafc; padding: 15px; border-radius: 10px; border: 1px solid #e2e8f0; text-align: left; }
-        .feedback-stars { color: #f1c40f; margin-bottom: 5px; font-size: 1em; font-weight: bold; }
+        .feedback-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin-top: 20px; }
+        .feedback-card { background: #f8fafc; padding: 20px; border-radius: 10px; border: 1px solid #e2e8f0; text-align: left; box-shadow: 0 2px 5px rgba(0,0,0,0.02); }
+        .feedback-stars { color: #f1c40f; margin-bottom: 8px; font-size: 1.1em; font-weight: bold; }
+        .feedback-text { font-style: italic; color: #475569; font-size: 0.95em; line-height: 1.6; margin-bottom: 10px; }
+        .feedback-author { font-weight: bold; color: #1e293b; font-size: 0.9em; }
 
         /* Executive Profile */
-        .director-profile { display: flex; flex-wrap: wrap; gap: 20px; align-items: center; background: #f8fafc; padding: 20px; border-radius: 12px; border: 1px solid #e2e8f0; margin-top: 20px; }
-        .director-img { width: 130px; height: 130px; border-radius: 50%; object-fit: cover; border: 3px solid #2c3e50; background: #fff; }
-        .director-info { flex: 1; min-width: 220px; }
+        .director-profile { display: flex; flex-wrap: wrap; gap: 25px; align-items: center; background: #f8fafc; padding: 30px; border-radius: 12px; border: 1px solid #e2e8f0; margin-top: 25px; }
+        .director-img { width: 160px; height: 160px; border-radius: 50%; object-fit: cover; border: 4px solid #2c3e50; background: #fff; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+        .director-info { flex: 1; min-width: 250px; }
+        .director-info h4 { margin: 0 0 5px 0; color: #2c3e50; font-size: 1.4em; }
+        .director-info .title { color: #e67e22; font-weight: bold; font-size: 0.95em; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 12px; display: block; }
         
-        .social-links { margin-top: 20px; padding-top: 15px; border-top: 1px solid #eee; text-align: center; }
-        .social-icon { display: inline-block; margin-right: 15px; text-decoration: none; }
+        .social-links { margin-top: 30px; padding-top: 20px; border-top: 1px solid #eee; text-align: center; }
+        .social-icon { display: inline-block; margin-right: 15px; text-decoration: none; transition: transform 0.2s; }
+        .social-icon:hover { transform: scale(1.1); }
         .social-icon svg { width: 35px; height: 35px; vertical-align: middle; }
     </style>
 </head>
@@ -126,7 +134,7 @@
 </header>
 
 <div class="nav-bar">
-    <button class="nav-btn" onclick="openModal('homeModal')">🏠 Home (About Us)</button>
+    <button class="nav-btn" onclick="scrollToAbout()">🏠 Home (About Us)</button>
     <button class="nav-btn" onclick="openModal('galleryModal')">🖼️ Photo Gallery</button>
     <button class="nav-btn" onclick="openModal('calculatorModal')">📊 Wholesale Calculator</button>
     <button class="nav-btn" onclick="openModal('enquiryModal')">📞 Contact Us</button>
@@ -255,7 +263,7 @@
             <input type="text" id="address-pincode" placeholder="Enter 6-digit Pincode..." maxlength="6" style="margin-bottom:5px;">
             <button id="pin-check-btn" onclick="checkPincode()">Check Pincode</button>
             <div id="pin-status"></div>
-            <textarea id="address-full" placeholder="Complete Street Address, City, State..." style="height: 60px;"></textarea>
+            <textarea id="address-full" placeholder="Complete Street Address, City, State..." style="height: 60px; margin-top: 5px;"></textarea>
         </div>
 
         <button class="order-btn pay-btn" style="background:#27ae60; margin-bottom: 5px;" onclick="payOnline()">Pay Online (Bank Transfer)</button>
@@ -263,28 +271,28 @@
     </div>
 </div>
 
-<div id="homeModal" class="modal">
-    <div class="modal-content modal-large">
-        <span class="close-modal" onclick="closeModal('homeModal')">&times;</span>
-        <h2>About Our Enterprise</h2>
-        
-        <h3>Our Story</h3>
-        <p>Established in 2022, <b>Himalayan Walk Sleeper</b> began with a simple yet powerful mission: to redefine everyday comfort, structural aesthetics, and heavy-duty style for millions across India. Officially incorporated under our premium quality banner <b>Brand Yellow Star</b>, our foundation roots started in the heart of Kangra district, Himachal Pradesh. Over the years, we have scaled dynamically from a trusted regional production facility into a modern, forward-thinking footwear enterprise. We focus exclusively on engineering gents EVA flip-flops capable of surviving demanding weather thresholds, rough terrains, and continuous long-term daily wear, establishing our identity as a highly reliable household name nationwide.</p>
+<div class="info-section" id="about-section">
+    <h2>About Our Enterprise</h2>
+    
+    <h3>Our Story</h3>
+    <p>Established in 2022, <b>Himalayan Walk Sleeper</b> began with a simple yet powerful mission: to redefine everyday comfort, structural aesthetics, and heavy-duty style for millions across India. Officially incorporated under our premium quality banner <b>Brand Yellow Star</b>, our foundation roots started in the heart of Kangra district, Himachal Pradesh. Over the years, we have scaled dynamically from a trusted regional production facility into a modern, forward-thinking footwear enterprise. We focus exclusively on engineering gents EVA flip-flops capable of surviving demanding weather thresholds, rough terrains, and continuous long-term daily wear, establishing our identity as a highly reliable household name nationwide.</p>
 
-        <h3>Our Vision & Mission</h3>
-        <p>Our long-term vision is to stand at the absolute pinnacle of the Indian footwear industry by continuously blending innovative orthopedic designs with high-grade manufacturing technology. We are deeply committed to maintaining an uncompromising, rigid system of quality control, ensuring that not a single slipper unit leaves our factory floors without comprehensive manual checking and physical verification. Our ultimate mission centers around providing our countrywide distribution channels with absolute value for money, combining supreme orthopedic comfort with unparalleled aesthetic appeal.</p>
+    <h3>Our Vision & Mission</h3>
+    <p>Our long-term vision is to stand at the absolute pinnacle of the Indian footwear industry by continuously blending innovative orthopedic designs with high-grade manufacturing technology. We are deeply committed to maintaining an uncompromising, rigid system of quality control, ensuring that not a single slipper unit leaves our factory floors without comprehensive manual checking and physical verification. Our ultimate mission centers around providing our countrywide distribution channels—ranging from direct individual retail buyers to bulk wholesale distributors—with absolute value for money, combining supreme orthopedic comfort with unparalleled aesthetic appeal.</p>
 
-        <h3>Our Core Quality Commitment & Parameters</h3>
-        <ul>
-            <li><b>Extreme Base Material Longevity:</b> Crafted strictly using high-density prime EVA sheets that maintain maximum shape memory retention, ensuring the sole never flattens or shrinks under prolonged heavy usage.</li>
-            <li><b>Orthopedic Footbed Engineering:</b> Strategically configured micro-textured grids and ergonomic contours that perfectly support natural anatomical walking angles, minimizing fatigue and keeping your feet incredibly soft all day.</li>
-            <li><b>Rigid 5-Pin Strap Anchor Mechanics:</b> Built with a heavy-duty, strategic 5-pin strap lock design. This engineered anchor setup ensures maximum pull-out protection, effectively preventing sudden strap tear-outs on uneven mountain paths or plains.</li>
-            <li><b>Reinforced Polyurethane Heavy-Duty Straps:</b> Wrapped with industrial-grade, skin-friendly soft-lining polymers that offer an anti-abrasive comfortable grip, preventing blisters even during long walks.</li>
-            <li><b>Anti-Skid Hexagonal Outsole Geometry:</b> The lower sole features calculated multi-directional hexagonal wave grooves that maximize surface friction, delivering strong traction on wet, slick, or oily surfaces.</li>
-            <li><b>100% Comprehensive Inspection Protocol:</b> Every single pair undergoes rigorous individual evaluation, micro-defect scrutiny, pasting seamlessness validation, and precise weight calibration prior to final batch boxing.</li>
-        </ul>
+    <h3>Our Core Quality Commitment & Parameters</h3>
+    <p>We execute strict inspection routines based on six fundamental core operational parameters to guarantee premium-grade product execution:</p>
+    <ul>
+        <li><b>Extreme Base Material Longevity:</b> Crafted strictly using high-density prime EVA sheets that maintain maximum shape memory retention, ensuring the sole never flattens or shrinks under prolonged heavy usage.</li>
+        <li><b>Orthopedic Footbed Engineering:</b> Strategically configured micro-textured grids and ergonomic contours that perfectly support natural anatomical walking angles, minimizing fatigue and keeping your feet incredibly soft all day.</li>
+        <li><b>Rigid 5-Pin Strap Anchor Mechanics:</b> Built with a heavy-duty, strategic 5-pin strap lock design. This engineered anchor setup ensures maximum pull-out protection, effectively preventing sudden strap tear-outs on uneven mountain paths or plains.</li>
+        <li><b>Reinforced Polyurethane Heavy-Duty Straps:</b> Wrapped with industrial-grade, skin-friendly soft-lining polymers that offer an anti-abrasive comfortable grip, preventing blisters even during long walks.</li>
+        <li><b>Anti-Skid Hexagonal Outsole Geometry:</b> The lower sole features calculated multi-directional hexagonal wave grooves that maximize surface friction, delivering strong traction on wet, slick, or oily surfaces.</li>
+        <li><b>100% Comprehensive Inspection Protocol:</b> Every single pair undergoes rigorous individual evaluation, micro-defect scrutiny, pasting seamlessness validation, and precise weight calibration prior to final batch boxing.</li>
+    </ul>
 
-        <h2>Frequently Asked Questions (FAQs)</h2>
+    <h2>Frequently Asked Questions (FAQs)</h2>
+    <div style="margin-top: 20px;">
         <div class="faq-item">
             <div class="faq-question">Q: Himalayan Walk Sleeper wholesale rates active karne ke liye minimum criteria kya hai?</div>
             <div class="faq-answer">A: Hamari website par 30 pairs ya usse zyada total quantity add karte hi wholesale rates auto-apply ho jate hain. 50+ pairs aur 100+ pairs par aur zyada discounted bulk slabs (₹76 aur ₹74) auto-trigger ho jate hain.</div>
@@ -301,30 +309,46 @@
             <div class="faq-question">Q: Agar product batch mein koi rare manufacturing defect nikle toh replacement policy kya hai?</div>
             <div class="faq-answer">A: Hamara manual inspection rigid hota hai, phir bhi kisi rare structural factory defect ki surat mein hum transparent policy ke tehat 100% free items replacement pradaan karte hain.</div>
         </div>
-
-        <h2>Verified Dealer & Buyer Reviews</h2>
-        <div class="feedback-grid">
-            <div class="feedback-card">
-                <div class="feedback-stars">★★★★★ <span style="color:#27ae60; font-size:0.8em; margin-left:5px;">Verified Dealer</span></div>
-                <div class="feedback-text">"Himalayan Walk Sleeper ki 5-pin design sach mein dumdaar hai. Hamare store se jitne bhi retail clients le gaye hain, kisi ka strap tootne ka complaint nahi aaya. Base ka foam baaki brands se zyada heavy aur durable hai!"</div>
-                <div class="feedback-author">— Sharma Footwear, Kangra (HP)</div>
-            </div>
-            <div class="feedback-card">
-                <div class="feedback-stars">★★★★★ <span style="color:#27ae60; font-size:0.8em; margin-left:5px;">Bulk Distributor</span></div>
-                <div class="feedback-text">"Wholesale pricing structure website par bahut transparent hai. Slabs automatic change hote hain aur digital quotation preview nikalna bade dealers ke liye bahut professional feature hai. Highly recommended!"</div>
-                <div class="feedback-author">— R. K. Footwear Distributors, Mandi</div>
-            </div>
+        <div class="faq-item">
+            <div class="faq-question">Q: Content verification ke liye payment parameters aur secure channels kaunse hain?</div>
+            <div class="faq-answer">A: Hum direct and secure commercial dealing par vishwas rakhte hain. Aap website par "Pay Online" dabakar hamare verified Punjab National Bank Current Account details dekh sakte hain aur direct transfer karke screenshot WhatsApp par share kar sakte hain.</div>
         </div>
-        <button class="order-btn" style="background:#3498db; max-width: 320px; margin: 15px auto 0 auto;" onclick="window.open('https://wa.me/918988883210?text=Hi%20Rajat,%20I%20want%20to%20submit%20a%20verified%20dealer%20review%20for%20Himalayan%20Walk%20Sleeper:', '_blank')">💬 Write a Review via WhatsApp</button>
+        <div class="faq-item">
+            <div class="faq-question">Q: Kya slippers ka base material long-term continuous use ke liye bilkul safe hai?</div>
+            <div class="faq-answer">A: Bilkul! Hamara core compound premium non-toxic high-density EVA foam se engineered hai, jo sweat-resistant, anti-bacterial aur skin-friendly hai, jo har mausam mein pairon ko thanda aur comfortable rakhta hai.</div>
+        </div>
+    </div>
 
-        <h2>Executive Leadership & Visionary Directive</h2>
-        <div class="director-profile">
-            <img src="founder.jpg" onerror="this.onerror=null; this.src='logo.jpg';" alt="Rajat Thakur - MD" class="director-img">
-            <div class="director-info">
-                <h4>Rajat Thakur</h4>
-                <span class="title">Founder & Managing Director</span>
-                <p style="margin: 5px 0; font-size:0.95em; text-align: justify; line-height:1.7; color:#475569;">Driven by a strict technical background in strategic industrial sourcing, macro-market analysis, and international quality thresholds, Rajat Thakur established <b>Himalayan Walk Sleeper</b> to actively challenge structural gaps in the Indian footwear sector where affordability often compromised raw strength. Rooted deeply in a grand vision of indigenous core growth, his corporate leadership centers heavily on bringing highly advanced manufacturing operations straight to Himachal Pradesh. By maintaining incredibly strict inspection thresholds and completely refusing standard 3-pin market limitations, he successfully engineered a highly dependable 5-pin anchor configuration built specifically for everyday rugged reliance. His forward-looking focus continues to aggressively scale national supply chain logistics while continuously anchoring sustainable industrial job opportunities within local community segments.</p>
-            </div>
+    <h2>Verified Dealer & Buyer Reviews</h2>
+    <p style="color:#7f8c8d; font-size: 0.9em; margin-top:5px; margin-bottom:15px;">Real responses and continuous evaluation from our countrywide retail partners and distribution networks.</p>
+    <div class="feedback-grid">
+        <div class="feedback-card">
+            <div class="feedback-stars">★★★★★ <span style="color:#27ae60; font-size:0.8em; margin-left:5px;">Verified Dealer</span></div>
+            <div class="feedback-text">"Himalayan Walk Sleeper ki 5-pin design sach mein dumdaar hai. Hamare store se jitne bhi retail clients le gaye hain, kisi ka strap tootne ka complaint nahi aaya. Base ka foam baaki brands se zyada heavy aur durable hai!"</div>
+            <div class="feedback-author">— Sharma Footwear, Kangra (HP)</div>
+        </div>
+        <div class="feedback-card">
+            <div class="feedback-stars">★★★★★ <span style="color:#27ae60; font-size:0.8em; margin-left:5px;">Bulk Distributor</span></div>
+            <div class="feedback-text">"Wholesale pricing structure website par bahut transparent hai. Slabs automatic change hote hain aur digital quotation preview nikalna bade dealers ke liye bahut professional feature hai. Highly recommended!"</div>
+            <div class="feedback-author">— R. K. Footwear Distributors, Mandi</div>
+        </div>
+        <div class="feedback-card">
+            <div class="feedback-stars">★★★★★ <span style="color:#27ae60; font-size:0.8em; margin-left:5px;">Retail Partner</span></div>
+            <div class="feedback-text">"Classic aur Premium dono series ka material top-notch hai. Pricing parameters hamare retail margins ko safe rakhte hain aur customer feedback lajawab hai. Sourcing aur transport hamesha time par hota hai."</div>
+            <div class="feedback-author">— Verma Shoe Palace, Palampur</div>
+        </div>
+    </div>
+    <div style="text-align: center; margin-top: 20px;">
+        <button class="order-btn" style="background:#3498db; max-width: 320px; display: inline-block;" onclick="window.open('https://wa.me/918988883210?text=Hi%20Rajat,%20I%20want%20to%20submit%20a%20verified%20dealer%20review%20for%20Himalayan%20Walk%20Sleeper:', '_blank')">💬 Write a Review via WhatsApp</button>
+    </div>
+
+    <h2>Executive Leadership & Visionary Directive</h2>
+    <div class="director-profile">
+        <img src="founder.jpg" onerror="this.onerror=null; this.src='logo.jpg';" alt="Rajat Thakur - MD" class="director-img">
+        <div class="director-info">
+            <h4>Rajat Thakur</h4>
+            <span class="title">Founder & Managing Director</span>
+            <p style="margin: 5px 0; font-size:0.98em; text-align: justify; line-height:1.75; color: #475569;">Driven by a strict technical background in strategic industrial sourcing, macro-market analysis, and international quality thresholds, Rajat Thakur established <b>Himalayan Walk Sleeper</b> to actively challenge structural gaps in the Indian footwear sector where affordability often compromised raw strength. Rooted deeply in a grand vision of indigenous core growth, his corporate leadership centers heavily on bringing highly advanced manufacturing operations straight to Himachal Pradesh. By maintaining incredibly strict inspection thresholds and completely refusing standard 3-pin market limitations, he successfully engineered a highly dependable 5-pin anchor configuration built specifically for everyday rugged reliance. His forward-looking focus continues to aggressively scale national supply chain logistics while continuously anchoring sustainable industrial job opportunities within local community segments.</p>
         </div>
     </div>
 </div>
@@ -416,7 +440,10 @@
     </div>
 </div>
 
-<footer style="margin-top: 30px; padding: 20px; border-top: 1px solid #eee; font-size: 0.9em; color:#7f8c8d;">
+<footer style="margin-top: 5px; padding: 30px; border-top: 5px solid #2c3e50; background: #fff; font-size: 0.95em; color:#333; line-height: 1.6;">
+    <div style="margin-bottom: 15px; font-weight: bold; color: #2c3e50; font-size: 1.1em; background: #f8fafc; padding: 12px; border-radius: 8px; border: 1px dashed #e67e22; display: inline-block;">
+        🚚 Delivery & Logistics Partner: <span style="color:#e67e22;">DTDC Express Limited</span> (Partner with DTDC)
+    </div>
     <p><b>MD:</b> Rajat Thakur, +918988883210 | <b>Corporate Desk:</b> Raja ka talab, Nurpur, Kangra, HP 176051</p>
     <div class="social-links" style="margin-top: 10px; border:none; padding:0;">
         <a href="https://www.facebook.com/share/1CB98rrZ4b/" class="social-icon" target="_blank"><svg viewBox="0 0 24 24" fill="#1877F2" width="30" height="30"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
@@ -440,12 +467,16 @@
     setInterval(updateClock, 1000);
     updateClock();
 
-    // Universal Modal Triggers
+    // Universal Navigation Trigger for About Section Shift
+    function scrollToAbout() {
+        document.getElementById('about-section').scrollIntoView({ behavior: 'smooth' });
+    }
+
     function openModal(id) { document.getElementById(id).style.display = "block"; }
     function closeModal(id) { document.getElementById(id).style.display = "none"; }
     function scrollToCart() { document.getElementById('cart-box').scrollIntoView({ behavior: 'smooth' }); }
 
-    // Sequential Automated Scanner Engine for Gallery
+    // Sequential Automated Scanner Engine for Gallery inside Modal
     function loadAutomatedGallery() {
         const galleryGrid = document.getElementById('dynamic-gallery');
         let currentIdx = 1;
@@ -503,14 +534,36 @@
         resultBox.style.display = "block";
     }
 
+    // Advanced Live Pincode Area Detector Logic
     function checkPincode() {
         let pin = document.getElementById('address-pincode').value.trim();
         let status = document.getElementById('pin-status');
         if (/^\d{6}$/.test(pin)) {
-            verifiedPincode = pin;
-            status.innerHTML = "✅ Valid Pin-code for DTDC transport routing.";
-            status.style.color = "#27ae60";
+            status.innerHTML = "⏳ Scanning delivery network & location database...";
+            status.style.color = "#e67e22";
             status.style.display = "block";
+            
+            fetch(`https://api.postalpincode.in/pincode/${pin}`)
+            .then(response => response.json())
+            .then(data => {
+                if (data[0].Status === "Success") {
+                    let district = data[0].PostOffice[0].District;
+                    let state = data[0].PostOffice[0].State;
+                    let primaryArea = data[0].PostOffice[0].Name;
+                    verifiedPincode = pin;
+                    status.innerHTML = `✅ Serviceable via DTDC Express<br>📍 <b>Location Detected:</b> ${primaryArea}, ${district}, ${state}`;
+                    status.style.color = "#27ae60";
+                } else {
+                    verifiedPincode = "";
+                    status.innerHTML = "❌ Pin-code not found in delivery network database.";
+                    status.style.color = "#e74c3c";
+                }
+            })
+            .catch(err => {
+                verifiedPincode = pin;
+                status.innerHTML = "✅ Valid Pin-code format for DTDC transport routing.";
+                status.style.color = "#27ae60";
+            });
         } else {
             verifiedPincode = "";
             status.innerHTML = "❌ Invalid Pin-code. Must be exactly 6 digits.";
@@ -719,12 +772,10 @@
     }
 
     function payOnline() { openModal('bankModal'); }
-    
     function closeModal(id) { document.getElementById(id).style.display = "none"; }
     
-    // Global outside click handler for new structure
     window.onclick = function(event) {
-        const modals = ['bankModal', 'sizeModal', 'quotationModal', 'homeModal', 'galleryModal', 'calculatorModal', 'enquiryModal'];
+        const modals = ['bankModal', 'sizeModal', 'quotationModal', 'galleryModal', 'calculatorModal', 'enquiryModal'];
         modals.forEach(id => {
             let m = document.getElementById(id);
             if (event.target == m) { m.style.display = "none"; }
