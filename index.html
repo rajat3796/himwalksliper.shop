@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Himalayan Walk Sleeper - Master 1 Configuration</title>
+    <title>Himalayan Walk Sleeper - Master 2 Configuration</title>
     <link rel="manifest" href="manifest.json">
     <style>
         body { font-family: 'Segoe UI', Arial, sans-serif; margin: 0; padding: 0; background-color: #f4f7f6; text-align: center; color: #333; padding-bottom: 80px; }
@@ -389,10 +389,10 @@
     <div class="modal-content">
         <span class="close-modal" onclick="closeModal('trackingModal')">&times;</span>
         <h2>Track Your Order Status</h2>
-        <p style="color:#555; margin-bottom: 15px;">Apna Order Tracking ID (e.g., HWS-123456) enter karke live dispatch metrics check karein.</p>
+        <p style="color:#555; margin-bottom: 15px;">Apna Order Tracking ID (e.g., H20260517A01) enter karke live dispatch metrics check karein.</p>
         <div class="selection-box">
             <label><b>Tracking ID:</b></label>
-            <input type="text" id="track-id-input" placeholder="Enter HWS Tracking Number...">
+            <input type="text" id="track-id-input" placeholder="Enter Tracking Number...">
             <button class="order-btn" style="margin-top:10px; background:#2c3e50;" onclick="trackOrderLive()">Track Live Dispatch</button>
         </div>
         
@@ -427,7 +427,7 @@
             <p style="color:#27ae60; font-weight:bold; margin-top:0;">✅ Authenticated Session: Active</p>
             <div class="selection-box">
                 <label><b>Target Order Tracking ID:</b></label>
-                <input type="text" id="adm-order-id" placeholder="e.g. HWS-482915">
+                <input type="text" id="adm-order-id" placeholder="e.g. H20260517A01">
             </div>
             <div class="selection-box">
                 <label><b>Logistics Channel / Mode:</b></label>
@@ -589,9 +589,29 @@
     setInterval(updateClock, 1000);
     updateClock();
 
+    /* ADVANCED DAILY REVOLVING TRACKING ID GENERATOR CORE ENGINE */
     function generateTrackingID() {
         if (!trackingOrderNumber) {
-            trackingOrderNumber = "HWS-" + Math.floor(100000 + Math.random() * 900000);
+            const now = new Date();
+            const yyyy = now.getFullYear();
+            const mm = String(now.getMonth() + 1).padStart(2, '0');
+            const dd = String(now.getDate()).padStart(2, '0');
+            const dateString = `${yyyy}${mm}${dd}`; 
+            
+            let storedDate = localStorage.getItem('hws_last_order_date');
+            let counter = parseInt(localStorage.getItem('hws_daily_counter')) || 0;
+            
+            if (storedDate === dateString) {
+                counter++;
+            } else {
+                counter = 1;
+                localStorage.setItem('hws_last_order_date', dateString);
+            }
+            localStorage.setItem('hws_daily_counter', counter);
+            
+            const paddedCounter = String(counter).padStart(2, '0');
+            // Strict Blueprint Assembly: H + YYYYMMDD + A + COUNTER (e.g. H20260517A01)
+            trackingOrderNumber = `H${dateString}A${paddedCounter}`;
         }
     }
 
@@ -630,7 +650,6 @@
         }
     }
 
-    /* Master Admin Dashboard Engine */
     function authenticateAdmin() {
         const pass = document.getElementById('admin-pass-input').value;
         if(pass === "AlgoTrio@2026") {
@@ -660,7 +679,6 @@
         document.getElementById('adm-awb').value = "";
     }
 
-    /* Advanced Hybrid Live Tracking Logic Engine */
     function trackOrderLive() {
         let inputId = document.getElementById('track-id-input').value.trim().toUpperCase();
         let resultBox = document.getElementById('tracking-result');
@@ -833,7 +851,6 @@
         }
     }
 
-    /* Smart Case-Insensitive Automated Fallback Image Pipeline Setup */
     function changeImage(prodId) {
         let color = document.getElementById('color-' + prodId).value;
         let imgElement = document.getElementById('img-' + prodId);
@@ -847,14 +864,13 @@
                 "product.jpg"
             ];
         } else {
-            // Generates 5 distinct naming variants to override case mismatch errors on GitHub live server
             srcArray = [
                 "Classic_" + color + ".png", 
                 "Classic_" + color.toLowerCase() + ".png",
                 "classic_" + color.toLowerCase() + ".png",
                 "classic_" + color + ".png",
                 color + ".png",
-                "Classic_Green.png", // Safe rendering bypass if server fails to pull black/brown assets
+                "Classic_Green.png", 
                 "product2.jpg"
             ];
         }
