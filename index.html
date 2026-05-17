@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -133,7 +134,8 @@
 </header>
 
 <div class="nav-bar">
-    <button class="nav-btn" onclick="scrollToAbout()">🏠 Home (About Us)</button>
+    <button class="nav-btn" onclick="switchMainView('shop')">🛍️ Shop Now</button>
+    <button class="nav-btn" onclick="switchMainView('about')">🏠 Home (About Us)</button>
     <button class="nav-btn" onclick="openModal('galleryModal')">🖼️ Photo Gallery</button>
     <button class="nav-btn" onclick="openModal('calculatorModal')">📊 Wholesale Calculator</button>
     <button class="nav-btn" onclick="openModal('enquiryModal')">📞 Contact Us</button>
@@ -143,134 +145,136 @@
     🛒 <span id="badge-count" class="cart-badge">0</span>
 </button>
 
-<div class="products-container">
-    
-    <div class="product-card">
-        <img src="Black.png" id="img-p1" onerror="this.onerror=null; this.src='product.jpg';" alt="Himalayan Walk Sleeper Premium" class="product-img">
-        <h3 style="margin: 5px 0;">Himalayan Walk Sleeper (Premium)</h3>
-        <p style="margin: 5px 0;">Brand: <span class="yellow-star">★ Yellow Star ★</span></p>
-
-        <div class="selection-box">
-            <label><b>Select Size (UK/India):</b></label>
-            <select id="size-p1">
-                <option value="6">Size 6</option><option value="7">Size 7</option><option value="8">Size 8</option><option value="9">Size 9</option><option value="10">Size 10</option>
-            </select>
-            <span class="size-link" onclick="openModal('sizeModal')">📐 Check Size Guide Chart</span>
-        </div>
-
-        <div class="selection-box">
-            <label><b>Select Color:</b></label>
-            <select id="color-p1" onchange="changeImage('p1')">
-                <option value="Black">Black</option>
-                <option value="Cherry">Cherry Red</option>
-                <option value="Brown">Brown</option>
-                <option value="Blue">Blue</option>
-                <option value="Green">Green</option>
-            </select>
-        </div>
-
-        <div class="selection-box">
-            <label><b>Quantity (Pairs):</b></label>
-            <input type="number" id="qty-p1" value="1" min="1">
-        </div>
-
-        <div class="specs-box">
-            <h4>Technical Specifications</h4>
-            <ul class="specs-list">
-                <li><b>Base Compound:</b> Orthopedic High-Density Prime EVA Sheet</li>
-                <li><b>Strap Engineering:</b> Reinforced Polyurethane Heavy-Duty Strap</li>
-                <li><b>Lock Mechanics:</b> Secure 5-Pin Anchor Pull-Out Protection System</li>
-                <li><b>Footbed Texture:</b> Diamond Diamond-Cut Ergonomic Micro-Grip Lines</li>
-                <li><b>Outer Sole Structure:</b> Advanced Rugged Anti-Skid Mountain Line Patches</li>
-                <li><b>Average Net Weight:</b> 180 Grams per individual pair (Size 8 base)</li>
-            </ul>
-        </div>
-
-        <button class="order-btn add-btn" onclick="addToCart('p1', 'Himalayan Walk Sleeper (Premium)')">+ Add to Order List</button>
-    </div>
-
-    <div class="product-card">
-        <img src="product2.jpg" id="img-p2" onerror="this.onerror=null; this.src='product.jpg';" alt="Himalayan Walk Sleeper Classic" class="product-img">
-        <h3 style="margin: 5px 0;">Himalayan Walk Sleeper (Classic)</h3>
-        <p style="margin: 5px 0;">Brand: <span class="yellow-star">★ Yellow Star ★</span></p>
-
-        <div class="selection-box">
-            <label><b>Select Size (UK/India):</b></label>
-            <select id="size-p2">
-                <option value="6">Size 6</option><option value="7">Size 7</option><option value="8">Size 8</option><option value="9">Size 9</option><option value="10">Size 10</option>
-            </select>
-            <span class="size-link" onclick="openModal('sizeModal')">📐 Check Size Guide Chart</span>
-        </div>
-
-        <div class="selection-box">
-            <label><b>Select Color:</b></label>
-            <select id="color-p2" onchange="changeImage('p2')">
-                <option value="Brown">Brown</option>
-                <option value="Green">Green</option>
-                <option value="Black">Black</option>
-            </select>
-        </div>
-
-        <div class="selection-box">
-            <label><b>Quantity (Pairs):</b></label>
-            <input type="number" id="qty-p2" value="1" min="1">
-        </div>
-
-        <div class="specs-box">
-            <h4>Technical Specifications</h4>
-            <ul class="specs-list">
-                <li><b>Base Compound:</b> Medium-Density Flexible Premium Cushion EVA Layer</li>
-                <li><b>Strap Engineering:</b> Soft-Touch Micro-Textured Woven Matt Strap Design</li>
-                <li><b>Lock Mechanics:</b> Industrial-Grade 5-Pin Anchor Lock Setup</li>
-                <li><b>Footbed Texture:</b> Smooth Anti-Friction Linear Ventilation Wave Pattern</li>
-                <li><b>Outer Sole Structure:</b> Multi-Directional Hexagonal Anti-Slip Tread Grip</li>
-                <li><b>Average Net Weight:</b> 165 Grams per individual pair (Size 8 base)</li>
-            </ul>
-        </div>
-
-        <button class="order-btn add-btn" onclick="addToCart('p2', 'Himalayan Walk Sleeper (Classic)')">+ Add to Order List</button>
-    </div>
-
-</div>
-
-<div style="text-align: center;">
-    <div class="cart-section" id="cart-box" style="display: none;">
-        <h3 style="margin-top:0;">Your Order Summary</h3>
-        <div id="cart-items"></div>
-        <hr>
+<div id="shop-view-container">
+    <div class="products-container">
         
-        <div class="progress-container">
-            <div id="unlock-bar" class="progress-bar"></div>
-        </div>
-        <p id="unlock-text" class="progress-text"></p>
+        <div class="product-card">
+            <img src="Black.png" id="img-p1" onerror="this.onerror=null; this.src='product.jpg';" alt="Himalayan Walk Sleeper Premium" class="product-img">
+            <h3 style="margin: 5px 0;">Himalayan Walk Sleeper (Premium)</h3>
+            <p style="margin: 5px 0;">Brand: <span class="yellow-star">★ Yellow Star ★</span></p>
 
-        <div class="selection-box">
-            <label><b>Have a Coupon Code?</b></label>
-            <div style="display: flex; gap: 5px;">
-                <input type="text" id="coupon-input" placeholder="Enter promotional code...">
-                <button class="coupon-btn" onclick="applyCoupon()">Apply</button>
+            <div class="selection-box">
+                <label><b>Select Size (UK/India):</b></label>
+                <select id="size-p1">
+                    <option value="6">Size 6</option><option value="7">Size 7</option><option value="8">Size 8</option><option value="9">Size 9</option><option value="10">Size 10</option>
+                </select>
+                <span class="size-link" onclick="openModal('sizeModal')">📐 Check Size Guide Chart</span>
             </div>
+
+            <div class="selection-box">
+                <label><b>Select Color:</b></label>
+                <select id="color-p1" onchange="changeImage('p1')">
+                    <option value="Black">Black</option>
+                    <option value="Cherry">Cherry Red</option>
+                    <option value="Brown">Brown</option>
+                    <option value="Blue">Blue</option>
+                    <option value="Green">Green</option>
+                </select>
+            </div>
+
+            <div class="selection-box">
+                <label><b>Quantity (Pairs):</b></label>
+                <input type="number" id="qty-p1" value="1" min="1">
+            </div>
+
+            <div class="specs-box">
+                <h4>Technical Specifications</h4>
+                <ul class="specs-list">
+                    <li><b>Base Compound:</b> Orthopedic High-Density Prime EVA Sheet</li>
+                    <li><b>Strap Engineering:</b> Reinforced Polyurethane Heavy-Duty Strap</li>
+                    <li><b>Lock Mechanics:</b> Secure 5-Pin Anchor Pull-Out Protection System</li>
+                    <li><b>Footbed Texture:</b> Diamond Diamond-Cut Ergonomic Micro-Grip Lines</li>
+                    <li><b>Outer Sole Structure:</b> Advanced Rugged Anti-Skid Mountain Line Patches</li>
+                    <li><b>Average Net Weight:</b> 180 Grams per individual pair (Size 8 base)</li>
+                </ul>
+            </div>
+
+            <button class="order-btn add-btn" onclick="addToCart('p1', 'Himalayan Walk Sleeper (Premium)')">+ Add to Order List</button>
         </div>
 
-        <p><b>Total Quantity:</b> <span id="total-qty">0</span> Pairs</p>
-        <div id="discount-info" class="discount-text">Coupon Applied! Discount: ₹<span id="discount-amt">0</span></div>
-        <p class="price-tag" id="price-display">Price per unit: ₹159</p>
-        <p style="font-size: 1.2em;"><b>Grand Total: ₹<span id="final-bill">0</span></b></p>
+        <div class="product-card">
+            <img src="product2.jpg" id="img-p2" onerror="this.onerror=null; this.src='product.jpg';" alt="Himalayan Walk Sleeper Classic" class="product-img">
+            <h3 style="margin: 5px 0;">Himalayan Walk Sleeper (Classic)</h3>
+            <p style="margin: 5px 0;">Brand: <span class="yellow-star">★ Yellow Star ★</span></p>
 
-        <div class="selection-box">
-            <label><b>Delivery Address & Pincode:</b></label>
-            <input type="text" id="address-pincode" placeholder="Enter 6-digit Pincode..." maxlength="6" style="margin-bottom:5px;">
-            <button id="pin-check-btn" onclick="checkPincode()">Check Pincode</button>
-            <div id="pin-status"></div>
-            <textarea id="address-full" placeholder="Complete Street Address, City, State..." style="height: 60px; margin-top: 5px;"></textarea>
+            <div class="selection-box">
+                <label><b>Select Size (UK/India):</b></label>
+                <select id="size-p2">
+                    <option value="6">Size 6</option><option value="7">Size 7</option><option value="8">Size 8</option><option value="9">Size 9</option><option value="10">Size 10</option>
+                </select>
+                <span class="size-link" onclick="openModal('sizeModal')">📐 Check Size Guide Chart</span>
+            </div>
+
+            <div class="selection-box">
+                <label><b>Select Color:</b></label>
+                <select id="color-p2" onchange="changeImage('p2')">
+                    <option value="Brown">Brown</option>
+                    <option value="Green">Green</option>
+                    <option value="Black">Black</option>
+                </select>
+            </div>
+
+            <div class="selection-box">
+                <label><b>Quantity (Pairs):</b></label>
+                <input type="number" id="qty-p2" value="1" min="1">
+            </div>
+
+            <div class="specs-box">
+                <h4>Technical Specifications</h4>
+                <ul class="specs-list">
+                    <li><b>Base Compound:</b> Medium-Density Flexible Premium Cushion EVA Layer</li>
+                    <li><b>Strap Engineering:</b> Soft-Touch Micro-Textured Woven Matt Strap Design</li>
+                    <li><b>Lock Mechanics:</b> Industrial-Grade 5-Pin Anchor Lock Setup</li>
+                    <li><b>Footbed Texture:</b> Smooth Anti-Friction Linear Ventilation Wave Pattern</li>
+                    <li><b>Outer Sole Structure:</b> Multi-Directional Hexagonal Anti-Slip Tread Grip</li>
+                    <li><b>Average Net Weight:</b> 165 Grams per individual pair (Size 8 base)</li>
+                </ul>
+            </div>
+
+            <button class="order-btn add-btn" onclick="addToCart('p2', 'Himalayan Walk Sleeper (Classic)')">+ Add to Order List</button>
         </div>
 
-        <button class="order-btn pay-btn" style="background:#27ae60; margin-bottom: 5px;" onclick="payOnline()">Pay Online (Bank Transfer)</button>
-        <button class="order-btn" onclick="previewQuotation()">Generate Quotation & Order via WhatsApp</button>
+    </div>
+
+    <div style="text-align: center;">
+        <div class="cart-section" id="cart-box" style="display: none;">
+            <h3 style="margin-top:0;">Your Order Summary</h3>
+            <div id="cart-items"></div>
+            <hr>
+            
+            <div class="progress-container">
+                <div id="unlock-bar" class="progress-bar"></div>
+            </div>
+            <p id="unlock-text" class="progress-text"></p>
+
+            <div class="selection-box">
+                <label><b>Have a Coupon Code?</b></label>
+                <div style="display: flex; gap: 5px;">
+                    <input type="text" id="coupon-input" placeholder="Enter promotional code...">
+                    <button class="coupon-btn" onclick="applyCoupon()">Apply</button>
+                </div>
+            </div>
+
+            <p><b>Total Quantity:</b> <span id="total-qty">0</span> Pairs</p>
+            <div id="discount-info" class="discount-text">Coupon Applied! Discount: ₹<span id="discount-amt">0</span></div>
+            <p class="price-tag" id="price-display">Price per unit: ₹159</p>
+            <p style="font-size: 1.2em;"><b>Grand Total: ₹<span id="final-bill">0</span></b></p>
+
+            <div class="selection-box">
+                <label><b>Delivery Address & Pincode:</b></label>
+                <input type="text" id="address-pincode" placeholder="Enter 6-digit Pincode..." maxlength="6" style="margin-bottom:5px;">
+                <button id="pin-check-btn" onclick="checkPincode()">Check Pincode</button>
+                <div id="pin-status"></div>
+                <textarea id="address-full" placeholder="Complete Street Address, City, State..." style="height: 60px; margin-top: 5px;"></textarea>
+            </div>
+
+            <button class="order-btn pay-btn" style="background:#27ae60; margin-bottom: 5px;" onclick="payOnline()">Pay Online (Bank Transfer)</button>
+            <button class="order-btn" onclick="previewQuotation()">Generate Quotation & Order via WhatsApp</button>
+        </div>
     </div>
 </div>
 
-<div class="info-section" id="about-section">
+<div class="info-section" id="about-section" style="display: none;">
     <h2>About Our Enterprise</h2>
     
     <h3>Our Story</h3>
@@ -346,7 +350,7 @@
         <img src="founder.jpg" onerror="this.onerror=null; this.src='logo.jpg';" alt="Rajat Thakur - MD" class="director-img">
         <div class="director-info">
             <h4>Rajat Thakur</h4>
-            <span class="title">Founder & Managing Director</span>
+            <span class="title">Founder</span>
             <p style="margin: 5px 0; font-size:0.98em; text-align: justify; line-height:1.75; color: #475569;">Driven by a strict technical background in strategic industrial sourcing, macro-market analysis, and international quality thresholds, Rajat Thakur established <b>Himalayan Walk Sleeper</b> to actively challenge structural gaps in the Indian footwear sector where affordability often compromised raw strength. Rooted deeply in a grand vision of indigenous core growth, his corporate leadership centers heavily on bringing highly advanced manufacturing operations straight to Himachal Pradesh. By maintaining incredibly strict inspection thresholds and completely refusing standard 3-pin market limitations, he successfully engineered a highly dependable 5-pin anchor configuration built specifically for everyday rugged reliance. His forward-looking focus continues to aggressively scale national supply chain logistics while continuously anchoring sustainable industrial job opportunities within local community segments.</p>
         </div>
     </div>
@@ -443,7 +447,7 @@
     <div style="margin-bottom: 15px; font-weight: bold; color: #2c3e50; font-size: 1.1em; background: #f8fafc; padding: 12px; border-radius: 8px; border: 1px dashed #e67e22; display: inline-block;">
         🚚 Delivery & Logistics Partner: <span style="color:#e67e22;">DTDC Express Limited</span> (Partner with DTDC)
     </div>
-    <p><b>MD:</b> Rajat Thakur, +918988883210 | <b>Corporate Desk:</b> Raja ka talab, Nurpur, Kangra, HP 176051</p>
+    <p><b>Founder:</b> Rajat Thakur, +918988883210 | <b>Corporate Desk:</b> Raja ka talab, Nurpur, Kangra, HP 176051</p>
     <div class="social-links" style="margin-top: 10px; border:none; padding:0;">
         <a href="https://www.facebook.com/share/1CB98rrZ4b/" class="social-icon" target="_blank"><svg viewBox="0 0 24 24" fill="#1877F2" width="30" height="30"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
         <a href="https://www.instagram.com/himwalksliper?igsh=b3A1ZmpwMnl6ZWkz" class="social-icon" target="_blank"><svg viewBox="0 0 24 24" fill="#E4405F" width="30" height="30"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></a>
@@ -466,14 +470,31 @@
     setInterval(updateClock, 1000);
     updateClock();
 
-    // Universal Navigation Trigger for About Section Shift
-    function scrollToAbout() {
-        document.getElementById('about-section').scrollIntoView({ behavior: 'smooth' });
+    // Advanced Page View Toggler (Closes other section completely)
+    function switchMainView(viewType) {
+        const shopView = document.getElementById('shop-view-container');
+        const aboutView = document.getElementById('about-section');
+        
+        if (viewType === 'shop') {
+            shopView.style.display = "block";
+            aboutView.style.display = "none";
+        } else if (viewType === 'about') {
+            shopView.style.display = "none";
+            aboutView.style.display = "block";
+        }
+        window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
     function openModal(id) { document.getElementById(id).style.display = "block"; }
     function closeModal(id) { document.getElementById(id).style.display = "none"; }
-    function scrollToCart() { document.getElementById('cart-box').scrollIntoView({ behavior: 'smooth' }); }
+    
+    // Floating cart forces view to shift back to products list dynamically
+    function scrollToCart() {
+        switchMainView('shop');
+        setTimeout(() => {
+            document.getElementById('cart-box').scrollIntoView({ behavior: 'smooth' });
+        }, 100);
+    }
 
     // Sequential Automated Scanner Engine for Gallery inside Modal
     function loadAutomatedGallery() {
@@ -554,7 +575,7 @@
                     status.style.color = "#27ae60";
                 } else {
                     verifiedPincode = "";
-                    status.innerHTML = "❌ Pin-code not found in delivery network database.";
+                    status.innerHTML = "❌ Pin-code not found in DTDC shipping database.";
                     status.style.color = "#e74c3c";
                 }
             })
