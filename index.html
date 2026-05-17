@@ -148,7 +148,7 @@
     <div class="products-container">
         
         <div class="product-card">
-            <img src="product.jpg" id="img-p1" alt="Himalayan Walk Sleeper Premium" class="product-img">
+            <img src="Black.png" id="img-p1" alt="Himalayan Walk Sleeper Premium" class="product-img">
             <h3 style="margin: 5px 0;">Himalayan Walk Sleeper (Premium)</h3>
             <p style="margin: 5px 0;">Brand: <span class="yellow-star">★ Yellow Star ★</span></p>
 
@@ -192,7 +192,7 @@
         </div>
 
         <div class="product-card">
-            <img src="product2.jpg" id="img-p2" alt="Himalayan Walk Sleeper Classic" class="product-img">
+            <img src="Classic_Brown.png" id="img-p2" alt="Himalayan Walk Sleeper Classic" class="product-img">
             <h3 style="margin: 5px 0;">Himalayan Walk Sleeper (Classic)</h3>
             <p style="margin: 5px 0;">Brand: <span class="yellow-star">★ Yellow Star ★</span></p>
 
@@ -237,7 +237,10 @@
 
     <div style="text-align: center;">
         <div class="cart-section" id="cart-box" style="display: none;">
-            <h3 style="margin-top:0;">Your Order Summary</h3>
+            <h3 style="margin-top:0; display: flex; justify-content: space-between;">
+                <span>Your Order Summary</span>
+                <span style="font-size:0.75em; color:#e67e22;" id="cart-order-num-display"></span>
+            </h3>
             <div id="cart-items"></div>
             <hr>
             
@@ -422,6 +425,7 @@
                 <img src="logo.jpg" alt="Himalayan Walk Sleeper Logo" width="50" style="border-radius: 50%;">
                 <div style="font-weight:bold; font-size:1.1em; margin-top:5px;">Himalayan Walk Sleeper</div>
                 <div style="font-size:0.85em;">Digital Order Quotation</div>
+                <div style="font-size:0.82em; color: #e67e22; font-weight: bold; margin-top: 3px;" id="quote-order-id-view"></div>
                 <div style="font-size:0.8em; margin-top:3px;" id="quote-date"></div>
             </div>
             <table class="quotation-items">
@@ -452,13 +456,19 @@
         </div>
 
         <div id="pay-method-upi" style="text-align:center;">
+            <div style="background:#f0fdf4; padding:12px; border-radius:8px; margin-bottom:15px; border:1px solid #bbf7d0;">
+                <span style="font-size:0.85em; color:#166534; font-weight:600; display:block;">FINAL ORDER PAYABLE AMOUNT:</span>
+                <span style="font-size:1.6em; font-weight:800; color:#15803d;">₹<span id="upi-live-amount">0</span></span>
+                <span style="font-size:0.78em; color:#475569; display:block; margin-top:3px; font-weight:500;" id="upi-order-num-text"></span>
+            </div>
+
             <img src="Payment_QR.png" onerror="this.onerror=null; this.src='logo.jpg';" alt="Scan PhonePe QR Code" style="width:220px; height:auto; margin:0 auto 10px auto; display:block; border:1px solid #e2e8f0; border-radius:12px; box-shadow: 0 4px 6px rgba(0,0,0,0.05);">
-            <p style="margin:5px 0; font-size:0.95em; color:#1e293b;"><b>Scan QR via PhonePe, GPay, Paytm or any UPI App</b></p>
+            <p style="margin:5px 0; font-size:0.9em; color:#1e293b;"><b>Scan QR code & pay the exact automated amount above</b></p>
             
             <div style="background:#f1f5f9; padding:10px; border-radius:8px; margin-top:12px; word-break:break-all; border:1px solid #cbd5e1;">
-                <span style="font-size:0.8em; color:#64748b; display:block; font-weight:bold; text-transform:uppercase;">Direct UPI ID:</span>
-                <a href="upi://pay?pa=Rajat3796@ybl&pn=Rajat%20Kumar&cu=INR" style="font-weight:bold; color:#1e40af; text-decoration:none; font-size:1.1em; display:inline-block; margin-top:2px;">Rajat3796@ybl</a>
-                <span style="display:block; font-size:0.75em; color:#ef4444; margin-top:4px; font-weight:500;">(Mobile Users: Tap on the UPI ID to pay directly via apps)</span>
+                <span style="font-size:0.8em; color:#64748b; display:block; font-weight:bold; text-transform:uppercase;">Click to Pay Directly via App:</span>
+                <a id="upi-dynamic-intent-link" href="#" style="font-weight:bold; color:#1e40af; text-decoration:none; font-size:1.1em; display:inline-block; margin-top:2px;">Rajat3796@ybl</a>
+                <span style="display:block; font-size:0.75em; color:#ef4444; margin-top:4px; font-weight:500;">(Mobile Users: Tap on ID to auto-fill exact amount in PhonePe/GPay)</span>
             </div>
             <p style="font-size:0.85em; color:#475569; margin-top:10px;">Account Name: <b>RAJAT KUMAR</b></p>
         </div>
@@ -495,6 +505,7 @@
     let calculatedGrandTotal = 0;
     let calculatedDiscountAmt = 0;
     let verifiedPincode = "";
+    let trackingOrderNumber = ""; // Persistent Unique Session Tracking System
 
     function updateClock() {
         const now = new Date();
@@ -503,6 +514,12 @@
     }
     setInterval(updateClock, 1000);
     updateClock();
+
+    function generateTrackingID() {
+        if (!trackingOrderNumber) {
+            trackingOrderNumber = "HWS-" + Math.floor(100000 + Math.random() * 900000);
+        }
+    }
 
     function switchMainView(viewType) {
         const shopView = document.getElementById('shop-view-container');
@@ -640,6 +657,7 @@
         }
     }
 
+    // Fixed Isolated Fallback Pipeline for Product 2 (Classic) - Removed Contaminants
     function changeImage(prodId) {
         let color = document.getElementById('color-' + prodId).value;
         let imgElement = document.getElementById('img-' + prodId);
@@ -648,14 +666,14 @@
         if (prodId === 'p1') {
             srcArray = [color + ".png", color.toLowerCase() + ".png", "product.jpg"];
         } else {
+            // Strictly uses Classic names from your repo snapshot, avoids grabbing P1's black image
             srcArray = [
                 "Classic_" + color + ".png", 
                 "Classic_" + color.toLowerCase() + ".png",
                 "classic_" + color.toLowerCase() + ".png",
                 color + ".png",
                 color.toLowerCase() + ".png",
-                "product2.jpg",
-                "product.jpg"
+                "product2.jpg"
             ];
         }
 
@@ -681,6 +699,8 @@
         let color = document.getElementById('color-' + prodId).value;
         let qty = parseInt(document.getElementById('qty-' + prodId).value);
         if (qty < 1 || isNaN(qty)) return;
+        
+        generateTrackingID(); // Generates order tracking code on first click
         cart.push({ prodName, size, color, qty });
         document.getElementById('cart-box').style.display = "inline-block";
         updateCartUI();
@@ -721,6 +741,7 @@
             document.getElementById('cart-box').style.display = "none";
             isCouponApplied = false;
             appliedCouponCode = "";
+            trackingOrderNumber = ""; // Reset when layout completely empties out
         }
         updateCartUI();
     }
@@ -738,6 +759,11 @@
                 </div>`;
         });
         document.getElementById('total-qty').innerText = totalQty;
+        
+        // Show Unique Tracking Code directly inside the layout wrapper
+        if (trackingOrderNumber) {
+            document.getElementById('cart-order-num-display').innerText = "Order Tracking ID: " + trackingOrderNumber;
+        }
         
         const floatCart = document.getElementById('floating-cart');
         if(totalQty > 0) {
@@ -758,6 +784,7 @@
             unlockBar.style.width = totalQty >= 30 ? "100%" : "0%";
         }
         
+        // Slashed Rate Slabs Structure for Product 1 vs Product 2
         let premiumPrice = 149;
         let classicPrice = 129;
         if (totalQty >= 100) { premiumPrice = 74; classicPrice = 54; }
@@ -805,6 +832,14 @@
         let rateLabel = totalQty >= 30 ? "Wholesale Rates" : "Retail Rates";
         document.getElementById('price-display').innerHTML = `<b>${rateLabel}:</b> Premium ₹${premiumPrice} | Classic ₹${classicPrice}`;
         document.getElementById('final-bill').innerText = finalTotal;
+
+        // Automatically injects final bill details inside the live payment gateway tabs parameters
+        document.getElementById('upi-live-amount').innerText = finalTotal.toLocaleString('en-IN');
+        document.getElementById('upi-order-num-text').innerText = "Tracking Code: " + trackingOrderNumber;
+        
+        // Deep linking configuration with automated calculation routing
+        let rawUpiUrl = `upi://pay?pa=Rajat3796@ybl&pn=Rajat%20Kumar&cu=INR&am=${finalTotal}&tn=${trackingOrderNumber}`;
+        document.getElementById('upi-dynamic-intent-link').href = rawUpiUrl;
     }
 
     function previewQuotation() {
@@ -815,6 +850,8 @@
             return;
         }
         document.getElementById('quote-date').innerText = "Date: " + new Date().toLocaleDateString('en-IN');
+        document.getElementById('quote-order-id-view').innerText = "Tracking Reference No: " + trackingOrderNumber;
+        
         let itemsBody = document.getElementById('quote-items-body');
         itemsBody.innerHTML = "";
         
@@ -854,7 +891,7 @@
 
         let orderDetails = cart.map(i => `- ${i.prodName} (Size ${i.size}, ${i.color}): ${i.qty} pairs`).join('\n');
         let couponMsg = isCouponApplied ? `\n*Coupon Applied:* ${appliedCouponCode} (₹${calculatedDiscountAmt} Off)` : "";
-        let msg = `*Himalayan Walk Sleeper - New Multi-Product Order*\n\n*Items List:*\n${orderDetails}\n\n*Total Qty:* ${currentQty} Pairs${couponMsg}\n*Grand Total:* ₹${finalBill}\n\n*Delivery Info:*\nPincode: ${verifiedPincode}\nAddress: ${fullAddress}\n\n*Generated Quote No:* HW-${Date.now().toString().slice(-4)}`;
+        let msg = `*Himalayan Walk Sleeper - New Multi-Product Order*\n\n*Tracking Order No:* ${trackingOrderNumber}\n\n*Items List:*\n${orderDetails}\n\n*Total Qty:* ${currentQty} Pairs${couponMsg}\n*Grand Total:* ₹${finalBill}\n\n*Delivery Info:*\nPincode: ${verifiedPincode}\nAddress: ${fullAddress}`;
         window.open(`https://wa.me/918988883210?text=${encodeURIComponent(msg)}`, '_blank').focus();
     }
 
