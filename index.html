@@ -51,10 +51,12 @@
         #pin-check-btn { position: absolute; right: 5px; top: 32px; background: #34495e; color: white; border: none; padding: 5px 10px; border-radius: 4px; cursor: pointer; font-size: 0.8em; }
         #pin-status { font-size: 0.85em; margin-top: 8px; font-weight: bold; display: none; line-height: 1.4; text-align: left; padding: 8px; background: #f8fafc; border-radius: 5px; border: 1px solid #e2e8f0; }
 
-        /* Simulated Tracking System Design */
-        .timeline-step { margin-bottom: 10px; padding-left: 20px; position: relative; font-size: 0.92em; }
-        .timeline-step::before { content: '✓'; position: absolute; left: 0; top: 2px; background: #27ae60; color: white; border-radius: 50%; width: 14px; height: 14px; font-size: 9px; line-height: 14px; text-align: center; font-weight: bold; }
-        .timeline-pending::before { content: '●'; background: #cbd5e1; color: #64748b; font-size: 8px; line-height: 14px; }
+        /* Dashboard Tracking Timeline UI */
+        .timeline-wrapper { margin-top: 15px; }
+        .timeline-step { margin-bottom: 12px; padding-left: 25px; position: relative; font-size: 0.95em; text-align: left; }
+        .timeline-step::before { content: '✓'; position: absolute; left: 0; top: 2px; background: #27ae60; color: white; border-radius: 50%; width: 16px; height: 16px; font-size: 10px; line-height: 16px; text-align: center; font-weight: bold; }
+        .timeline-pending { color: #94a3b8; }
+        .timeline-pending::before { content: '●'; background: #cbd5e1; color: #64748b; font-size: 8px; line-height: 16px; }
 
         .order-btn { background: #e67e22; color: white; padding: 15px; border-radius: 5px; font-weight: bold; display: block; border: none; cursor: pointer; width: 100%; font-size: 1.1em; margin-top: 10px; }
         .add-btn { background: #3498db; margin-bottom: 10px; }
@@ -154,7 +156,7 @@
     <div class="products-container">
         
         <div class="product-card">
-            <img src="product.jpg" id="img-p1" alt="Himalayan Walk Sleeper Premium" class="product-img">
+            <img src="Black.png" id="img-p1" onerror="this.onerror=null; this.src='product.jpg';" alt="Himalayan Walk Sleeper Premium" class="product-img">
             <h3 style="margin: 5px 0;">Himalayan Walk Sleeper (Premium)</h3>
             <p style="margin: 5px 0;">Brand: <span class="yellow-star">★ Yellow Star ★</span></p>
 
@@ -198,7 +200,7 @@
         </div>
 
         <div class="product-card">
-            <img src="Classic_Brown.png" id="img-p2" alt="Himalayan Walk Sleeper Classic" class="product-img">
+            <img src="Classic_Brown.png" id="img-p2" onerror="this.onerror=null; this.src='Classic_Green.png';" alt="Himalayan Walk Sleeper Classic" class="product-img">
             <h3 style="margin: 5px 0;">Himalayan Walk Sleeper (Classic)</h3>
             <p style="margin: 5px 0;">Brand: <span class="yellow-star">★ Yellow Star ★</span></p>
 
@@ -322,7 +324,7 @@
         </div>
         <div class="faq-item">
             <div class="faq-question">Q: Content verification ke liye payment parameters aur secure channels kaunse hain?</div>
-            <div class="faq-answer">A: Hum direct and secure commercial dealing par vishwas rakhte hain. Aap website par "Pay Online" dabakar hamare verified Punjab National Bank Current Account details dekh sakte hain aur direct transfer karke screenshot WhatsApp par share kar sakte hain.</div>
+            <div class="faq-answer">A: Hum direct and secure commercial dealing par vishwas rakhte hain. Aap website par "Pay Online" dabakar hamare verified Punjab National Bank Current Account details dekh sakte hain aur direct transfer karke screenshot WhatsApp par share kar sakte hain. [cite: 174]</div>
         </div>
         <div class="faq-item">
             <div class="faq-question">Q: Kya slippers ka base material long-term continuous use ke liye bilkul safe hai?</div>
@@ -392,7 +394,7 @@
     <div class="modal-content">
         <span class="close-modal" onclick="closeModal('trackingModal')">&times;</span>
         <h2>Track Your Order Status</h2>
-        <p style="color:#555; margin-bottom: 15px;">Apna 6-digit Order Tracking ID (e.g., HWS-123456) enter karke live transport status check karein.</p>
+        <p style="color:#555; margin-bottom: 15px;">Apna 6-digit Order Tracking ID (e.g., HWS-123456) enter karke live dispatch metrics check karein.</p>
         <div class="selection-box">
             <label><b>Tracking ID:</b></label>
             <input type="text" id="track-id-input" placeholder="Enter HWS Tracking Number...">
@@ -401,16 +403,59 @@
         
         <div id="tracking-result" style="display:none; margin-top:20px; padding:15px; background:#f8fafc; border-radius:10px; border:1px solid #cbd5e1; text-align:left;">
             <h4 style="margin:0 0 10px 0; color:#2c3e50;" id="track-id-title"></h4>
-            <p style="margin:4px 0; font-size:0.92em;"><b>Logistics Network:</b> DTDC Express Limited</p>
-            <p style="margin:4px 0; font-size:0.92em;"><b>Current Status:</b> <span style="color:#e67e22; font-weight:bold;">Pre-paid Manifest Generated / In Transit</span></p>
+            <p style="margin:4px 0; font-size:0.92em;"><b>Logistics Partner:</b> <span id="track-carrier-name">DTDC Express Limited</span></p>
+            <p style="margin:4px 0; font-size:0.92em;"><b>Current Status:</b> <span id="track-current-stage" style="color:#e67e22; font-weight:bold;">Pre-paid Manifest Generated</span></p>
+            
+            <div id="external-carrier-link-box" style="margin: 10px 0; padding: 10px; background: #fff; border-radius: 6px; border: 1px dashed #3498db; display: none;"></div>
+
             <hr style="border:0; border-top:1px solid #ddd; margin:10px 0;">
-            <div style="line-height:1.6; color:#475569;">
-                <div class="timeline-step"><b>Order Confirmed</b> - Sourcing Desk Approved</div>
-                <div class="timeline-step"><b>Batch Packed</b> - Verified Yellow Star Box 5-Pin Quality Inspected</div>
-                <div class="timeline-step"><b>DTDC Pre-paid Manifest Created</b> - Shipping Label Assigned via Sukhar Desk</div>
-                <div class="timeline-step timeline-pending" style="color:#94a3b8;"><b>Handed Over to DTDC Courier</b> - Enroute via Regional Kangra Hub</div>
-            </div>
+            <div class="timeline-wrapper" id="track-timeline-nodes"></div>
             <button class="order-btn" style="background:#3498db; margin-top:15px; font-size:0.95em;" onclick="queryTrackingWhatsApp()">Query Live Location via WhatsApp</button>
+        </div>
+    </div>
+</div>
+
+<div id="adminModal" class="modal">
+    <div class="modal-content">
+        <span class="close-modal" onclick="closeModal('adminModal')">&times;</span>
+        <h2 style="border-bottom: 3px solid #c0392b;">🔑 Central Control Admin Portal</h2>
+        
+        <div id="admin-login-stage">
+            <div class="selection-box">
+                <label><b>Enter Master Security Password:</b></label>
+                <input type="password" id="admin-pass-input" placeholder="Enter administrative key...">
+            </div>
+            <button class="order-btn" style="background:#c0392b;" onclick="authenticateAdmin()">Authenticate Access</button>
+        </div>
+
+        <div id="admin-workspace-stage" style="display: none;">
+            <p style="color:#27ae60; font-weight:bold; margin-top:0;">✅ Authenticated Session: Active</p>
+            <div class="selection-box">
+                <label><b>Target Order Tracking ID:</b></label>
+                <input type="text" id="adm-order-id" placeholder="e.g. HWS-482915">
+            </div>
+            <div class="selection-box">
+                <label><b>Logistics Channel / Mode:</b></label>
+                <select id="adm-carrier">
+                    <option value="DTDC Express Limited">DTDC Express Limited</option>
+                    <option value="Manual Delivery Trunk Lines">Manual / Local Transport Delivery</option>
+                </select>
+            </div>
+            <div class="selection-box">
+                <label><b>Set Current Dispatch Stage:</b></label>
+                <select id="adm-stage">
+                    <option value="1">1. Order Confirmed - Approved</option>
+                    <option value="2">2. Batch Packed - 5-Pin Inspected</option>
+                    <option value="3">3. Dispatched & In-Transit (Tracking Active)</option>
+                    <option value="4">4. Out for Delivery - Regional Hub</option>
+                    <option value="5">5. Delivered Successfully - Terminal</option>
+                </select>
+            </div>
+            <div class="selection-box">
+                <label><b>Official DTDC AWB / Tracking Reference No (Optional):</b></label>
+                <input type="text" id="adm-awb" placeholder="Enter DTDC docket number if applicable...">
+            </div>
+            <button class="order-btn" style="background:#27ae60;" onclick="saveAdminTrackingUpdate()">💾 Save & BroadCast Status</button>
         </div>
     </div>
 </div>
@@ -511,9 +556,9 @@
                 <p style="margin:4px 0; font-size:0.95em;"><b>Name:</b> Algotrio indus</p>
                 <p style="margin:4px 0; font-size:0.95em;"><b>Bank:</b> Punjab National Bank</p>
                 <p style="margin:4px 0; font-size:0.95em;"><b>Branch:</b> Ganoh</p>
-                <p style="margin:4px 0; font-size:0.95em;"><b>Account Number:</b> 3027002100002557</p>
-                <p style="margin:4px 0; font-size:0.95em;"><b>IFSC Code:</b> PUNB0302700</p>
-                <p style="margin:4px 0; font-size:0.95em;"><b>Account Type:</b> Current Account</p>
+                <p style="margin:4px 0; font-size:0.95em;"><b>Account Number:</b> 3027002100002557 [cite: 174]</p>
+                <p style="margin:4px 0; font-size:0.95em;"><b>IFSC Code:</b> PUNB0302700 [cite: 174]</p>
+                <p style="margin:4px 0; font-size:0.95em;"><b>Account Type:</b> Current Account [cite: 174]</p>
             </div>
             <p style="font-size:0.82em; color:#64748b; margin-top:8px; text-align:center; font-style:italic;">Transfer funds directly and share the screenshot over WhatsApp verification channels.</p>
         </div>
@@ -522,9 +567,10 @@
 
 <footer style="margin-top: 5px; padding: 30px; border-top: 5px solid #2c3e50; background: #fff; font-size: 0.95em; color:#333; line-height: 1.6;">
     <div style="margin-bottom: 15px; font-weight: bold; color: #2c3e50; font-size: 1.1em; background: #f8fafc; padding: 12px; border-radius: 8px; border: 1px dashed #e67e22; display: inline-block;">
-        🚚 Delivery & Logistics Partner: <span style="color:#e67e22;">DTDC Express Limited</span> (Partner with DTDC)
+        🚚 Delivery & Logistics Partner: <span style="color:#e67e22;">DTDC Express Limited</span> (Partner with DTDC) [cite: 2]
     </div>
     <p><b>Founder:</b> Rajat Thakur, +918988883210 | <b>Corporate Desk:</b> Raja ka talab, Nurpur, Kangra, HP 176051</p>
+    <p style="font-size:0.8em; color:#cbd5e1; margin-top:10px;"><span style="cursor:pointer;" onclick="openModal('adminModal')">⚙️ Secure Admin Login Desk</span></p>
     <div class="social-links" style="margin-top: 10px; border:none; padding:0;">
         <a href="https://www.facebook.com/share/1CB98rrZ4b/" class="social-icon" target="_blank"><svg viewBox="0 0 24 24" fill="#1877F2" width="30" height="30"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
         <a href="https://www.instagram.com/himwalksliper?igsh=b3A1ZmpwMnl6ZWkz" class="social-icon" target="_blank"><svg viewBox="0 0 24 24" fill="#E4405F" width="30" height="30"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></a>
@@ -589,24 +635,106 @@
         }
     }
 
-    // Dynamic Simulated Live Dashboard Trigger Engine
+    /* Master Admin Dashboard Engine */
+    function authenticateAdmin() {
+        const pass = document.getElementById('admin-pass-input').value;
+        if(pass === "AlgoTrio@2026") {
+            document.getElementById('admin-login-stage').style.display = 'none';
+            document.getElementById('admin-workspace-stage').style.display = 'block';
+        } else {
+            alert("Incorrect Administrative Password!");
+        }
+    }
+
+    function saveAdminTrackingUpdate() {
+        let orderId = document.getElementById('adm-order-id').value.trim().toUpperCase();
+        let carrier = document.getElementById('adm-carrier').value;
+        let stage = parseInt(document.getElementById('adm-stage').value);
+        let awb = document.getElementById('adm-awb').value.trim();
+
+        if(!orderId || orderId.length < 4) {
+            alert("Please enter a valid Target Order ID.");
+            return;
+        }
+
+        let trackingPayload = { carrier, stage, awb };
+        localStorage.setItem(orderId, JSON.stringify(trackingPayload));
+        alert(`Status updated successfully for order ${orderId}!`);
+        closeModal('adminModal');
+        // Reset Admin Form fields safely
+        document.getElementById('adm-order-id').value = "";
+        document.getElementById('adm-awb').value = "";
+    }
+
+    /* Advanced Hybrid Live Tracking Logic Engine */
     function trackOrderLive() {
         let inputId = document.getElementById('track-id-input').value.trim().toUpperCase();
         let resultBox = document.getElementById('tracking-result');
         let titleBox = document.getElementById('track-id-title');
+        let carrierBox = document.getElementById('track-carrier-name');
+        let currentStageBox = document.getElementById('track-current-stage');
+        let externalLinkBox = document.getElementById('external-carrier-link-box');
+        let timelineContainer = document.getElementById('track-timeline-nodes');
 
         if(!inputId || inputId.length < 4) {
             alert("Kripya ek valid Order ID enter karein.");
             return;
         }
+
         titleBox.innerText = "Tracking ID: " + inputId;
+        
+        // 1. Check inside client frontend administrative LocalStorage database first
+        let localRecord = localStorage.getItem(inputId);
+        
+        if (localRecord) {
+            let data = JSON.parse(localRecord);
+            carrierBox.innerText = data.carrier;
+            
+            let stageTexts = [
+                "Order Confirmed - Sourcing Desk Approved",
+                "Batch Packed - 5-Pin Inspected",
+                "Dispatched & In-Transit (Tracking Active)",
+                "Out for Delivery - Regional Hub",
+                "Delivered Successfully - Terminal"
+            ];
+            currentStageBox.innerText = stageTexts[data.stage - 1];
+
+            // Setup external DTDC dynamic routing portal link if present
+            if (data.awb) {
+                externalLinkBox.innerHTML = `🔗 <b>Official DTDC Route Link:</b> <a href="https://tracking.dtdc.com/ctbs-tracking/customerRegistration.tr?action=search&awbNo=${data.awb}" target="_blank" style="color:#1e40af; font-weight:bold; text-decoration:underline;">Click here to track directly on DTDC Portal (${data.awb})</a>`;
+                externalLinkBox.style.display = "block";
+            } else {
+                externalLinkBox.style.display = "none";
+            }
+
+            // Generate Timeline Nodes dynamically based on accurate stages
+            let timelineHtml = "";
+            for(let i = 1; i <= 5; i++) {
+                let nodeClass = i <= data.stage ? "timeline-step" : "timeline-step timeline-pending";
+                timelineHtml += `<div class="${nodeClass}"><b>${stageTexts[i-1]}</b></div>`;
+            }
+            timelineContainer.innerHTML = timelineHtml;
+
+        } else {
+            // 2. Fallback to automated default simulation loop if no custom override is set by Rajat
+            carrierBox.innerText = "DTDC Express Limited";
+            currentStageBox.innerText = "Pre-paid Manifest Generated / In Transit";
+            externalLinkBox.style.display = "none";
+            
+            timelineContainer.innerHTML = `
+                <div class="timeline-step"><b>Order Confirmed</b> - Sourcing Desk Approved</div>
+                <div class="timeline-step"><b>Batch Packed</b> - Verified Yellow Star Box 5-Pin Quality Inspected</div>
+                <div class="timeline-step"><b>DTDC Pre-paid Manifest Created</b> - Shipping Label Assigned via Sukhar Desk</div>
+                <div class="timeline-step timeline-pending"><b>Handed Over to DTDC Courier</b> - Enroute via Regional Kangra Hub</div>
+            `;
+        }
         resultBox.style.display = "block";
     }
 
     function queryTrackingWhatsApp() {
         let inputId = document.getElementById('track-id-input').value.trim().toUpperCase();
-        let msg = `Hi Rajat, I want to query the live current transport location of my Order Tracking ID: *${inputId}*`;
-        window.open(`https://wa.me/918988883210?text=${encodeURIComponent(msg)}`, '_blank').focus();
+        let msg = `Hi Rajat, I want to query the current deployment location of my Order Tracking ID: *${inputId}*`;
+        window.open replay = window.open(`https://wa.me/918988883210?text=${encodeURIComponent(msg)}`, '_blank').focus();
     }
 
     function scrollToCart() {
@@ -710,7 +838,7 @@
         }
     }
 
-    // STRICT DIRECT MAPPING CONTROL - Zero Fallback Corruption
+    // STRICT ISOLATED TARGET MAPPING - Zero Cross-Pipelining Errors
     function changeImage(prodId) {
         let color = document.getElementById('color-' + prodId).value;
         let imgElement = document.getElementById('img-' + prodId);
@@ -723,7 +851,12 @@
             else if(color === "Green") imgElement.src = "Green.png";
             else imgElement.src = "product.jpg"; 
         } else {
-            // Strictly maps to Classic Series files only - Never overlaps or grabs P1's black asset
+            // Strictly hooks onto exact Classic asset filenames with strict emergency fallbacks
+            imgElement.onerror = function() {
+                imgElement.onerror = null;
+                imgElement.src = "Classic_Green.png"; // Safe direct rendering bypass
+            };
+            
             if(color === "Brown") imgElement.src = "Classic_Brown.png";
             else if(color === "Green") imgElement.src = "Classic_Green.png";
             else if(color === "Black") imgElement.src = "Classic_Black.png"; 
@@ -873,7 +1006,7 @@
         document.getElementById('price-display').innerHTML = `<b>${rateLabel}:</b> Premium ₹${premiumPrice} | Classic ₹${classicPrice}`;
         document.getElementById('final-bill').innerText = finalTotal;
 
-        // Dynamic Payment Logic Engine - Amount Auto-Linking Injection
+        // Auto-Filling Intent Engine Injection parameters
         document.getElementById('upi-live-amount').innerText = finalTotal.toLocaleString('en-IN');
         document.getElementById('upi-order-num-text').innerText = "Tracking Code: " + trackingOrderNumber;
         
@@ -948,7 +1081,7 @@
     function closeModal(id) { document.getElementById(id).style.display = "none"; }
     
     window.onclick = function(event) {
-        const modals = ['bankModal', 'sizeModal', 'quotationModal', 'galleryModal', 'calculatorModal', 'enquiryModal', 'trackingModal'];
+        const modals = ['bankModal', 'sizeModal', 'quotationModal', 'galleryModal', 'calculatorModal', 'enquiryModal', 'trackingModal', 'adminModal'];
         modals.forEach(id => {
             let m = document.getElementById(id);
             if (event.target == m) { m.style.display = "none"; }
